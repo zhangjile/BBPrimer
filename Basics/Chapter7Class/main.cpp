@@ -5,20 +5,20 @@
 using std::cin; using std::cout; using std::endl; using std::ifstream; using std::cerr;
 
 int main() {
-    Sales_item item1;
+    Sales_item Total;
     ifstream Read ("book_sales");
-    if(Read >>item1){
-        Sales_item item2;
-        while(Read >> item2){
-            if(item1.isbn() == item2.isbn()){
-                item1 += item2;
+    if(Read >>Total){
+        Sales_item Single;
+        while(Read >> Single){
+            if(Total.isbn() == Single.isbn()){
+                Total += Single;
             } else{
-                cout << item1 <<endl;
-                item1 = item2;
+                cout << Total <<endl;
+                Total = Single;
             }
             
         }
-        cout << item1 <<endl;
+        cout << Total <<endl;
         return 0;
     } else{
         cerr <<"Error" <<endl;
