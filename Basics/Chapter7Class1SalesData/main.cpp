@@ -1,17 +1,24 @@
-//section 7.1 defining abstract data types (Ex 7.7, p 262)
-//add Read function
-// the 3rd item in book_sales file is Price. Revenue is correctly calculated now
+//section 7.1 defining abstract data types (Ex 7.21, p 271)
+//update your SalesData class to hide its implementation
+
 #include <iostream>
 #include <fstream>
 #include <string>
 using namespace std;
 
-struct SalesData {
+class SalesData {
+	private:
 	std::string BookNO;
 	unsigned UnitsSold = 0;
 	double Revenue = 0.0;
+	
+	public:
 	std::string isbn () const {return BookNO;}
 	SalesData& Combine (const SalesData &item);
+	
+	friend ifstream &Read (ifstream &is, SalesData &item);
+	friend ostream &Write (ostream &os, const SalesData &item);
+	friend ofstream &Save (ofstream &os, const SalesData &item);
 
 };
 
@@ -57,7 +64,7 @@ int main(){
 	SalesData Total,Single;
 	if(Read(items,Total)){
 		while (Read(items,Single)){
-			if(Total.BookNO == Single.BookNO){
+			if(Total.isbn() == Single.isbn()){
 				Total.Combine(Single);
 			}
 			else{
