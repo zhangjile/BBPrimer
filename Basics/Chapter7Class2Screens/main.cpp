@@ -1,12 +1,22 @@
-//void Screen_mgr Clear(ScreenIndex);
-//friend class Screen_mgr; // a friend of class Screen;
+// carefully arrange the program flow to accommodate interdependencies
+// much better to restrict unfettered access to the private members of class Screen
 #include <iostream>
 #include <vector>
 
-class Screen_mgr;
+class Screen;
+
+class Screen_mgr {
+	public:
+	using ScreenIndex = std::vector<Screen>::size_type;
+	Screen_mgr ();
+	void Clear(ScreenIndex i);
+	const Screen& Get() const {return Screens[0];}
+	private:
+	std::vector<Screen> Screens;
+};
 
 class Screen {
-	friend class Screen_mgr;
+	friend void Screen_mgr::Clear(ScreenIndex);
 public:
 	typedef std::string::size_type pos;
 	Screen () = default;
@@ -22,7 +32,7 @@ public:
 	
 private:
 	pos Cursor = 0;
-	pos Height = 0, Width = 0;
+	pos Height = 10, Width = 10;
 	std::string Contents;
 	void DoDisplay(std::ostream &os) const {os << Contents;}
 	
@@ -49,19 +59,13 @@ inline Screen& Screen::Set(pos r, pos c, char ch){
 	return *this;
 }
 
-class Screen_mgr {
-	public:
-	using ScreenIndex = std::vector<Screen>::size_type;
-	Screen& Clear(ScreenIndex i);
-	const Screen& Get() const {return Screens[0];}
-	private:
-	std::vector<Screen> Screens {Screen(24,48, ' ')};
-};
+Screen_mgr::Screen_mgr (){
+	Screens.push_back(Screen(20,40,'a')); //last stroke for a success
+}
 
-Screen& Screen_mgr::Clear(ScreenIndex i){
+void Screen_mgr::Clear(ScreenIndex i){
 	Screen &temp = Screens[i];
 	temp.Contents = std::string (temp.Height * temp.Width, 'X');
-	return temp;
 }
 
 int main () {
@@ -72,10 +76,13 @@ int main () {
 	std::cout<<"\n";
 	const Screen Black {5,2,'@'};
 	Black.Display(std::cout);
-	std::cout<<"Clear:\n";
-	Screen_mgr m;
-	m.Clear(0);
+	std::cout<<"\ndefault:\n";
+	Screen_mgr m ;
 	Screen n = m.Get();
+	n.Display(std::cout);
+	std::cout<<"\nclear:\n";
+	m.Clear(0);
+	n = m.Get();
 	n.Display(std::cout);
 	return 0;
 }
