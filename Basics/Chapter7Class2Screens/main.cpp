@@ -1,9 +1,12 @@
-//Class features Ex 7.27 p 278
-//Graphical interface, symbols expand the width of the device
+//void Screen_mgr Clear(ScreenIndex);
+//friend class Screen_mgr; // a friend of class Screen;
 #include <iostream>
 #include <vector>
 
+class Screen_mgr;
+
 class Screen {
+	friend class Screen_mgr;
 public:
 	typedef std::string::size_type pos;
 	Screen () = default;
@@ -16,6 +19,7 @@ public:
 	Screen &Set(pos r, pos c, char ch);
 	Screen &Display(std::ostream &os) {DoDisplay (os); return *this;}
 	const Screen &Display (std::ostream &os) const {DoDisplay (os); return *this;}
+	
 private:
 	pos Cursor = 0;
 	pos Height = 0, Width = 0;
@@ -46,9 +50,19 @@ inline Screen& Screen::Set(pos r, pos c, char ch){
 }
 
 class Screen_mgr {
+	public:
+	using ScreenIndex = std::vector<Screen>::size_type;
+	Screen& Clear(ScreenIndex i);
+	const Screen& Get() const {return Screens[0];}
 	private:
-	std::vector<Screen> Screens {Screen(24,80, ' ')};
+	std::vector<Screen> Screens {Screen(24,48, ' ')};
 };
+
+Screen& Screen_mgr::Clear(ScreenIndex i){
+	Screen &temp = Screens[i];
+	temp.Contents = std::string (temp.Height * temp.Width, 'X');
+	return temp;
+}
 
 int main () {
 	Screen MyScreen(5,5,'#');
@@ -58,5 +72,10 @@ int main () {
 	std::cout<<"\n";
 	const Screen Black {5,2,'@'};
 	Black.Display(std::cout);
+	std::cout<<"Clear:\n";
+	Screen_mgr m;
+	m.Clear(0);
+	Screen n = m.Get();
+	n.Display(std::cout);
 	return 0;
 }
