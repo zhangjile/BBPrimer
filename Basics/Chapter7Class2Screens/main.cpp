@@ -1,5 +1,6 @@
 // carefully arrange the program flow to accommodate interdependencies
 // much better to restrict unfettered access to the private members of class Screen
+// ++ defense and pruning
 #include <iostream>
 #include <vector>
 
@@ -20,10 +21,10 @@ class Screen {
 public:
 	typedef std::string::size_type pos;
 	Screen () = default;
-	Screen (pos ht, pos wd, char c):
-	Height (ht), Width (wd), Contents (ht * wd, c){}
+	Screen (pos ht, pos wd): Height(ht),Width(wd), Contents(ht*wd, ' ') {}
+	Screen (pos ht, pos wd, char c):Height (ht), Width (wd), Contents (ht*wd, c){}
 	char Get() const {return Contents[Cursor];}
-	inline char Get(pos ht, pos wd) const;
+	inline char Get(pos ht, pos wd) const; //inline modifier
 	Screen &Move (pos r, pos c);
 	Screen &Set(char c);
 	Screen &Set(pos r, pos c, char ch);
@@ -32,7 +33,7 @@ public:
 	
 private:
 	pos Cursor = 0;
-	pos Height = 10, Width = 10;
+	pos Height = 0, Width = 0;
 	std::string Contents;
 	void DoDisplay(std::ostream &os) const {os << Contents;}
 	
@@ -43,7 +44,7 @@ char Screen::Get(pos r, pos c) const {
 	return Contents[Row + c];
 }
 
-inline Screen& Screen::Move(pos r, pos c){
+inline Screen& Screen::Move(pos r, pos c){    //inline modifier
 	pos Row = r * Width;
 	Cursor = Row + c;
 	return *this;
@@ -60,10 +61,11 @@ inline Screen& Screen::Set(pos r, pos c, char ch){
 }
 
 Screen_mgr::Screen_mgr (){
-	Screens.push_back(Screen(20,40,'a')); //last stroke for a success
+	Screens.push_back(Screen(20,40,'a')); //last stroke to secure a success
 }
 
 void Screen_mgr::Clear(ScreenIndex i){
+	if(i >= Screens.size()) return; //Great defense
 	Screen &temp = Screens[i];
 	temp.Contents = std::string (temp.Height * temp.Width, 'X');
 }
