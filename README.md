@@ -1,3 +1,5 @@
 ## C++ fundamentals
-track chellenges in Beginner and Beyond
-track progress in Primer
+
+*track progress in Primer
+
+*archive chellenges in Beginner and Beyond
