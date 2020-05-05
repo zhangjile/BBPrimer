@@ -11,6 +11,12 @@ class SalesData {
 	double Revenue = 0.0;
 	
 	public:
+	//plain basic constructors
+	SalesData() = default;
+	SalesData(const std::string& s) :BookNO(s){}
+	SalesData(const std::string& s, unsigned cnt, double p): BookNO(s), UnitsSold(cnt),Revenue(p*cnt) {}
+	SalesData(std::ifstream &is);
+	
 	std::string isbn () const {return BookNO;}
 	SalesData& Combine (const SalesData &item);
 	
@@ -19,6 +25,10 @@ class SalesData {
 	friend std::ofstream &Save (std::ofstream &os, const SalesData &item);
 
 };
+
+SalesData::SalesData (std::ifstream &is){
+	Read(is, *this);
+}
 
 SalesData& SalesData::Combine(const SalesData &item){
 	UnitsSold += item.UnitsSold;
