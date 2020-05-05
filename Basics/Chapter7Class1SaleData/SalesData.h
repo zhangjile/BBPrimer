@@ -11,25 +11,24 @@ class SalesData {
 	double Revenue = 0.0;
 	
 	public:
-	//default arguments and constructors
-	//defines both the default constructor as well as that takes an istream&
-	//construct objects using keyboard input
-	SalesData(std::istream &is = std::cin);
+	//base constructors that is called/delegated to.
+	SalesData(const std::string& s, unsigned cnt, double p): BookNO(s), UnitsSold(cnt),Revenue(p*cnt) {std::cout<<"base called " <<std::endl;}
+	//default constructor calls/delegates to base constructor
+	SalesData() : SalesData(" ", 0, 0.0){std::cout<<"default called " <<std::endl;}
 	
-	SalesData(const std::string& s, unsigned cnt, double p): BookNO(s), UnitsSold(cnt),Revenue(p*cnt) {}
+	SalesData(const std::string& s) :BookNO(s){std::cout<<"string called " <<std::endl;}
+	
+	//this constructor delegates to default, which recursively delegates to base
+	SalesData(std::ifstream &is):SalesData(){Read(is, *this); std::cout<<"stream called for " <<std::endl;}
 	
 	std::string isbn () const {return BookNO;}
 	SalesData& Combine (const SalesData &item);
 	
-	friend std::istream &Read (std::istream &is, SalesData &item);
+	friend std::ifstream &Read (std::ifstream &is, SalesData &item);
 	friend std::ostream &Write (std::ostream &os, const SalesData &item);
 	friend std::ofstream &Save (std::ofstream &os, const SalesData &item);
 
 };
-
-SalesData::SalesData(std::istream &is){
-	Read(is, *this);
-}
 
 
 SalesData& SalesData::Combine(const SalesData &item){
@@ -42,7 +41,7 @@ std::ifstream &Read (std::ifstream &is, SalesData &item);
 std::ostream &Write (std::ostream &os, const SalesData &item);
 std::ofstream &Save (std::ofstream &os, const SalesData &item);
 
-std::istream &Read (std::istream &is, SalesData &item){
+std::ifstream &Read (std::ifstream &is, SalesData &item){
 	double Price {0.0};
 	is >> item.BookNO >> item.UnitsSold >> Price;
 	item.Revenue = item.UnitsSold * Price;
