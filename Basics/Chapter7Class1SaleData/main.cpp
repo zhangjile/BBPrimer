@@ -3,7 +3,8 @@
 //seperate .h from main
 //section 7.5.1, Ex 7.38,p291, default argument of constructor
 //section 7.5.3, constructors (Ex 7.41 p292),
-//++rewrite SalesData to use delegating constructor
+//rewrite SalesData to use delegating constructor
+//++ writing string isbn() function using trailing return type syntax
 
 #include "SalesData.h"
 

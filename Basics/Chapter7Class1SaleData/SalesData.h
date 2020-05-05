@@ -11,7 +11,7 @@ class SalesData {
 	double Revenue = 0.0;
 	
 	public:
-	//base constructors that is called/delegated to.
+	//base constructors that is called/delegated.
 	SalesData(const std::string& s, unsigned cnt, double p): BookNO(s), UnitsSold(cnt),Revenue(p*cnt) {std::cout<<"base called " <<std::endl;}
 	//default constructor calls/delegates to base constructor
 	SalesData() : SalesData(" ", 0, 0.0){std::cout<<"default called " <<std::endl;}
@@ -19,9 +19,11 @@ class SalesData {
 	SalesData(const std::string& s) :BookNO(s){std::cout<<"string called " <<std::endl;}
 	
 	//this constructor delegates to default, which recursively delegates to base
-	SalesData(std::ifstream &is):SalesData(){Read(is, *this); std::cout<<"stream called for " <<std::endl;}
+	SalesData(std::ifstream &is):SalesData(){Read(is, *this); std::cout<<"stream called " <<std::endl;}
 	
-	std::string isbn () const {return BookNO;}
+	//const std::string &isbn () const {return BookNO;}
+	auto isbn() const -> std::string const & {return BookNO;} //trailing
+	
 	SalesData& Combine (const SalesData &item);
 	
 	friend std::ifstream &Read (std::ifstream &is, SalesData &item);
