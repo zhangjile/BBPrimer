@@ -6,7 +6,8 @@
 #include "SalesData.h"
 
 int main(){
-	SalesData Total, Single;
+	//manually create 2 dummy objects, or they'll initialize from keyboard
+	SalesData Total("",0,0.0), Single("",0,0.0); 
 	if(Read(std::cin,Total)){ 
 		while (Read(std::cin,Single)){
 			if(Total.isbn() == Single.isbn()){
