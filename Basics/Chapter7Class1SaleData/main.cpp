@@ -18,7 +18,8 @@ int main(){
 	SalesData t1(null_isbn);
 	SalesData t2("8-888-888888-X");
 	null_isbn = "8-888-888888-X";
-	t2.Combine("8-888-888888-X");
+    //the implicit conversion works as expected
+	t2.Combine(null_isbn); //t2.Combine("8-888-888888-X");  //error: no matching function to call to Combine
 	Write(std::cout,t1) << std::endl; 
 	Write(std::cout,t2) << std::endl; 
 	SalesData Total(items);
