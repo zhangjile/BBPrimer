@@ -16,6 +16,7 @@ class SalesData {
 	//default constructor calls/delegates to base constructor
 	SalesData() : SalesData(" ", 0, 0.0){std::cout<<"default called " <<std::endl;}
 	
+	//TEST COMBINE METHOD ON DESKTOP, this is a big deal
 	SalesData(const std::string& s) :BookNO(s){std::cout<<"string called " <<std::endl;}
 	
 	//this constructor delegates to default, which recursively delegates to base
@@ -24,7 +25,7 @@ class SalesData {
 	//const std::string &isbn () const {return BookNO;}
 	auto isbn() const -> std::string const & {return BookNO;} //trailing
 	
-	SalesData& Combine (const SalesData &item);
+	SalesData& Combine (SalesData item);
 	
 	friend std::ifstream &Read (std::ifstream &is, SalesData &item);
 	friend std::ostream &Write (std::ostream &os, const SalesData &item);
@@ -33,7 +34,7 @@ class SalesData {
 };
 
 
-SalesData& SalesData::Combine(const SalesData &item){
+SalesData& SalesData::Combine(SalesData item){
 	UnitsSold += item.UnitsSold;
 	Revenue += item.Revenue;
 	return *this;
