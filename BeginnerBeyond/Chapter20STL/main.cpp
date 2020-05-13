@@ -8,7 +8,7 @@
 
 int main() {
     std::ifstream in_file {"description.txt"};
-    std::ofstream out_file {"romeoandjuliet_o.txt"};
+    std::ofstream out_file {"description_o.txt"};
     if (!in_file.is_open()) {
         std::cerr << "Error opening input file" << std::endl;
         return 1;
@@ -21,7 +21,7 @@ int main() {
     std::string line{};
     int line_number {0};
     while (getline(in_file, line)) {
-        if (line == "")
+        if (line == "" || line == "\r")
             out_file << std::endl;
         else {
             ++line_number;
