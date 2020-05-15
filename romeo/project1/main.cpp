@@ -7,8 +7,8 @@
 #include <string>
 
 int main() {
-    std::ifstream in_file {"description.txt"};
-    std::ofstream out_file {"description_o.txt"};
+    std::ifstream in_file {"romeoandjuliet"};
+    std::ofstream out_file {"romeoandjuliet_o"};
     if (!in_file.is_open()) {
         std::cerr << "Error opening input file" << std::endl;
         return 1;
