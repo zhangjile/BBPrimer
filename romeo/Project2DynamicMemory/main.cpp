@@ -41,13 +41,21 @@ LLVM ERROR: Code generator does not support intrinsic function 'llvm.umul.with.o
 libc++abi.dylib: terminating with uncaught exception of type std::runtime_error: exit(code = 1)
 Program aborted.
 
- on CodeLite on desktop running Ubuntu
+ on CodeLite on desktop running Ubuntu     //SUCCESS!
  0x16de7a0
 How many temps? 10
 0x16defe0
 
 Hit any key to continue...
 
+ on VS Code  //SUCCESS!
+neutron@neutron-us:~/VS/BBChapter12DynamicMemory$ ls
+DynamicMemory  DynamicMemory.cpp
+neutron@neutron-us:~/VS/BBChapter12DynamicMemory$ ./DynamicMemory
+0x55ca0bc8ae70
+How many temps? 10
+0x55ca0bc8b6b0
 
+neutron@neutron-us:~/VS/BBChapter12DynamicMemory$ 
 
 */
