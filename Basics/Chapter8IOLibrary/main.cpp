@@ -1,7 +1,8 @@
 //Ex 8.11 problem:create a vector of PersonInfo 
 // what if PersonInfo is declared and initialized outside the outer while loop?
 // reset Record.Phone to 0 before processing the next entry.
-//++validate the phone numbers
+// validate the phone numbers
+// ++detach validation module from void Process, write a function for it
 
 #include <iostream>
 #include <sstream>
@@ -22,25 +23,34 @@ void Process (std::istream& is, std::vector<PersonInfo> &People){
 		iss.str(line);		
 		iss >> Record.Name;
 		while(iss >> PhoneNumbers){	
-			//validate and format, 
-			//sstream_err is the test input file
-			//Lee's second number is invalid and excluded
-			if(PhoneNumbers.length() != 10) continue;
-			else{
-				std::string temp(12,'0');
-				for(int i = 0; i <4; ++i) temp[i] = PhoneNumbers[i];
-				temp[4] = '-'; 
-				for(int i = 4; i < 7; ++i) temp[i+1] = PhoneNumbers[i];
-				temp[8] = '-';
-				for(int i = 7; i<10; ++i) temp[i+2] = PhoneNumbers[i];
-				PhoneNumbers = temp;
-			}
 			Record.Phone.push_back(PhoneNumbers);
 		}
 		People.push_back(Record);
 		Record.Phone = {};  
 	}
 }
+
+//test file: sstream_err
+void ValidateFormat(std::vector<PersonInfo> &People){
+	std::vector<PersonInfo> Formatted;
+	for(auto &p : People){
+		for(auto &n:p.Phone){
+			if(n.size() != 10) n = "-1"; // "-1" represent an invalid phone number
+			else {
+				std::string temp(12,'0');	//initialize!
+				for(int i = 0; i <4; ++i) temp[i] = n[i];
+				temp[4] = '-'; 
+				for(int i = 4; i < 7; ++i) temp[i+1] = n[i];
+				temp[8] = '-';
+				for(int i = 7; i<10; ++i) temp[i+2] = n[i];
+				n = temp;
+			}
+		}
+	
+	Formatted.push_back(p); //finish touch, first time work in vim 15/05/2020
+	}	
+}
+
 
 void DisplayPersonInfo(const PersonInfo& one){
 	std::cout<< one.Name <<":\t ";
@@ -57,5 +67,10 @@ int main (int argc, char **argv){
 	for(PersonInfo p: People2084){
 		DisplayPersonInfo(p);
 	}
+	ValidateFormat(People2084);
+	for(PersonInfo p: People2084){
+		DisplayPersonInfo(p);
+	}
 	return 0;
 }
+
