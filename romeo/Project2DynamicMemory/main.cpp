@@ -11,8 +11,7 @@ int main() {
     cout << int_ptr << endl;    // use it
     delete int_ptr;                    // release it
     
-    //完完全全明白了。just assign an address on heap to int_ptr, ie, make it point somewhere on heap. now we can use the address to on the heap to store data and operate on those data.
-    //就是把一個heap上的存儲地址存入到int_ptr,它就指向一個新地址了。
+    //just assign an address on heap to int_ptr, ie, make it point somewhere on heap. now we can use the address on the heap to store data and operate on those data.
     //21:08 27/06/2019
     
     
@@ -30,7 +29,7 @@ int main() {
     return 0;
 }
 
-//這個示例在Mobile C上也玩不了，當初真是礙事。27/06/2019
+//the code could not run normally on Mobile C. 27/06/2019
 //Now I can run it on a Desktop IDE. 15/05/2020
 /*
  on Mobile C
