@@ -33,10 +33,21 @@ int main() {
 //這個示例在Mobile C上也玩不了，當初真是礙事。27/06/2019
 //Now I can run it on a Desktop IDE. 15/05/2020
 /*
+ on Mobile C
+ 
 0x281946800
 How many temps? 5
 LLVM ERROR: Code generator does not support intrinsic function 'llvm.umul.with.overflow.i64'!
 libc++abi.dylib: terminating with uncaught exception of type std::runtime_error: exit(code = 1)
 Program aborted.
+
+ on CodeLite on desktop running Ubuntu
+ 0x16de7a0
+How many temps? 10
+0x16defe0
+
+Hit any key to continue...
+
+
 
 */
