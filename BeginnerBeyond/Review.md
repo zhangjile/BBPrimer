@@ -6,6 +6,7 @@ some features are not implemented on Mobile C and as a result part of library me
 
 the untested methods left some shadow in me. and now I'm ready to remove it.
 
+0. chapter 12 Dynamic memory
 1. list initialization with deque
 2. exception handling
 3. 
