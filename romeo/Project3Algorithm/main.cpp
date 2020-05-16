@@ -23,8 +23,6 @@ public:
        }
         
     //it's critical to overload < and  ==
-        //the operator overloaded and parameter/arributes processed should definitely be marked out.
-        //多載的運算符及多載處理的數據( attributes )一定要標示，否則將出現混亂。
         
     bool operator<(const Person &rhs) const {
         return this->age < rhs.age;
@@ -175,6 +173,5 @@ algorithm intro
 functor is overloaded function call operator ()
 function pointer
 the function as a parameter of algorithm is not being called here in the algorithm construction statement, it's wrapped in the iterator block and will be called on/by an iterator object
-undefined behavior
-lambda, predicate, 選擇條件
+lambda, predicate
 *********************************************************************************/
