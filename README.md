@@ -4,8 +4,8 @@
 
 *archive chellenges in Beginner and Beyond
 
-## it's possible to edit a file in working copy using vim, isn't it?
-## o, i, a are 3 commands that switch to insert mode.
-## :w
+## git is the upstream code base, Mobile C is a tesing facility
 
+if an old file in Mobile C contains change, it's high possibility to cause conflict.
 
+Empty Mobile C file folders.

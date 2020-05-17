@@ -3,7 +3,8 @@
 // reset Record.Phone to 0 before processing the next entry.
 // validate the phone numbers
 // detach validation module from void Process, write a function for it
-// ++std::array and assign method
+// std::array and assign method
+// ++ use ostringstream to manipulate output
 
 #include <iostream>
 #include <sstream>
@@ -16,33 +17,35 @@ struct PersonInfo {
 	std::vector<std::string> Phone;
 };
 
+std::string Format (std::string phone);
+
 //test file: sstream_err
-void ValidateFormat(std::vector<PersonInfo> &People){
-	std::vector<PersonInfo> Formatted;
-	for(auto &p : People){
-		for(auto &n:p.Phone){
-			if(n.size() != 10) n = "-1"; // "-1" represent an invalid phone number
+void ValidateFormat(const std::vector<PersonInfo> &People){
+
+	for(const auto &p : People){
+		std::ostringstream Invalid, Formatted;  //if declared outside, big error
+		for(const auto &n:p.Phone){
+			if(n.size() != 10) Invalid << n << " "; 
 			else {
-				std::array<char,12> temp;  //faster than std::string temp(12,'0');
-				for(int i = 0; i <4; ++i) temp[i] = n[i];
-				temp[4] = '-'; 
-				for(int i = 4; i < 7; ++i) temp[i+1] = n[i];
-				temp[8] = '-';
-				for(int i = 7; i<10; ++i) temp[i+2] = n[i];
-				n.assign(temp.begin(),temp.end()); 
+				std::string temp = Format(n);
+				Formatted << temp <<" ";
 			}
 		}
-	
-	Formatted.push_back(p); //finish touch, first time work in vim 15/05/2020
+		if(Invalid.str().empty())
+			std::cout << p.Name <<":\t"<< Formatted.str() <<std::endl;		
+		else {
+			std::cout << p.Name <<":\t"<< Formatted.str() <<std::endl;	
+			std::cout <<"Input Error:\t"<<p.Name <<":\t" << Invalid.str(); 		
+		}
 	}	
 }
 
 void Process (std::istream& is, std::vector<PersonInfo> &People){
 	std::string line, PhoneNumbers;
 	PersonInfo Record;
-	std::istringstream iss; //global in Process, calling clear() on it is critical
+	std::istringstream iss; //iss is global in Process,
 	while(getline(is,line)){
-		iss.clear();	
+		iss.clear();		//critical
 		iss.str(line);		
 		iss >> Record.Name;
 		while(iss >> PhoneNumbers){	
@@ -53,8 +56,19 @@ void Process (std::istream& is, std::vector<PersonInfo> &People){
 	}
 }
 
+std::string Format (std::string phone){
+	std::array<char,12> temp;  
+	for(int i = 0; i <4; ++i) temp[i] = phone[i];
+	temp[4] = '-'; 
+	for(int i = 4; i < 7; ++i) temp[i+1] = phone[i];
+	temp[8] = '-';
+	for(int i = 7; i<10; ++i) temp[i+2] = phone[i];
+	phone.assign(temp.begin(),temp.end()); 
+	return phone;
+}
+
 void DisplayPersonInfo(const PersonInfo& one){
-	std::cout<< one.Name <<":\t ";
+	std::cout<< one.Name <<":\t";
 	for(auto s:one.Phone){
 		std::cout<<s <<", ";
 	}
@@ -69,9 +83,7 @@ int main (int argc, char **argv){
 		DisplayPersonInfo(p);
 	}
 	ValidateFormat(People2084);
-	for(PersonInfo p: People2084){
-		DisplayPersonInfo(p);
-	}
+	
 	return 0;
 }
 
