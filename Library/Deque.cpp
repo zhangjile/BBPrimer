@@ -1,11 +1,11 @@
 //client code
-#include "ForwardList.h"
+#include "Deque.h"
 
 
 int main()
 {
 	//create a sample list
-	LinkedList l;
+	Deque l;
 	l.Append(1);
 	l.Append(2);
 	l.Append(3);
@@ -16,7 +16,7 @@ int main()
 	l.ToString(); 
 	l.RemoveFirst();
 	l.ToString();
-	std::cout<<l.getSize()<<std::endl;
+	std::cout<<l.GetSize()<<std::endl;
 	
 	//a short video showing how the machine works.
 	l.RemoveLast();

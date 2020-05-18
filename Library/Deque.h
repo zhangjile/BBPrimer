@@ -1,7 +1,7 @@
 //implementating forward_list /singly-linked list
 
-#ifndef FORWARDLIST_H
-#define FORWARDLIST_H
+#ifndef DEQUE_H
+#define DEQUE_H
 #include<iostream>
 
 class Node 
@@ -15,14 +15,15 @@ public:
 	}
 };
 
-class LinkedList
+class Deque
 {
 private:
 	Node *header;
-	Node *tail;
+	Node *tail;	
+	//tail attribute changes the landscape of forward_list, oh, this is actually deque!
 	int size;
 public:
-	LinkedList(){
+	Deque(){
 		header = nullptr;
 		tail = nullptr;
 		size = 0;
@@ -36,10 +37,10 @@ public:
 	void RemoveAt(int pos);
 	void InsertAt(int data,int pos);
 	
-	~LinkedList();
+	~Deque();
 };
 
-void LinkedList::Append(int data){
+void Deque::Append(int data){
 	Node *n = new Node(data);
 	if(header==nullptr){
 		header = n;
@@ -52,7 +53,7 @@ void LinkedList::Append(int data){
 	++size;
 }
 
-void LinkedList::Prepend(int data){
+void Deque::Prepend(int data){
 	Node *n = new Node(data);
 	if(header==nullptr){
 		header = n;
@@ -78,7 +79,7 @@ void LinkedList::Prepend(int data){
 	++size;	
 }
 
-void LinkedList::ToString(){
+void Deque::ToString(){
 	Node *temp = header;		//create a temporary pointer to header
 	
 	while(temp != nullptr){
@@ -88,7 +89,7 @@ void LinkedList::ToString(){
 	std::cout<<std::endl;
 }
 
-void LinkedList::RemoveFirst(){
+void Deque::RemoveFirst(){
 	if(header==nullptr) return;// defense, error-catching!
 	if(header != nullptr){
 		Node *temp = header;
@@ -98,7 +99,7 @@ void LinkedList::RemoveFirst(){
 	}
 }
 
-void LinkedList::RemoveLast(){
+void Deque::RemoveLast(){
 	if(header->next == nullptr){
 		RemoveFirst();
 	}
@@ -131,7 +132,7 @@ void LinkedList::RemoveLast(){
 }
 
 //通過asignment operation實現動態切換/替換，像各就各位。
-void LinkedList::RemoveAt(int pos){
+void Deque::RemoveAt(int pos){
 	if(pos>size || pos<1) return; //screen out dirt
 	else if(pos==1) RemoveFirst();
 	else if(pos==size) RemoveLast();
@@ -149,7 +150,7 @@ void LinkedList::RemoveAt(int pos){
 }
 
 
-void LinkedList::InsertAt(int data, int pos){
+void Deque::InsertAt(int data, int pos){
 	if(pos>size+1 || pos<1) return;
 	else if(pos==1) {
 		Prepend(data);
@@ -171,7 +172,7 @@ void LinkedList::InsertAt(int data, int pos){
 	}
 }
 
-LinkedList::~LinkedList(){
+Deque::~Deque(){
 	Node *temp = nullptr; //always initialize a variable
 	while(header != nullptr){
 		temp = header;
