@@ -10,15 +10,13 @@ void double_and_insert(std::vector<int>& v, int some_val){
 }
 
 int main(){
-	//if v.size() is odd, the code crashes on Mobile C
-	//test it on CodeLite and VS code
-	std::vector<int> iv = { 1, 9, 1, 9, 9,9,9, 1, 1, 1 }; 
+	//if v.size() is odd, the code crashes on Mobile C and CodeLite
+	//test it on VS code
+	std::vector<int> iv = { 1, 9, 1, 9, 9, 9, 9, 1, 1, 1 }; 
 	double_and_insert(iv, 9);
 	for(auto it = iv.begin(); it != iv.end(); ++it){
 		std::cout<<*it <<std::endl;
 	}
 	return 0;
 }
-
-
 
