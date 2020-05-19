@@ -3,6 +3,8 @@
 #include <vector>
 
 void double_and_insert(std::vector<int>& v, int some_val){
+	//if v.size() is odd, the code crashes
+	if(v.size()%2) v.push_back(0);	//this line catches the bug!!!
     auto mid = [&]{ return v.begin() +  v.size() / 2; };
     for (auto curr = v.begin(); curr != mid(); ++curr)
         if (*curr == some_val)
@@ -10,9 +12,7 @@ void double_and_insert(std::vector<int>& v, int some_val){
 }
 
 int main(){
-	//if v.size() is odd, the code crashes on Mobile C and CodeLite
-	//test it on VS code
-	std::vector<int> iv = { 1, 9, 1, 9, 9, 9, 9, 1, 1, 1 }; 
+	std::vector<int> iv = { 1, 9, 1, 9, 9, 9, 9, 1, 1 }; 
 	double_and_insert(iv, 9);
 	for(auto it = iv.begin(); it != iv.end(); ++it){
 		std::cout<<*it <<std::endl;
