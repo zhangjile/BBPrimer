@@ -1,0 +1,193 @@
+/bin/sh -c '/usr/bin/make -j2 -e -f  Makefile'
+----------Building project:[ Chapter8IOLibrary - Debug ]----------
+make[1]: Entering directory '/home/neutron/CPP/BBPrimer/Basics/Chapter8IOLibrary'
+/usr/bin/g++  -c  "/home/neutron/CPP/BBPrimer/Basics/Chapter8IOLibrary/main.cpp" -g -O0 -std=c++17 -Wall  -o Debug/main.cpp.o -I. -I.
+In file included from /home/neutron/CPP/BBPrimer/Basics/Chapter8IOLibrary/main.cpp:10:0:
+./sstream:1:1: error: 'morgan' does not name a type; did you mean 'mbrlen'?
+ morgan 2015552368 8625550123
+ ^~~~~~
+ mbrlen
+In file included from /usr/include/c++/7/vector:63:0,
+                 from /home/neutron/CPP/BBPrimer/Basics/Chapter8IOLibrary/main.cpp:11:
+/usr/include/c++/7/bits/stl_uninitialized.h: In static member function 'static _ForwardIterator std::__uninitialized_copy<_TrivialValueTypes>::__uninit_copy(_InputIterator, _InputIterator, _ForwardIterator)':
+/usr/include/c++/7/bits/stl_uninitialized.h:83:8: error: '_Construct' is not a member of 'std'
+   std::_Construct(std::__addressof(*__cur), *__first);
+        ^~~~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h:88:13: error: '_Destroy' is not a member of 'std'
+        std::_Destroy(__result, __cur);
+             ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In static member function 'static void std::__uninitialized_fill<_TrivialValueType>::__uninit_fill(_ForwardIterator, _ForwardIterator, const _Tp&)':
+/usr/include/c++/7/bits/stl_uninitialized.h:150:8: error: '_Construct' is not a member of 'std'
+   std::_Construct(std::__addressof(*__cur), __x);
+        ^~~~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h:154:13: error: '_Destroy' is not a member of 'std'
+        std::_Destroy(__first, __cur);
+             ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In static member function 'static _ForwardIterator std::__uninitialized_fill_n<_TrivialValueType>::__uninit_fill_n(_ForwardIterator, _Size, const _Tp&)':
+/usr/include/c++/7/bits/stl_uninitialized.h:210:8: error: '_Construct' is not a member of 'std'
+   std::_Construct(std::__addressof(*__cur), __x);
+        ^~~~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h:215:13: error: '_Destroy' is not a member of 'std'
+        std::_Destroy(__first, __cur);
+             ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In function '_ForwardIterator std::__uninitialized_copy_a(_InputIterator, _InputIterator, _ForwardIterator, _Allocator&)':
+/usr/include/c++/7/bits/stl_uninitialized.h:280:9: error: '_Destroy' is not a member of 'std'
+    std::_Destroy(__result, __cur, __alloc);
+         ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In function 'void std::__uninitialized_fill_a(_ForwardIterator, _ForwardIterator, const _Tp&, _Allocator&)':
+/usr/include/c++/7/bits/stl_uninitialized.h:329:9: error: '_Destroy' is not a member of 'std'
+    std::_Destroy(__first, __cur, __alloc);
+         ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In function '_ForwardIterator std::__uninitialized_fill_n_a(_ForwardIterator, _Size, const _Tp&, _Allocator&)':
+/usr/include/c++/7/bits/stl_uninitialized.h:356:9: error: '_Destroy' is not a member of 'std'
+    std::_Destroy(__first, __cur, __alloc);
+         ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In function '_ForwardIterator std::__uninitialized_copy_move(_InputIterator1, _InputIterator1, _InputIterator2, _InputIterator2, _ForwardIterator, _Allocator&)':
+/usr/include/c++/7/bits/stl_uninitialized.h:397:9: error: '_Destroy' is not a member of 'std'
+    std::_Destroy(__result, __mid, __alloc);
+         ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In function '_ForwardIterator std::__uninitialized_move_copy(_InputIterator1, _InputIterator1, _InputIterator2, _InputIterator2, _ForwardIterator, _Allocator&)':
+/usr/include/c++/7/bits/stl_uninitialized.h:425:9: error: '_Destroy' is not a member of 'std'
+    std::_Destroy(__result, __mid, __alloc);
+         ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In function '_ForwardIterator std::__uninitialized_fill_move(_ForwardIterator, _ForwardIterator, const _Tp&, _InputIterator, _InputIterator, _Allocator&)':
+/usr/include/c++/7/bits/stl_uninitialized.h:447:9: error: '_Destroy' is not a member of 'std'
+    std::_Destroy(__result, __mid, __alloc);
+         ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In function 'void std::__uninitialized_move_fill(_InputIterator, _InputIterator, _ForwardIterator, _ForwardIterator, const _Tp&, _Allocator&)':
+/usr/include/c++/7/bits/stl_uninitialized.h:472:9: error: '_Destroy' is not a member of 'std'
+    std::_Destroy(__first2, __mid2, __alloc);
+         ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In static member function 'static void std::__uninitialized_default_1<_TrivialValueType>::__uninit_default(_ForwardIterator, _ForwardIterator)':
+/usr/include/c++/7/bits/stl_uninitialized.h:492:8: error: '_Construct' is not a member of 'std'
+   std::_Construct(std::__addressof(*__cur));
+        ^~~~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h:496:13: error: '_Destroy' is not a member of 'std'
+        std::_Destroy(__first, __cur);
+             ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In static member function 'static _ForwardIterator std::__uninitialized_default_n_1<_TrivialValueType>::__uninit_default_n(_ForwardIterator, _Size)':
+/usr/include/c++/7/bits/stl_uninitialized.h:527:8: error: '_Construct' is not a member of 'std'
+   std::_Construct(std::__addressof(*__cur));
+        ^~~~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h:532:13: error: '_Destroy' is not a member of 'std'
+        std::_Destroy(__first, __cur);
+             ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In function 'void std::__uninitialized_default_a(_ForwardIterator, _ForwardIterator, _Allocator&)':
+/usr/include/c++/7/bits/stl_uninitialized.h:605:9: error: '_Destroy' is not a member of 'std'
+    std::_Destroy(__first, __cur, __alloc);
+         ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In function '_ForwardIterator std::__uninitialized_default_n_a(_ForwardIterator, _Size, _Allocator&)':
+/usr/include/c++/7/bits/stl_uninitialized.h:636:9: error: '_Destroy' is not a member of 'std'
+    std::_Destroy(__first, __cur, __alloc);
+         ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In static member function 'static void std::__uninitialized_default_novalue_1<_TrivialValueType>::__uninit_default_novalue(_ForwardIterator, _ForwardIterator)':
+/usr/include/c++/7/bits/stl_uninitialized.h:659:8: error: '_Construct_novalue' is not a member of 'std'
+   std::_Construct_novalue(std::__addressof(*__cur));
+        ^~~~~~~~~~~~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h:659:8: note: suggested alternative: 'is_constructible'
+   std::_Construct_novalue(std::__addressof(*__cur));
+        ^~~~~~~~~~~~~~~~~~
+        is_constructible
+/usr/include/c++/7/bits/stl_uninitialized.h:663:13: error: '_Destroy' is not a member of 'std'
+        std::_Destroy(__first, __cur);
+             ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In static member function 'static _ForwardIterator std::__uninitialized_default_novalue_n_1<_TrivialValueType>::__uninit_default_novalue_n(_ForwardIterator, _Size)':
+/usr/include/c++/7/bits/stl_uninitialized.h:691:8: error: '_Construct_novalue' is not a member of 'std'
+   std::_Construct_novalue(std::__addressof(*__cur));
+        ^~~~~~~~~~~~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h:691:8: note: suggested alternative: 'is_constructible'
+   std::_Construct_novalue(std::__addressof(*__cur));
+        ^~~~~~~~~~~~~~~~~~
+        is_constructible
+/usr/include/c++/7/bits/stl_uninitialized.h:696:13: error: '_Destroy' is not a member of 'std'
+        std::_Destroy(__first, __cur);
+             ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In function '_ForwardIterator std::__uninitialized_copy_n(_InputIterator, _Size, _ForwardIterator, std::input_iterator_tag)':
+/usr/include/c++/7/bits/stl_uninitialized.h:751:11: error: '_Construct' is not a member of 'std'
+      std::_Construct(std::__addressof(*__cur), *__first);
+           ^~~~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h:756:9: error: '_Destroy' is not a member of 'std'
+    std::_Destroy(__result, __cur);
+         ^~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h: In function 'std::pair<_InputIterator, _ForwardIterator> std::__uninitialized_copy_n_pair(_InputIterator, _Size, _ForwardIterator, std::input_iterator_tag)':
+/usr/include/c++/7/bits/stl_uninitialized.h:779:11: error: '_Construct' is not a member of 'std'
+      std::_Construct(std::__addressof(*__cur), *__first);
+           ^~~~~~~~~~
+/usr/include/c++/7/bits/stl_uninitialized.h:784:9: error: '_Destroy' is not a member of 'std'
+    std::_Destroy(__result, __cur);
+         ^~~~~~~~
+In file included from /usr/include/c++/7/vector:64:0,
+                 from /home/neutron/CPP/BBPrimer/Basics/Chapter8IOLibrary/main.cpp:11:
+/usr/include/c++/7/bits/stl_vector.h: In destructor 'std::vector<_Tp, _Alloc>::~vector()':
+/usr/include/c++/7/bits/stl_vector.h:434:14: error: '_Destroy' is not a member of 'std'
+       { std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+              ^~~~~~~~
+/usr/include/c++/7/bits/stl_vector.h: In member function 'void std::vector<_Tp, _Alloc>::_M_erase_at_end(std::vector<_Tp, _Alloc>::pointer)':
+/usr/include/c++/7/bits/stl_vector.h:1518:7: error: '_Destroy' is not a member of 'std'
+  std::_Destroy(__pos, this->_M_impl._M_finish, _M_get_Tp_allocator());
+       ^~~~~~~~
+In file included from /usr/include/c++/7/vector:69:0,
+                 from /home/neutron/CPP/BBPrimer/Basics/Chapter8IOLibrary/main.cpp:11:
+/usr/include/c++/7/bits/vector.tcc: In member function 'void std::vector<_Tp, _Alloc>::reserve(std::vector<_Tp, _Alloc>::size_type)':
+/usr/include/c++/7/bits/vector.tcc:76:9: error: '_Destroy' is not a member of 'std'
+    std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+         ^~~~~~~~
+/usr/include/c++/7/bits/vector.tcc: In member function 'std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&)':
+/usr/include/c++/7/bits/vector.tcc:208:13: error: '_Destroy' is not a member of 'std'
+        std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+             ^~~~~~~~
+/usr/include/c++/7/bits/vector.tcc:218:13: error: '_Destroy' is not a member of 'std'
+        std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+             ^~~~~~~~
+/usr/include/c++/7/bits/vector.tcc: In member function 'void std::vector<_Tp, _Alloc>::_M_assign_aux(_ForwardIterator, _ForwardIterator, std::forward_iterator_tag)':
+/usr/include/c++/7/bits/vector.tcc:287:11: error: '_Destroy' is not a member of 'std'
+      std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+           ^~~~~~~~
+/usr/include/c++/7/bits/vector.tcc: In member function 'void std::vector<_Tp, _Alloc>::_M_realloc_insert(std::vector<_Tp, _Alloc>::iterator, _Args&& ...)':
+/usr/include/c++/7/bits/vector.tcc:442:11: error: '_Destroy' is not a member of 'std'
+      std::_Destroy(__new_start, __new_finish, _M_get_Tp_allocator());
+           ^~~~~~~~
+/usr/include/c++/7/bits/vector.tcc:446:12: error: '_Destroy' is not a member of 'std'
+       std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+            ^~~~~~~~
+/usr/include/c++/7/bits/vector.tcc: In member function 'void std::vector<_Tp, _Alloc>::_M_fill_insert(std::vector<_Tp, _Alloc>::iterator, std::vector<_Tp, _Alloc>::size_type, const value_type&)':
+/usr/include/c++/7/bits/vector.tcc:530:12: error: '_Destroy' is not a member of 'std'
+       std::_Destroy(__new_start + __elems_before,
+            ^~~~~~~~
+/usr/include/c++/7/bits/vector.tcc:534:12: error: '_Destroy' is not a member of 'std'
+       std::_Destroy(__new_start, __new_finish,
+            ^~~~~~~~
+/usr/include/c++/7/bits/vector.tcc:539:13: error: '_Destroy' is not a member of 'std'
+        std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+             ^~~~~~~~
+/usr/include/c++/7/bits/vector.tcc: In member function 'void std::vector<_Tp, _Alloc>::_M_default_append(std::vector<_Tp, _Alloc>::size_type)':
+/usr/include/c++/7/bits/vector.tcc:585:12: error: '_Destroy' is not a member of 'std'
+       std::_Destroy(__destroy_from, __destroy_from + __n,
+            ^~~~~~~~
+/usr/include/c++/7/bits/vector.tcc:590:13: error: '_Destroy' is not a member of 'std'
+        std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+             ^~~~~~~~
+/usr/include/c++/7/bits/vector.tcc: In member function 'void std::vector<_Tp, _Alloc>::_M_range_insert(std::vector<_Tp, _Alloc>::iterator, _ForwardIterator, _ForwardIterator, std::forward_iterator_tag)':
+/usr/include/c++/7/bits/vector.tcc:692:12: error: '_Destroy' is not a member of 'std'
+       std::_Destroy(__new_start, __new_finish,
+            ^~~~~~~~
+/usr/include/c++/7/bits/vector.tcc:697:8: error: '_Destroy' is not a member of 'std'
+   std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+        ^~~~~~~~
+/home/neutron/CPP/BBPrimer/Basics/Chapter8IOLibrary/main.cpp: In function 'void ValidateFormat(const std::vector<PersonInfo>&)':
+/home/neutron/CPP/BBPrimer/Basics/Chapter8IOLibrary/main.cpp:26:22: error: aggregate 'std::ostringstream Invalid' has incomplete type and cannot be defined
+   std::ostringstream Invalid, Formatted;  //if declared outside, big error
+                      ^~~~~~~
+/home/neutron/CPP/BBPrimer/Basics/Chapter8IOLibrary/main.cpp:26:31: error: aggregate 'std::ostringstream Formatted' has incomplete type and cannot be defined
+   std::ostringstream Invalid, Formatted;  //if declared outside, big error
+                               ^~~~~~~~~
+/home/neutron/CPP/BBPrimer/Basics/Chapter8IOLibrary/main.cpp: In function 'void Process(std::istream&, std::vector<PersonInfo>&)':
+/home/neutron/CPP/BBPrimer/Basics/Chapter8IOLibrary/main.cpp:46:21: error: aggregate 'std::istringstream iss' has incomplete type and cannot be defined
+  std::istringstream iss; //iss is global in Process,
+                     ^~~
+Chapter8IOLibrary.mk:95: recipe for target 'Debug/main.cpp.o' failed
+make[1]: *** [Debug/main.cpp.o] Error 1
+make[1]: Leaving directory '/home/neutron/CPP/BBPrimer/Basics/Chapter8IOLibrary'
+Makefile:4: recipe for target 'All' failed
+make: *** [All] Error 2
+====47 errors, 6 warnings====

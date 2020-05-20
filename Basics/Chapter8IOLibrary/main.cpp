@@ -35,7 +35,7 @@ void ValidateFormat(const std::vector<PersonInfo> &People){
 			std::cout << p.Name <<":\t"<< Formatted.str() <<std::endl;		
 		else {
 			std::cout << p.Name <<":\t"<< Formatted.str() <<std::endl;	
-			std::cout <<"Input Error:\t"<<p.Name <<":\t" << Invalid.str(); 		
+			//std::cout <<"Input Error:\t"<<p.Name <<":\t" << Invalid.str(); 		
 		}
 	}	
 }
@@ -86,4 +86,3 @@ int main (int argc, char **argv){
 	
 	return 0;
 }
-
