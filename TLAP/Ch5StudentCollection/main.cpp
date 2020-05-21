@@ -14,6 +14,7 @@ class StudentRecord {
 	string GetStudentName(){return StudentName;}
 	void SetStudentGrade(int grade);
 	int GetStudentGrade()const {return Grade;} //const correctness, line 35 
+    
 	private:
 	int StudentNum;
 	string StudentName;
@@ -54,7 +55,7 @@ typedef StudentNode* StudentList;
 //What a long list of parameters:)
 void AddRecord(StudentList &sl, int num, string name, int grade){
 	StudentRecord NewRecord(num,name,grade); //call constructor. COMPOSITION syntax
-	StudentNode *temp = new StudentNode; //line 16-20,兜個圈子就行了
+	StudentNode *temp = new StudentNode; 
 	//StudentNode *temp = nullptr; //intrinsic function is not supported in Mobile C
 	if(sl != nullptr){
 		temp->StudentData = NewRecord;
@@ -65,7 +66,7 @@ void AddRecord(StudentList &sl, int num, string name, int grade){
 		temp->next = nullptr;
 	}
 	sl = temp;
-	temp = nullptr; //caution 18/02/20
+	temp = nullptr; //caution 18/02/2020
 }
 
 StudentRecord RecordWithNum(const StudentList &sl, int num){
@@ -94,7 +95,8 @@ StudentRecord Retrieve(const StudentList &sl, int num){
 	return DummyRecord;
 }
 
-//void RemoveRecord(StudentList &sl, int num); //喘口氣，take the time to take aim
+//void RemoveRecord(StudentList &sl, int num); //write the declaration, take a breath, take the time to take aim
+
 void RemoveRecord(StudentList &sl, int num){
 	StudentNode *temp = sl, *trail = nullptr;
 	if(temp->StudentData.GetStudentNum() == num){
@@ -111,24 +113,23 @@ void RemoveRecord(StudentList &sl, int num){
 	else{
 		trail->next = temp->next;
 	}
-	delete temp; //"temp = nullptr; " is a fatal error that leaks.
+	delete temp;    //"temp = nullptr; " is a fatal error that leaks.
 	trail = nullptr;
 }
 
-//另一個RemoveRecord邏輯實現路線
+//an alternative approach
 void RemoveRecordShort(StudentList &sl, int num){	
 	if(sl->StudentData.GetStudentNum() == num){
 		sl = sl->next;
 	}
 	StudentNode* temp = sl, *trail = nullptr;			
-	while(temp->next != nullptr){ 
-		//temp != nullptr, 走到最後temp是空，於是執行line 126會出錯。COOL!
+	while(temp->next != nullptr){   // offset by one position, cool, 'temp != nullptr' is  wrong. 
 		trail = temp;
 		temp = temp->next;
 		if(temp->StudentData.GetStudentNum() == num){
 			trail->next = temp->next;
 			delete temp;
-			break;	//找到之後即刻跳出，否則temp往前跑導致煮熟的鴨子還飛了！GOOD
+			break;	//jump out immediately with the mission completed . 
 		}
 	}
 
@@ -160,4 +161,3 @@ int main(){
 	Print(sl); 
 	return 0;
 }
-
