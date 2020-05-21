@@ -5,12 +5,12 @@
 #include<string>
 using std::cout; using std::string; using std::endl;
 
-class InvalidGrade : public std::runtime_error
+class IsValidGrade : public std::runtime_error
 {
 public:
-    InvalidGrade() : std::runtime_error  {"Invalid grade"}
+    IsValidGrade() : std::runtime_error  {"Invalid grade"}
     {}
-    ~InvalidGrade() = default;
+    ~IsValidGrade() = default;
 };
 
 class StudentRecord{
@@ -28,7 +28,7 @@ private:
 	int StudentNum;
 	string StudentName;
 	int Grade;
-	bool IsValidGrade(int num);
+	bool IsValid(int num);
 };
 
 StudentRecord::StudentRecord(){
@@ -37,28 +37,28 @@ StudentRecord::StudentRecord(){
 	Grade = -1;
 }
 
-bool StudentRecord::IsValidGrade(int num){
+bool StudentRecord::IsValid(int num){
 	if(num >= 0 && num <= 100) return true;
 	else return false;
 }
 
 StudentRecord::StudentRecord(int num, string name, int grade)
 try:StudentNum {num}, StudentName {name}, Grade {grade} {
-	if(!IsValidGrade(grade)){		
-		throw InvalidGrade{}; 
+	if(!IsValid(grade)){		
+		throw IsValidGrade{}; 
 	}
-}catch (const InvalidGrade &ex){
+}catch (const IsValidGrade &ex){
 	std::cerr<<ex.what();
 }
 
 void StudentRecord::SetStudentGrade(int grade){
-	if(IsValidGrade(grade)){
+	if(IsValid(grade)){
 		Grade = grade;
 	}
 }
 
 string StudentRecord::LetterGrade(){
-	if(!IsValidGrade(Grade)) return "ERROR"; // good defense
+	if(!IsValid(Grade)) return "ERROR"; // good defense
 	const int CATEGORIES = 11;
 	const string GRADELETTERS [] = {"F", "D", "D+", "C-", "C", "C+", "B-", "B", "B+", "A-", "A"};
 	const int LOWERBOUNDS[] = {0, 60, 67, 70, 73, 77, 80, 83, 87, 90, 93};
@@ -118,7 +118,7 @@ StudentCollection::StudentCollection(const StudentCollection &source){
 StudentCollection::StudentCollection(StudentCollection &&source){
 	ListHead = source.ListHead;
 	source.ListHead = nullptr;
-	cout <<"move constructor called for "<<endl;
+	cout <<"move constructor called "<<endl;
 }
 
 StudentCollection& StudentCollection::operator =(const StudentCollection &rhs){
@@ -129,7 +129,6 @@ StudentCollection& StudentCollection::operator =(const StudentCollection &rhs){
 	return *this; 
 }
 
-//this is a nice method
 StudentCollection::StudentList StudentCollection::CopiedList(const StudentCollection::StudentList &source){
 	StudentNode* NewList = new StudentNode;
 	NewList-> StudentData = source-> StudentData;
@@ -181,8 +180,8 @@ void StudentCollection::RemoveRecord(int IDNum){
 	else{
 		Trail->next = LoopPtr->next;	
 	}
-	delete LoopPtr; //deallocate to prevent memory leak;17/2/2020 feel at home
-	Trail = nullptr; //remove double-link to be safe. 
+	delete LoopPtr; 
+	Trail = nullptr; 
 }
 	
 
