@@ -1,0 +1,334 @@
+/bin/sh -c '/usr/bin/make -j2 -e -f  Makefile'
+----------Building project:[ Ch5StudentCollection - Debug ]----------
+make[1]: Entering directory '/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection'
+/usr/bin/g++  -c  "/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp" -g -O0 -std=c++17 -Wall  -o Debug/main.cpp.o -I. -I.
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:156:1: error: stray '\302' in program
+ ____StudentNode * loopPtr = ListHead;
+ ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:156:2: error: stray '\240' in program
+ ____StudentNode * loopPtr = ListHead;
+  ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:156:3: error: stray '\302' in program
+ ____StudentNode * loopPtr = ListHead;
+   ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:156:4: error: stray '\240' in program
+ ____StudentNode * loopPtr = ListHead;
+    ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:156:5: error: stray '\302' in program
+ ____StudentNode * loopPtr = ListHead;
+     ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:156:6: error: stray '\240' in program
+ ____StudentNode * loopPtr = ListHead;
+      ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:156:7: error: stray '\302' in program
+ ____StudentNode * loopPtr = ListHead;
+       ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:156:8: error: stray '\240' in program
+ ____StudentNode * loopPtr = ListHead;
+        ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:157:1: error: stray '\302' in program
+ ____while (loopPtr != NULL && loopPtr->StudentData.GetStudentNum() != idNum) {
+ ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:157:2: error: stray '\240' in program
+ ____while (loopPtr != NULL && loopPtr->StudentData.GetStudentNum() != idNum) {
+  ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:157:3: error: stray '\302' in program
+ ____while (loopPtr != NULL && loopPtr->StudentData.GetStudentNum() != idNum) {
+   ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:157:4: error: stray '\240' in program
+ ____while (loopPtr != NULL && loopPtr->StudentData.GetStudentNum() != idNum) {
+    ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:157:5: error: stray '\302' in program
+ ____while (loopPtr != NULL && loopPtr->StudentData.GetStudentNum() != idNum) {
+     ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:157:6: error: stray '\240' in program
+ ____while (loopPtr != NULL && loopPtr->StudentData.GetStudentNum() != idNum) {
+      ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:157:7: error: stray '\302' in program
+ ____while (loopPtr != NULL && loopPtr->StudentData.GetStudentNum() != idNum) {
+       ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:157:8: error: stray '\240' in program
+ ____while (loopPtr != NULL && loopPtr->StudentData.GetStudentNum() != idNum) {
+        ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:1: error: stray '\302' in program
+ ________loopPtr = loopPtr->next;
+ ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:2: error: stray '\240' in program
+ ________loopPtr = loopPtr->next;
+  ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:3: error: stray '\302' in program
+ ________loopPtr = loopPtr->next;
+   ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:4: error: stray '\240' in program
+ ________loopPtr = loopPtr->next;
+    ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:5: error: stray '\302' in program
+ ________loopPtr = loopPtr->next;
+     ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:6: error: stray '\240' in program
+ ________loopPtr = loopPtr->next;
+      ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:7: error: stray '\302' in program
+ ________loopPtr = loopPtr->next;
+       ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:8: error: stray '\240' in program
+ ________loopPtr = loopPtr->next;
+        ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:9: error: stray '\302' in program
+ ________loopPtr = loopPtr->next;
+         ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:10: error: stray '\240' in program
+ ________loopPtr = loopPtr->next;
+          ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:11: error: stray '\302' in program
+ ________loopPtr = loopPtr->next;
+           ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:12: error: stray '\240' in program
+ ________loopPtr = loopPtr->next;
+            ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:13: error: stray '\302' in program
+ ________loopPtr = loopPtr->next;
+             ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:14: error: stray '\240' in program
+ ________loopPtr = loopPtr->next;
+              ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:15: error: stray '\302' in program
+ ________loopPtr = loopPtr->next;
+               ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:158:16: error: stray '\240' in program
+ ________loopPtr = loopPtr->next;
+                ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:159:1: error: stray '\302' in program
+ ____}
+ ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:159:2: error: stray '\240' in program
+ ____}
+  ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:159:3: error: stray '\302' in program
+ ____}
+   ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:159:4: error: stray '\240' in program
+ ____}
+    ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:159:5: error: stray '\302' in program
+ ____}
+     ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:159:6: error: stray '\240' in program
+ ____}
+      ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:159:7: error: stray '\302' in program
+ ____}
+       ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:159:8: error: stray '\240' in program
+ ____}
+        ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:160:1: error: stray '\302' in program
+ ____if (loopPtr == NULL) {
+ ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:160:2: error: stray '\240' in program
+ ____if (loopPtr == NULL) {
+  ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:160:3: error: stray '\302' in program
+ ____if (loopPtr == NULL) {
+   ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:160:4: error: stray '\240' in program
+ ____if (loopPtr == NULL) {
+    ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:160:5: error: stray '\302' in program
+ ____if (loopPtr == NULL) {
+     ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:160:6: error: stray '\240' in program
+ ____if (loopPtr == NULL) {
+      ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:160:7: error: stray '\302' in program
+ ____if (loopPtr == NULL) {
+       ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:160:8: error: stray '\240' in program
+ ____if (loopPtr == NULL) {
+        ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:161:1: error: stray '\302' in program
+ ______StudentRecord dummyRecord(-1, "",-1);
+ ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:161:2: error: stray '\240' in program
+ ______StudentRecord dummyRecord(-1, "",-1);
+  ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:161:3: error: stray '\302' in program
+ ______StudentRecord dummyRecord(-1, "",-1);
+   ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:161:4: error: stray '\240' in program
+ ______StudentRecord dummyRecord(-1, "",-1);
+    ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:161:5: error: stray '\302' in program
+ ______StudentRecord dummyRecord(-1, "",-1);
+     ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:161:6: error: stray '\240' in program
+ ______StudentRecord dummyRecord(-1, "",-1);
+      ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:161:7: error: stray '\302' in program
+ ______StudentRecord dummyRecord(-1, "",-1);
+       ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:161:8: error: stray '\240' in program
+ ______StudentRecord dummyRecord(-1, "",-1);
+        ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:161:9: error: stray '\302' in program
+ ______StudentRecord dummyRecord(-1, "",-1);
+         ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:161:10: error: stray '\240' in program
+ ______StudentRecord dummyRecord(-1, "",-1);
+          ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:161:11: error: stray '\302' in program
+ ______StudentRecord dummyRecord(-1, "",-1);
+           ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:161:12: error: stray '\240' in program
+ ______StudentRecord dummyRecord(-1, "",-1);
+            ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:1: error: stray '\302' in program
+ ________return dummyRecord;
+ ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:2: error: stray '\240' in program
+ ________return dummyRecord;
+  ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:3: error: stray '\302' in program
+ ________return dummyRecord;
+   ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:4: error: stray '\240' in program
+ ________return dummyRecord;
+    ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:5: error: stray '\302' in program
+ ________return dummyRecord;
+     ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:6: error: stray '\240' in program
+ ________return dummyRecord;
+      ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:7: error: stray '\302' in program
+ ________return dummyRecord;
+       ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:8: error: stray '\240' in program
+ ________return dummyRecord;
+        ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:9: error: stray '\302' in program
+ ________return dummyRecord;
+         ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:10: error: stray '\240' in program
+ ________return dummyRecord;
+          ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:11: error: stray '\302' in program
+ ________return dummyRecord;
+           ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:12: error: stray '\240' in program
+ ________return dummyRecord;
+            ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:13: error: stray '\302' in program
+ ________return dummyRecord;
+             ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:14: error: stray '\240' in program
+ ________return dummyRecord;
+              ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:15: error: stray '\302' in program
+ ________return dummyRecord;
+               ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:162:16: error: stray '\240' in program
+ ________return dummyRecord;
+                ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:163:1: error: stray '\302' in program
+ ____} else {
+ ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:163:2: error: stray '\240' in program
+ ____} else {
+  ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:163:3: error: stray '\302' in program
+ ____} else {
+   ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:163:4: error: stray '\240' in program
+ ____} else {
+    ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:163:5: error: stray '\302' in program
+ ____} else {
+     ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:163:6: error: stray '\240' in program
+ ____} else {
+      ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:163:7: error: stray '\302' in program
+ ____} else {
+       ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:163:8: error: stray '\240' in program
+ ____} else {
+        ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:1: error: stray '\302' in program
+ ________return loopPtr->StudentData;
+ ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:2: error: stray '\240' in program
+ ________return loopPtr->StudentData;
+  ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:3: error: stray '\302' in program
+ ________return loopPtr->StudentData;
+   ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:4: error: stray '\240' in program
+ ________return loopPtr->StudentData;
+    ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:5: error: stray '\302' in program
+ ________return loopPtr->StudentData;
+     ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:6: error: stray '\240' in program
+ ________return loopPtr->StudentData;
+      ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:7: error: stray '\302' in program
+ ________return loopPtr->StudentData;
+       ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:8: error: stray '\240' in program
+ ________return loopPtr->StudentData;
+        ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:9: error: stray '\302' in program
+ ________return loopPtr->StudentData;
+         ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:10: error: stray '\240' in program
+ ________return loopPtr->StudentData;
+          ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:11: error: stray '\302' in program
+ ________return loopPtr->StudentData;
+           ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:12: error: stray '\240' in program
+ ________return loopPtr->StudentData;
+            ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:13: error: stray '\302' in program
+ ________return loopPtr->StudentData;
+             ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:14: error: stray '\240' in program
+ ________return loopPtr->StudentData;
+              ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:15: error: stray '\302' in program
+ ________return loopPtr->StudentData;
+               ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:164:16: error: stray '\240' in program
+ ________return loopPtr->StudentData;
+                ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:165:1: error: stray '\302' in program
+ ____}
+ ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:165:2: error: stray '\240' in program
+ ____}
+  ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:165:3: error: stray '\302' in program
+ ____}
+   ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:165:4: error: stray '\240' in program
+ ____}
+    ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:165:5: error: stray '\302' in program
+ ____}
+     ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:165:6: error: stray '\240' in program
+ ____}
+      ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:165:7: error: stray '\302' in program
+ ____}
+       ^
+/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection/main.cpp:165:8: error: stray '\240' in program
+ ____}
+        ^
+Ch5StudentCollection.mk:95: recipe for target 'Debug/main.cpp.o' failed
+make[1]: *** [Debug/main.cpp.o] Error 1
+make[1]: Leaving directory '/home/neutron/CPP/BBPrimer/TLAP/Ch5StudentCollection'
+Makefile:4: recipe for target 'All' failed
+make: *** [All] Error 2
+====109 errors, 0 warnings====
