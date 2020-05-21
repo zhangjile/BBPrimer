@@ -12,7 +12,7 @@ naming conventions in STL are expertise knowledge.
 
 basic operations such as traversal, insertion and deletion can be implemented in different frameworks, but we can alway choose one as the best of all.
 
-the before_begin method is cute.
+the before_begin method as part of interface design is cute.
     iterator forward_list::before_begin ();
     
 ## TODO
