@@ -151,18 +151,34 @@ void StudentCollection::AddRecord(const StudentRecord &NewRecord){
 	temp->next = ListHead;
 	ListHead = temp;
 }
-
+/*
 StudentRecord StudentCollection::RecordWithNum(int idNum) {
-    StudentNode * loopPtr = ListHead;
-    while (loopPtr != NULL && loopPtr->StudentData.GetStudentNum() != idNum) {
+    StudentNode* loopPtr = ListHead;
+    while (loopPtr != nullptr && loopPtr->StudentData.GetStudentNum() != idNum) {
         loopPtr = loopPtr->next;
     }
-    if (loopPtr == NULL) {
+    if (loopPtr == nullptr) {
       StudentRecord dummyRecord(-1, "",-1);
         return dummyRecord;
     } else {
         return loopPtr->StudentData;
     }
+} 
+*/
+
+//if there's arrow or dots in the space of each line, that indicates the format of the text is correct, TRICKY!
+//another sign of correct format is that the  parameter, types, variables and so on are colored.
+StudentRecord StudentCollection::RecordWithNum(int idNum){
+    StudentNode* LoopPtr = ListHead;
+    while(LoopPtr != nullptr && LoopPtr ->StudentData.GetStudentNum() != idNum){
+        LoopPtr = LoopPtr ->next;
+    }
+    if(LoopPtr == nullptr){
+        StudentRecord DummyRecord(-1, "", -1);
+        return DummyRecord;
+        }else {
+            return LoopPtr -> StudentData;
+        }
 }
 
 void StudentCollection::RemoveRecord(int IDNum){
