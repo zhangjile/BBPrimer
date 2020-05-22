@@ -1,6 +1,8 @@
 // Section 18
 // Miles per Gallon - Function - Exception Classes - Inheritance
 // exceptions cannot be handled on Mobile C
+// I see exception handling finally 22/05/2020
+
 #include <iostream>
 
 class DivideByZeroException : public std::runtime_error  {
