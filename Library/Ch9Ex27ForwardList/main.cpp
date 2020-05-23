@@ -1,4 +1,5 @@
 //Ex 9.27 delete the odd elements from a std::forward_list<int>
+//works on CodeLite, build error on Mobile C
 #include <iostream>
 #include <forward_list>
 
