@@ -4,7 +4,8 @@
 #include <forward_list>
 
 void RemoveOdd (std::forward_list<int> & fl){
-	auto prev = fl.before_begin();
+	//forward_begin not implemented on Mobile C
+	auto prev = fl.before_begin();	
 	auto curr = fl.begin ();
 	while (curr != fl.end()){
 		if(*curr % 2 == 1){

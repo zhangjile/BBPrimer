@@ -47,7 +47,7 @@ void ForwardListEraseEvenAddOdd (forward_list<int> &fi){
 	auto curr = fi.begin();
 	while(curr != fi.end()){
 		if(*curr % 2) {
-			curr = insert_after(curr, *curr);
+			curr = fi.insert_after(curr, *curr);
 			prev = curr;
 			++curr;
 		}
@@ -84,6 +84,9 @@ int main (){
 	std::cout << std::endl;
 	
 	ForwardListEraseEvenAddOdd(fi);
+	for(const int &e : li){
+		std::cout<< e << " ";
+	}
 	std::cout << std::endl;
 	
 	return 0;
