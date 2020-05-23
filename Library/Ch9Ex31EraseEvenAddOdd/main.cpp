@@ -1,7 +1,10 @@
 //9.36 Container operations may invalidate iterators, p354
+//Ex 9.31 implement same operations using list and forward_list
 #include <iostream>
 #include <vector>
-using std::vector;
+#include <list>
+#include <forward_list>
+using std::vector; using std::list; using std::forward_list;
 
 //traverse a vector<int>, erase the even elements and add duplicate of each odd after itself
 void EraseEvenAddOddDuplicate (vector<int> &vi){
@@ -28,17 +31,40 @@ void Insert42(vector<int> &vi){
 	}
 }
 
-template <typename T>
-void Display(vector<T> vt){
-	for(const auto &e : vt){
-		std::cout << e << " ";
+void ListEraseEvenAddOdd (list<int> &li){
+	list<int>::iterator it = li.begin();
+	while(it != li.end()){
+		if(*it % 2) {
+			li.insert(it, *it); //it is fresh and valid
+			++it;
+		}
+		else it = li.erase(it); //refresh it is a must
 	}
-	std::cout << std::endl;
+}
+
+void ForwardListEraseEvenAddOdd (forward_list<int> &fi){
+	forward_list<int>::iterator prev = fi.before_begin();
+	auto curr = fi.begin();
+	while(curr != fi.end()){
+		if(*curr % 2) {
+			curr = insert_after(curr, *curr);
+			prev = curr;
+			++curr;
+		}
+		else{
+			curr = fi.erase_after(prev);
+		}
+	}
 }
 
 
 int main (){
 	vector<int> v = {1,2,3,4,5,6,7,8};
+	list<int> li;
+	li.assign(v.begin(), v.end()); //play with assign
+	forward_list<int> fi;
+	fi.assign(v.begin(), v.end());
+	
 	EraseEvenAddOddDuplicate(v);
 	for(const int &e : v){
 		std::cout<< e << " ";
@@ -46,6 +72,19 @@ int main (){
 	std::cout << std::endl;
 	
 	Insert42(v);
-	Display<int>(v);
+	for(const int &e : v){
+		std::cout<< e << " ";
+	}
+	std::cout << std::endl;
+	
+	ListEraseEvenAddOdd(li);
+	for(const int &e : li){
+		std::cout<< e << " ";
+	}
+	std::cout << std::endl;
+	
+	ForwardListEraseEvenAddOdd(fi);
+	std::cout << std::endl;
+	
 	return 0;
 }

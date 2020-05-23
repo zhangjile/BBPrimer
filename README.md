@@ -9,3 +9,8 @@
 if an old file in Mobile C contains change, it's high possibility to cause conflict.
 
 Empty Mobile C file folders.
+
+## TODO
+
+Test 2 new implementations using list and forward_list Library/Ch9Ex31EraseEvenAddOdd 
+
