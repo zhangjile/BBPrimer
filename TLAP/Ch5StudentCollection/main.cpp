@@ -3,8 +3,11 @@
 //work towards a better structure 
 #include<iostream>
 #include<string>
+
 using std::cout; using std::string; using std::endl;
 
+//exception handling is controvertial, 
+//if taken away, the user will have to take up the responsibility of ensuring the client code won't crash, and it's justifiable.
 class IsValidGrade : public std::runtime_error
 {
 public:
@@ -31,7 +34,7 @@ private:
 	bool IsValid(int num);
 };
 
-StudentRecord::StudentRecord(){
+StudentRecord::StudentRecord(){ //default constructor, good practice
 	StudentNum = -1;
 	StudentName ="default_name";
 	Grade = -1;
@@ -57,6 +60,8 @@ void StudentRecord::SetStudentGrade(int grade){
 	}
 }
 
+//convert a StudentGrade into a letter representation
+//a big piece of pearl
 string StudentRecord::LetterGrade(){
 	if(!IsValid(Grade)) return "ERROR"; // good defense
 	const int CATEGORIES = 11;
@@ -86,9 +91,11 @@ public:
 	void RemoveRecord(int num);
 	void Print();
 private:
-	typedef StudentNode* StudentList;
-	StudentList ListHead;
-	void DeleteList(StudentList sl);
+	typedef StudentNode* StudentList; //StudentList is a StudentNode*
+	StudentList ListHead;  //the data member of a StudentCollection
+
+	//private helper, detach interface and implementation
+	void DeleteList(StudentList sl);  
 	StudentList CopiedList(const StudentList &source);
 };
 
@@ -100,6 +107,7 @@ StudentCollection:: ~StudentCollection(){
 	DeleteList(ListHead);
 }
 
+//sharp blade
 void StudentCollection::DeleteList(StudentList sl){
 	if(sl == nullptr) return;
 	StudentNode* temp = nullptr;
@@ -129,8 +137,9 @@ StudentCollection& StudentCollection::operator =(const StudentCollection &rhs){
 	return *this; 
 }
 
+//copy one StudentList variable to another, 2 distinct addresses, no more double link
 StudentCollection::StudentList StudentCollection::CopiedList(const StudentCollection::StudentList &source){
-	StudentNode* NewList = new StudentNode;
+	StudentNode* NewList = new StudentNode;	//create a new node, a new empty box
 	NewList-> StudentData = source-> StudentData;
 	StudentNode* NewLoopPtr = NewList; 
 	StudentNode* OldLoopPtr = source->next;
@@ -150,23 +159,8 @@ void StudentCollection::AddRecord(const StudentRecord &NewRecord){
 	temp->next = ListHead;
 	ListHead = temp;
 }
-/*
-StudentRecord StudentCollection::RecordWithNum(int idNum) {
-    StudentNode* loopPtr = ListHead;
-    while (loopPtr != nullptr && loopPtr->StudentData.GetStudentNum() != idNum) {
-        loopPtr = loopPtr->next;
-    }
-    if (loopPtr == nullptr) {
-      StudentRecord dummyRecord(-1, "",-1);
-        return dummyRecord;
-    } else {
-        return loopPtr->StudentData;
-    }
-} 
-*/
 
-//if there's arrow or dots in the space of each line, that indicates the format of the text is correct, TRICKY!
-//another sign of correct format is that the  parameter, types, variables and so on are colored.
+//search for a specific StudentRecord for s StudentID in a StudentCollection object
 StudentRecord StudentCollection::RecordWithNum(int idNum){
     StudentNode* LoopPtr = ListHead;
     while(LoopPtr != nullptr && LoopPtr ->StudentData.GetStudentNum() != idNum){
@@ -180,6 +174,8 @@ StudentRecord StudentCollection::RecordWithNum(int idNum){
         }
 }
 
+//remove a StudentRecord from a StudentCollection object
+//organizing the program flow with class is much more efficient, operation on this 
 void StudentCollection::RemoveRecord(int IDNum){
 	StudentNode* LoopPtr = ListHead;
 	StudentNode* Trail = nullptr;
@@ -214,7 +210,8 @@ int main(){
 	StudentRecord sr(2001, "Lam", 80);
 	sr.SetStudentGrade(30);
 	cout<<sr.LetterGrade()<<endl;
-	StudentCollection sc;	//sc.Print(); //display nothing:)
+
+	StudentCollection sc;	
 	sc.AddRecord(sr);
 	sc.AddRecord(StudentRecord(3001,"Liu", 90)); 
 	sc.AddRecord(StudentRecord(4001,"Gao", 60));
