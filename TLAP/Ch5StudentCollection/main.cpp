@@ -153,6 +153,7 @@ StudentCollection::StudentList StudentCollection::CopiedList(const StudentCollec
 	return NewList;
 }
 
+//add record in the head position
 void StudentCollection::AddRecord(const StudentRecord &NewRecord){
 	StudentNode* temp = new StudentNode;
 	temp->StudentData = NewRecord;
@@ -160,7 +161,7 @@ void StudentCollection::AddRecord(const StudentRecord &NewRecord){
 	ListHead = temp;
 }
 
-//search for a specific StudentRecord for s StudentID in a StudentCollection object
+//search for a specific StudentRecord for a StudentID in a StudentCollection object
 StudentRecord StudentCollection::RecordWithNum(int idNum){
     StudentNode* LoopPtr = ListHead;
     while(LoopPtr != nullptr && LoopPtr ->StudentData.GetStudentNum() != idNum){
