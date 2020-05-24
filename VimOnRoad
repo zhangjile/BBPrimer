@@ -1,0 +1,61 @@
+vim on the road
+
+get the cozy feeling of moving around freely, it is more efficient than any other popular text editors,definitely.
+it practically increases your doubles your lifespan. 
+
+edit
+
+cis, change inside sentence, erase a block and replace it, insert mode.
+
+i, I, a, A, o, O, basic commands to start insert mode
+
+C, change from here, (delete the line from where you are at, enter insert mode)
+
+s, substitute a character,
+(r, substitute a character on curson in command mode.)
+
+S, substitute the whole line,(delete the whole line and start insert mode)
+
+~ changes the case of the underlying character
+
+basic deleting operations
+
+x, delete the character under the cursor
+X, delete the character BEFORE the cursor
+dd, delete a line
+
+The biggest discovery today, strike backspace to move to the end of the previous line.
+
+dt', delete to next occurence of ' 
+
+D, delete to the end of the line, command line mode
+
+J, this is also an ADORABLE command, it joins the current line with the previous line.
+
+navigation
+
+f", jump and land on the next quote
+t", jump to the right before the next quote
+h,j,k,l, left, down, up, right
+0, move to beginning of the line, same as ^, $, end of line.
+w, b, e, end of the word.
+), move forward one sentence?
+}, move forward one paragraph?
+:100, go to line 100
+H,M,L,top, middle, bottom
+^E, scroll up one line
+^Y, scroll down one line
+gg, the beginning of the first line, G, beginning of the last line.
+^U, move up by half a page
+^D, move down half a page
+^F: move down a page
+^B, move up a page
+ctrl-i, jump to your previous navigation location
+ctrl-o, jum back to where you were.
+
+next step:
+1.edit configuration file, /etc/vim/vimrc
+
+
+
+:wq
