@@ -37,7 +37,7 @@ Move::Move(const Move &source)
 Move::Move(Move &&source) noexcept 
     //: data {source.data} {
     	{data = source.data;
-        source.data = nullptr;	//!!!remove cross-linking !!!
+        source.data = nullptr;	//!!!null out data member of source object, remove cross-linking !!!
         cout << "Move constructor - moving resource: " << *data << endl;
 }
 
@@ -59,11 +59,12 @@ int main() {
 	int &n_ref = num;
 	n_ref = 8;
 	
+    cout << num <<endl;
 	cout << &n_ref <<endl;
 	
 	int &&r_ref = 800;
 	r_ref =8000;
-	
+	cout <<&r_ref <<endl;
 	cout << r_ref <<endl;
 	
 	cout << "testing R-value reference completed" <<endl;	
