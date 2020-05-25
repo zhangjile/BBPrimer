@@ -86,3 +86,37 @@ int main (int argc, char **argv){
 	
 	return 0;
 }
+
+/*
+This is what I've discovered today.
+
+1. when I build from a command line, no surprises:)
+
+g++ main.cpp -o PersonInfo
+
+2. stl_uninitialized.h is a plain old header.
+
+it is described as "raw memory manipulators" in gnu's doc, its's an internal header which should not used directly, instead, #include <memory>
+
+I was terrified at the first sight of it and felt clueless.
+
+it's nothing but a plain old header file, and the basic syntax in it has been covered, such as template. 
+
+I remember that memory library is the underlying facility for smart pointers.
+
+3. what caused the conflict?
+
+after examining the red alert messages, which says again and again '* is not a member of std', it's high possibility that new std members are included and appeared in my code but this header has not updated for them yet, this file is outdated!
+
+I figure the solution is upgrade gcc, it's still unimaginable to edit and save a header file to solve a build problem.
+
+conclusion
+
+even though it might work, I won't risk blowing up the current environment to fix this. LOL.
+
+Thanks a lot for your time and help
+
+Best regards,
+
+Alvin
+*/

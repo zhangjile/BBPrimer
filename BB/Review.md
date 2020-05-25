@@ -9,3 +9,14 @@ f means find, uppercase means reverse, t means go go that character.
 inside a unit text objects:
 iw, it, i", ip, as
 word, tab, quote, paragraph, a sentence.
+
+## vim is more than a small toy now
+
+exception handling 
+/BB/Section18MilePerGallon/main.cpp
+/TLAP/Ch5StudentCollection/main.cpp
+/Basics/Chapter5Ex25TryCatch/main.cpp
+
+debugging
+/Basics/Chapter8IOLibrary/main.cpp
+/BB/Section12,13,15

@@ -8,12 +8,12 @@ using std::cout; using std::string; using std::endl;
 
 //exception handling is controvertial, 
 //if taken away, the user will have to take up the responsibility of ensuring the client code won't crash, and it's justifiable.
-class IsValidGrade : public std::runtime_error
+class InvalidGrade : public std::runtime_error
 {
 public:
-    IsValidGrade() : std::runtime_error  {"Invalid grade"}
+    InvalidGrade() : std::runtime_error  {"Invalid grade"}
     {}
-    ~IsValidGrade() = default;
+    ~InvalidGrade() = default;
 };
 
 class StudentRecord{
@@ -48,9 +48,9 @@ bool StudentRecord::IsValid(int num){
 StudentRecord::StudentRecord(int num, string name, int grade)
 try:StudentNum {num}, StudentName {name}, Grade {grade} {
 	if(!IsValid(grade)){		
-		throw IsValidGrade{}; 
+		throw InvalidGrade{}; 
 	}
-}catch (const IsValidGrade &ex){
+}catch (const InvalidGrade &ex){
 	std::cerr<<ex.what();
 }
 
