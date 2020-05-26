@@ -3,6 +3,11 @@ vim on the road
 get the cozy feeling of moving around freely, it is more efficient than any other popular text editors,definitely.
 it practically doubles your lifespan. 
 
+NOTE: As you go through this tutor, do not try to memorize, learn by usage.
+walk through vimtutor on 26/05/2020, impressive.
+set vim to be the default editor
+switch to command mode after an insertion mode instantly.
+
 edit
 
 cis, change inside sentence, erase a block and replace it, insert mode.
