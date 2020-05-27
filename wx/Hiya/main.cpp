@@ -1,6 +1,6 @@
 #include <wx/app.h>
 #include <wx/event.h>
-#include "MainFrame.h"
+#include "MainDialog.h"
 #include <wx/image.h>
 
 // Define the MainApp
@@ -15,9 +15,9 @@ public:
         wxImage::AddHandler( new wxPNGHandler );
         wxImage::AddHandler( new wxJPEGHandler );
 
-        MainFrame *mainFrame = new MainFrame(NULL);
-        SetTopWindow(mainFrame);
-        return GetTopWindow()->Show();
+        MainDialog mainDialog(NULL);
+        mainDialog.ShowModal();
+        return false;
     }
 };
 
