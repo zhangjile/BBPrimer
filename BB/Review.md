@@ -20,3 +20,6 @@ exception handling
 debugging
 /Basics/Chapter8IOLibrary/main.cpp
 /BB/Section12,13,15
+
+if(s.find(t) != string::npos)
+/BB/Section10ChallengeCipher/
