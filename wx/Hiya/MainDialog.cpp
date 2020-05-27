@@ -1,3 +1,4 @@
+// to honor a great British scientist, Hooke
 #include "MainDialog.h"
 #include <wx/msgdlg.h>
 
