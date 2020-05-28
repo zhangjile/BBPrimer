@@ -9,7 +9,7 @@
 int main(int argc, char const *argv[]) 
 { 
 	int server_fd, new_socket, valread; 
-	struct sockaddr_in address; 
+	struct sockaddr_in address; // construct an object, C-style
 	int opt = 1; 
 	int addrlen = sizeof(address); 
 	char buffer[1024] = {0}; 
@@ -45,6 +45,11 @@ int main(int argc, char const *argv[])
 		perror("listen"); 
 		exit(EXIT_FAILURE); 
 	} 
+	
+	// study note: this expression consists of 2 operations in a line: 
+	//assign a value to new_socket and evaluate whether it is smaller than 0.
+	//a similar expression is ++(iter = vi.insert(iter, *iter));
+	//27/05/2020
 	if ((new_socket = accept(server_fd, (struct sockaddr *)&address, 
 					(socklen_t*)&addrlen))<0) 
 	{ 
