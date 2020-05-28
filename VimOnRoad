@@ -29,7 +29,7 @@ x, delete the character under the cursor
 X, delete the character BEFORE the cursor
 dd, delete a line
 
-The biggest discovery today, strike backspace to move to the end of the previous line.
+--The biggest discovery today, strike backspace to move to the end of the previous line.--
 
 dt', delete to next occurence of ' 
 
@@ -44,10 +44,10 @@ t", jump to the right before the next quote
 h,j,k,l, left, down, up, right
 0, move to beginning of the line, same as ^, $, end of line.
 w, b, e, end of the word.
-), move forward one sentence?
-}, move forward one paragraph?
+), move forward one sentence
+}, move forward one paragraph
 :100, go to line 100
-H,M,L,top, middle, bottom
+H,M,L,High/top, middle, Lower bound/bottom
 ^E, scroll up one line
 ^Y, scroll down one line
 gg, the beginning of the first line, G, beginning of the last line.
@@ -59,7 +59,9 @@ ctrl-i, jump to your previous navigation location
 ctrl-o, jum back to where you were.
 
 next step:
-1.edit configuraaation file, /etc/vim/vimrc
+0.edit configuraaation file, /etc/vim/vimrc
+1.create 3 conflicting lines and resolve it
+2. on desktop using git mergetool, which is vimdiff.
 
 
 
