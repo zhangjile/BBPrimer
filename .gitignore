@@ -6,4 +6,4 @@
 .codelite/
 Makefile
 Debug/
-
+*.orig
