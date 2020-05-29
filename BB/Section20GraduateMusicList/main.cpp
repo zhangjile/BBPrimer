@@ -75,9 +75,6 @@ void display_playlist(const std::list<Song> &playlist, const Song &current_song)
 // Frank helped out with 2 lines of critical code for this function
 std::list<Song> create_playlist () 
 {
-	std::string name {}, artist {};
-    int rating {};
-    std::string temp{};
     std::list<Song> playlist;
 	std::list<Song> playlist_backup{
             {"Sing a song",       "Carpenters",                5},
@@ -89,14 +86,17 @@ std::list<Song> create_playlist ()
     };
     std::ifstream in_file {"Playlist.txt"};
     
-    if (!in_file) {
+    if (!in_file) {	// what to do if this fails??
         std::cerr << "Problem opening latest playlist file" << std::endl;
         std::cerr << "Loading backup playlist..." << std::endl;
+		// if reading file fails, load playlist_backup
         playlist = playlist_backup;
-        // what to do if this fails??
-        	
+        return playlist;        	
     }        
-        
+ 
+ 	std::string name {}, artist {};
+    int rating {};
+    std::string temp{};       
     while (getline (in_file, name)){
     	getline (in_file, artist);
         
@@ -116,11 +116,11 @@ void write_playlist (std::list<Song> playlist)
 		std::cerr <<"Saving the new entry failed" <<std::endl;
 	}
 	else {
-    	for (const auto &song : playlist){
-    	out_file <<song.get_name() << std::endl;
-    	out_file <<song.get_artist() << std::endl;
-    	out_file << song.get_rating() <<std::endl;
-    	}
+	    	for (const auto &song : playlist){
+    			out_file <<song.get_name() << std::endl;
+   		 	out_file <<song.get_artist() << std::endl;
+   	 		out_file << song.get_rating() <<std::endl;
+   	 	}
     }
 }
 
