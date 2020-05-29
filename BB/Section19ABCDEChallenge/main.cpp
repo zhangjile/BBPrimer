@@ -7,7 +7,7 @@ using namespace std;
 //和Frank的解決方案對比，Frank是習慣性地使用functions，模塊化并簡化代碼
 int main ()
 {
-	ifstream in_file {"responses.txt"};
+	ifstream in_file {"responses"};
 	if (!in_file){
 		cerr<<"oops"<<endl;
 		//Boolean expression is totally effective in screening out so-called exceptions
