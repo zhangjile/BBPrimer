@@ -1,5 +1,5 @@
 //Chapter 9.5 Additional string operations 
-//Ex 47 find each numeric character and then each alphabetic character in the string "ab2c3d7R4E6"
+//Ex 47 find each numeric character and then each alphabetic character in the string "ab2c37R4E6"
 #include <iostream>
 #include <string>
 using std::string;
@@ -49,7 +49,7 @@ void Display(const string &s){
 void FindFirstNotOf (const string &s);
 
 int main() {
-	string source = "ab2c3d7R4E6";
+	string source = "ab2c3dR4E6";
 	FindFirstOf(source);
 	return 0;
 }

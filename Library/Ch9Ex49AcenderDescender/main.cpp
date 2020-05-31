@@ -14,8 +14,11 @@ using std::string; using std::cout; using std::endl; using std::ifstream;
 
 int main()
 {
-    ifstream ifs("Ch9Ex49Description");
-    if (!ifs) return -1;
+    ifstream ifs("Ch49Ex49Description.md");
+    if (!ifs) {
+        std::cerr << "oops" << std::endl;
+        return -1;
+    }
 
     string AscenderAndDescender = "bdfghjklpqty";
     string NoneDescenderNorAscender = "aceimnorsuvwxz";
@@ -35,7 +38,7 @@ int main()
     			longest = run;
     	}
     }   
-    
+    ifs.close();
     cout << longest << endl;
     return 0;
 }
