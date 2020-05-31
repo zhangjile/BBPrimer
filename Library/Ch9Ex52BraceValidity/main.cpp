@@ -39,9 +39,9 @@ bool CheckBraceValidity(const string &s) {
 }
 
 int main(){
-	string Braced = {"while((pos = s.find_first_not_of(("0123456789"),pos))!= string::npos)" }; //Ex47
- 	bool Result = CheckBraceValidity(Braced);
+	// an expression from Ex47, find each numeric character and then each alphabetic character 
+	string Braced = {"while(pos = find_first_of(numbers, pos)) != npos"};
+	bool Result = CheckBraceValidity(Braced);
 	std::cout << Result << std::endl;
-
 	return 0;
 }

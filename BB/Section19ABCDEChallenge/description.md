@@ -30,7 +30,8 @@ You should read the file and display:
 Each student's name and score (#correct out of 5)
 At the end, the class average should be displayed
 You may assume that the data in the file is properly formatted
-## laugh out loud, if not, error is certain to come out.
+
+## laugh out loud, if not formatted, error is certain to come out.
 
 Program should output to the console the following:
 Student                     Score   //void DisplayHeader ();
@@ -42,3 +43,7 @@ Curly                             2
 Michael                         4
 ---------------------------
 Average score            3.6        //Average = TotalScore/StudentCount
+
+## extention
+how to format data file?
+
