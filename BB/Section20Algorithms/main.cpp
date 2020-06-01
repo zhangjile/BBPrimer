@@ -7,8 +7,8 @@
 #include <algorithm>
 #include <cctype> 
 
-//std::find, std::count, std::replace, std::transform, 
-//std::all_of, std::for_each
+using std::find; using std::count; using std::replace; using std::transform;
+using std::all_of; using std::for_each;
 
 class Person {
     std::string name;
@@ -22,8 +22,7 @@ public:
        	this->age = age;
        }
         
-    //it's critical to overload < and  ==
-        
+    //it's critical to overload < and  ==     
     bool operator<(const Person &rhs) const {
         return this->age < rhs.age;
     }
@@ -37,18 +36,9 @@ void find_test() {
     std::cout << "\ntest 1 std::find =======================" << std::endl;
 
     std::vector<int> vec {1,2,3,4,5};
-   // int sum = std::accumulate(vec.begin(), vec.end(),0); // #include<numeric>
     
-   std::transform (vec.begin(), vec.end(), vec.begin(), [](int x) {return x*x;});
-   for (auto i: vec) {
-         std::cout << i << " ";
-     }
-     std::cout << std::endl;
-     
-    for_each (begin(vec), end(vec), [] (int x) { std::cout << x*x << " ";});
-    std::cout << std::endl<< std::endl;
-    
-   // std::cout <<sum <<std::endl;
+    //int sum = std::accumulate(vec.begin(), vec.end(),0); // #include<numeric>   
+    //std::cout <<sum <<std::endl;
     
     //std::vector<int>::iterator it = std::find(std::begin(vec), std::end(vec), 1);
     auto loc = std::find(std::begin(vec), std::end(vec), 1);
@@ -72,8 +62,7 @@ void find_test() {
 }
 
 
-//does't work on Mobile C
-// Count the number of elements in a container
+// Count the number of elements in a container //does't work on Mobile C
 void count_test() {
     std::cout << "\ntest 2 std::count occurences==================" << std::endl;
 
@@ -85,31 +74,26 @@ void count_test() {
 
 // Count_if outputs the number of occurences of an element in a container
 // based on a predicate using a lambda expression
-
 void count_if_test() {
     std::cout << "\ntest 3 std::count_if, number of qualified elements=====" << std::endl;
 
     // count only if the element is even
     std::vector<int> vec {1,2,3,4,5,1,2,1,100};
     int num = std::count_if(vec.begin(), vec.end(), [](int x) { return x %2 == 0; });
-    //return expressions in predicate lambdas are boolean! 24/07/2019
+    //this expression returns boolean type
     
     std::cout << num << " even numbers found" << std::endl;
     
     num = std::count_if(vec.begin(), vec.end(), [](int x) { return x %2 != 0; });
     std::cout << num << " odd numbers found" << std::endl;
     
-    // how can we determine how many elements in vec are >= 5?
+    //lambda does not return a boolean expression, a typical error
+    //num = std::count_if(vec.begin(), vec.end(),[](int x){std::count<<x*x;});
+
     num = std::count_if(vec.begin(), vec.end(), [](int x) { return x>=5;});
     std::cout << num << "  numbers are >= 5" << std::endl;
-
 }
-/*
-int num = std::count(vec.begin(), vec.end(),1);
-std::cout<<num<<"Occurences found"<<std::endl;
 
-num = std::count_if(vec.begin(), vec.end(),[](int x){std::count<<x*x;});
-*/
 // Replace occurrences of elements in a container
 void replace_test() {
     std::cout << "\ntest 4 std::replace========================" << std::endl;
@@ -145,6 +129,16 @@ void all_of_test() {
 // Transform elements in a container - string in this example
 void string_transform_test() {
     std::cout << "\ntest 6 std::transform========================" << std::endl;
+    
+    std::vector<int> vec {1,2,3,4,5,1,2,1};
+    std::transform (vec.begin(), vec.end(), vec.begin(), [](int x) {return x*x;});
+    for (auto i: vec) {
+         std::cout << i << " ";
+     }
+     std::cout << std::endl;
+     
+    for_each (begin(vec), end(vec), [] (int x) { std::cout << x*10 << " ";});
+    std::cout << std::endl<< std::endl;
 
     std::string str1 {"This is a test"};
     std::cout << "Before transform: " << str1 << std::endl;
@@ -155,7 +149,7 @@ void string_transform_test() {
 
 int main() {
     find_test();
-   count_test();
+    count_test();
     count_if_test();
     replace_test();
     all_of_test();
@@ -168,10 +162,3 @@ int main() {
     return 0;
 }
 
-/*******************************************************************************
-algorithm intro 
-functor is overloaded function call operator ()
-function pointer
-the function as a parameter of algorithm is not being called here in the algorithm construction statement, it's wrapped in the iterator block and will be called on/by an iterator object
-lambda, predicate
-*********************************************************************************/

@@ -15,14 +15,6 @@ int main ()
 	string Metrics{},Name {},Answers{};
 	in_file >>Metrics;
 //	cout << Metrics<<endl;  //primitive debugging method
-	int l = Metrics.size();	
-//	cout <<l<<endl; //the value displays 8 when data file is not formatted
-	
-	int score {0};
-	int students{0};
-	int total {0};
-	double average {0.0};
-	cout <<setprecision(2)<<fixed;
 	
 	const int total_width  {30};
     const int field1_width {20};    //  name
@@ -37,6 +29,15 @@ int main ()
                    << std::endl;   
     std::cout << std::setfill(' '); // reset setfill to blank spaces
    
+    int l = Metrics.size();	 //l displays 8 when data file is not formatted
+	
+    int score {0};
+	int students{0};
+	int total {0};
+	double average {0.0};
+	
+	cout <<setprecision(2)<<fixed;
+	
 	while(in_file >>Name>>Answers){
 		for(size_t i{0}; i<l; ++i){
 			if(Metrics[i]==Answers[i])
@@ -45,7 +46,7 @@ int main ()
 			cout<<setw(20)<<left <<Name <<setw(10)<<right<< score<<endl;	
 			++students;
 			total += score;
-			score=0;	//LOL all scores are added if this line is missing!		
+			score=0;	// all scores add up if score is not reset!		
 		}
 		std::cout << std::setw(total_width) 
                    << std::setfill('-') 
