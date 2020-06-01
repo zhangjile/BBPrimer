@@ -6,6 +6,7 @@
 	//keep the alphabetical order among elements of the same length words
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <string>
 
 using std::string; using std::vector; using std::stable_sort; using std::unique; 
@@ -18,8 +19,8 @@ void Display (const vector<string> &v){
 	std::cout << "\n";
 }
 
-bool IsShorter(const string &s1, const string &s2){
-	return s1.size () < s2.size();
+bool IsLonger(const string &s1, const string &s2){
+	return s1.size () > s2.size();
 }
 
 void EliminateDups (vector<string> &v){
@@ -28,7 +29,7 @@ void EliminateDups (vector<string> &v){
 	v.erase(pos, v.end());
 	
 	//Ex10.11
-	//stable_sort(v.begin(),v.end(),IsShorter);
+	stable_sort(v.begin(),v.end(),IsLonger);
 }
 
 void Replace() {
@@ -48,7 +49,7 @@ void Replace() {
 }
 
 int main(){
-	vector<string> v = {"Win","Will","Trump","of", "the", "United", "States","Donald","Win"};
+	vector<string> v = {"Win","Will","Trump","Win", "Win", "United", "States","Donald","Win"};
 	//v = {"the","quick","red","fox","jumps","over","the","slow","red","turtle"};
 	Display(v);
 	
@@ -61,7 +62,7 @@ int main(){
 	
 	//doesn't work on Mobile C, no function to call for replace!
 	//cf BB/Section20/Algorithms
-//	replace(v.begin(),v.end(), " yeah", "!"); 
+	replace(v.begin(),v.end(), " yeah", "!"); 
 	
 	Replace();
 	

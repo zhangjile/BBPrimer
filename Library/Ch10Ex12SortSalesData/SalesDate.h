@@ -1,6 +1,5 @@
-//Chapter 2 Variables and Basic Types
-//Ex 2.42 P77, read data from book_sales, sum up sales for each book.
-
+#ifndef SALESDATA_H
+#define SALESDATA_H
 #include <iostream>
 #include<fstream>
 #include <string>
@@ -13,9 +12,8 @@ struct Sale_data
     double revenue = 0.0;
 };
 
-int main()
-{
-	ifstream books {"book_sales"};
+void SalesReport (){
+    ifstream books {"book_sales"};
 	Sale_data total;
     double totalPrice;
     if (books >> total.bookNo >> total.units_sold >> totalPrice)
@@ -35,7 +33,7 @@ int main()
             }
             else
             {
-                std::cout << total.bookNo << " " << total.units_sold << " " << total.revenue << " ";
+                std::cout << total.bookNo << " \t" <<total.units_sold << " \t" << total.revenue << " \t";
                 if (total.units_sold != 0)
                     std::cout << total.revenue / total.units_sold << std::endl;
                 else
@@ -52,13 +50,12 @@ int main()
             std::cout << total.revenue / total.units_sold << std::endl;
         else
             std::cout << "(no sales)" << std::endl;
-
-        return 0;
     }
     else
     {
         std::cerr << "No data?!" << std::endl;
-        return -1;  // indicate failure
     }
 	books.close();
 }
+
+#endif
