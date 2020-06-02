@@ -1,62 +1,70 @@
+//modularization is done!
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
 using namespace std;
 
+void DisplayRuler (){
+	const int total_width  {30};
+    const int field1_width {20};    //  name
+    const int field2_width {10};    // score
+    
+    std::cout << std::setw(total_width) 
+                   << std::setfill('-') 
+                //   << "###" 
+    			  <<'-'
+                   << std::endl;   
+    std::cout << std::setfill(' '); // reset setfill to blank spaces    
+}
+
+int Score (string M, string A){
+	int s {0};
+	for(size_t i{0}; i<M.size(); ++i){
+		if(M[i] == A[i])
+			++s;
+	}
+	return s;
+}
+
+void DisplayObject(string s, double d){
+	cout<<setw(20)<<left << s <<setw(10)<<right<< d <<endl;		
+}
+
 int main ()
 {
-	ifstream in_file {"responses"};
+	cout<<setw(20)<<left <<"Name" <<setw(10)<<right<< "Score"<<endl;
+	DisplayRuler ();
+	
+	ifstream in_file {"responses.txt"};
 	if (!in_file){
 		cerr<<"oops"<<endl;
-		//Boolean expressions are effective in intercepting exceptions
 		return 1;
 		}
 	
 	string Metrics{},Name {},Answers{};
 	in_file >>Metrics;
-//	cout << Metrics<<endl;  //primitive debugging method
 	
-	const int total_width  {30};
-    const int field1_width {20};    //  name
-    const int field2_width {10};    // score
     
-	cout<<setw(20)<<left <<"Name" <<setw(10)<<right<< "Score"<<endl;
-    
-    std::cout << std::setw(total_width) 
-                   << std::setfill('-') 
-                   << "###" 
-    			//  <<'-'
-                   << std::endl;   
-    std::cout << std::setfill(' '); // reset setfill to blank spaces
-   
-    int l = Metrics.size();	 //l displays 8 when data file is not formatted
+	size_t l = Metrics.size();	 //l is undefined if data file is not formatted
 	
-    int score {0};
+    
 	int students{0};
 	int total {0};
-	double average {0.0};
 	
 	cout <<setprecision(2)<<fixed;
 	
 	while(in_file >>Name>>Answers){
-		for(size_t i{0}; i<l; ++i){
-			if(Metrics[i]==Answers[i])
-				++score;
-			}
-			cout<<setw(20)<<left <<Name <<setw(10)<<right<< score<<endl;	
-			++students;
-			total += score;
-			score=0;	// all scores add up if score is not reset!		
-		}
-		std::cout << std::setw(total_width) 
-                   << std::setfill('-') 
-                 //  << "###" 
-    			  <<'-'
-                   << std::endl;
-		std::cout << std::setfill(' ');
-		cout<<setw(20)<<left <<"Average" <<setw(10)
-			<<right<< static_cast<double>(total)/students <<endl;
-				
+		++students;
+		int result = Score(Metrics, Answers);
+		DisplayObject(Name, result);		
+		total += result;
+	}
+		
+	DisplayRuler();
+	double average = static_cast<double>(total)/students;
+	DisplayObject(string("Average"), average);
+	
 	in_file.close();
 	return 0;
 	}
