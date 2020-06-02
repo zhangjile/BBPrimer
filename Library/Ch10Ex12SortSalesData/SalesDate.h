@@ -1,61 +1,66 @@
+//  Chapter 7 
+//  Ex 7.21
+
 #ifndef SALESDATA_H
 #define SALESDATA_H
-#include <iostream>
-#include<fstream>
-#include <string>
-using namespace std;
 
-struct Sale_data
-{
-    std::string bookNo;
-    unsigned units_sold = 0;
-    double revenue = 0.0;
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+using std::string; using std::fstream; using std::vector;
+
+class SalesData {
+    friend std::istream &read(std::istream &is, SalesData &item);
+    friend std::ostream &print(std::ostream &os, const SalesData &item);
+    friend SalesData add(const SalesData &lhs, const SalesData &rhs);
+
+public:
+    SalesData() = default;
+    SalesData(const std::string &s):BookNo(s) { }
+    SalesData(const std::string &s, unsigned n, double p):BookNo(s), UnitsSold(n), Revenue(n*p){ }
+    SalesData(std::istream &is) { read(is, *this); }
+
+    std::string isbn() const { return BookNo; };
+    SalesData& combine(const SalesData&);
+
+private:
+    std::string BookNo;
+    unsigned UnitsSold = 0;
+    double Revenue = 0.0;
 };
 
-void SalesReport (){
-    ifstream books {"book_sales"};
-	Sale_data total;
-    double totalPrice;
-    if (books >> total.bookNo >> total.units_sold >> totalPrice)
-    {
-        total.revenue = total.units_sold * totalPrice;
-
-        Sale_data trans;
-        double transPrice;
-        while (books >> trans.bookNo >> trans.units_sold >> transPrice)
-        {
-            trans.revenue = trans.units_sold * transPrice;
-
-            if (total.bookNo == trans.bookNo)
-            {
-                total.units_sold += trans.units_sold;
-                total.revenue += trans.revenue;
-            }
-            else
-            {
-                std::cout << total.bookNo << " \t" <<total.units_sold << " \t" << total.revenue << " \t";
-                if (total.units_sold != 0)
-                    std::cout << total.revenue / total.units_sold << std::endl;
-                else
-                    std::cout << "(no sales)" << std::endl;
-
-                total.bookNo = trans.bookNo;
-                total.units_sold = trans.units_sold;
-                total.revenue = trans.revenue;
-            }
-        }
-
-        std::cout << total.bookNo << " " << total.units_sold << " " << total.revenue << " ";
-        if (total.units_sold != 0)
-            std::cout << total.revenue / total.units_sold << std::endl;
-        else
-            std::cout << "(no sales)" << std::endl;
-    }
-    else
-    {
-        std::cerr << "No data?!" << std::endl;
-    }
-	books.close();
+// member functions.
+SalesData& SalesData::combine(const SalesData& rhs)
+{
+    UnitsSold += rhs.UnitsSold;
+    Revenue += rhs.Revenue;
+    return *this;
 }
+
+// friend functions
+std::istream &read(std::istream &is, SalesData &item)
+{
+    double price = 0;
+    is >> item.BookNo >> item.UnitsSold >> price;
+    item.Revenue = price * item.UnitsSold;
+    return is;
+}
+
+std::ostream &print(std::ostream &os, const SalesData &item)
+{
+    os << item.isbn() << " " << item.UnitsSold << " " << item.Revenue;
+    return os;
+}
+
+//this function is not useful yet, but looks pretty.
+SalesData add(const SalesData &lhs, const SalesData &rhs)
+{
+    SalesData sum = lhs;
+    sum.combine(rhs);
+    return sum;
+}
+
 
 #endif
