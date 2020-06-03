@@ -1,12 +1,8 @@
 ﻿//Chapter 10 Generic Algorithms 
-//Ex10.9, P385 
-//mission: implement your own version of ElimDups
-//Ex10.11, P387 
-//reorder the words according length AND 
-	//keep the alphabetical order among elements of the same length words
-//Ex16, P392, write your own version of void Biggies,
-//18, use partition
-//19, use stable_partition
+//10.3.2 Lambda Expressions
+//Ex10.19, P392, use stable_partition
+//10.3.3 Lambda captures and returns
+//Ex10.20 P397, count_if comes in play
 
 #include <iostream>
 #include <vector>
@@ -29,7 +25,7 @@ bool IsShorter(const string &s1, const string &s2){
 
 void EliminateDups (vector<string> &v){
 	sort(v.begin(), v.end());
-	auto pos = unique(v.begin(), v.end()); //unique works on a sorted sequence	
+	auto pos = unique(v.begin(), v.end()); 	
 	v.erase(pos, v.end());
 	
 	//Ex10.11
@@ -38,11 +34,17 @@ void EliminateDups (vector<string> &v){
 
 void Biggies(vector<string> &v, size_t sz){
 	EliminateDups(v);
+	
+	//Ex10.19
 	auto it = stable_partition(v.begin(),v.end(),[sz](const string &s){return s.size() >= sz;});
 	size_t Count = it - v.begin();
 	std::cout << Count << std::endl;
 
-	reverse(v.begin(), it);	//wahoo, I just guessed.
+	//Ex 10.20
+	size_t ByCountIf = count_if(v.begin(),v.end (), [=](const string &s) {return s.size() >= sz;});
+	std::cout << "By count-if: " << ByCountIf << std::endl;
+	
+	reverse(v.begin(), it);	
 	for_each(v.begin(), it, [](const string &s){std::cout<< s << " ";});
 	std::cout << std::endl; 	
 }
