@@ -27,7 +27,7 @@ int Score (string M, string A){
 	return s;
 }
 
-void DisplayObject(string s, double d){
+void DisplayStudent(string s, double d){
 	cout<<setw(20)<<left << s <<setw(10)<<right<< d <<endl;		
 }
 
@@ -44,26 +44,24 @@ int main ()
 	
 	string Metrics{},Name {},Answers{};
 	in_file >>Metrics;
-	
-    
 	size_t l = Metrics.size();	 //l is undefined if data file is not formatted
-	
     
 	int students{0};
 	int total {0};
 	
-	cout <<setprecision(2)<<fixed;
-	
 	while(in_file >>Name>>Answers){
 		++students;
 		int result = Score(Metrics, Answers);
-		DisplayObject(Name, result);		
+		DisplayStudent(Name, result);		
 		total += result;
 	}
 		
 	DisplayRuler();
-	double average = static_cast<double>(total)/students;
-	DisplayObject(string("Average"), average);
+	
+	//idiomatic expression for intercepting divide-by-zero exception
+	cout <<setprecision(2)<<fixed;
+	double average = (students == 0)?0:static_cast<double>(total)/students;
+	DisplayStudent(string("Average"), average);
 	
 	in_file.close();
 	return 0;

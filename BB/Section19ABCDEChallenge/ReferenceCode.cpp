@@ -77,14 +77,6 @@ int main() {
     std::cout << std::endl << std::endl;
     return 0;
 }
+// this is the reference code By Frank
+// total_students, running_sum, average_score responses are better naming than students,total, average and answers.
 
-//pseudo code(整理解決問題的步驟流程)
-//1,顯示抬頭
-//2,顯示學生姓名和分數
-//3,計分
-//4,顯示底線和平均分數
-
-//數據計算
-//1,讀入數據、判分和計分(以之為起點和承力點)
-//2,計算平均分數
-//12/10/2019
