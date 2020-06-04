@@ -60,9 +60,15 @@ int main(){
 	Display(v);
 	
 	//doesn't work on Mobile C, no function to call for replace!
-	//replace(v.begin(),v.end(), " yeah", "!"); 
+	//replace(v.begin(),v.end(), "Yeah", "!"); 
+	 //a built-in nuiance relating to a string literal/const char*
 	
-	Biggies(v,5);
+	//solved!	cf: P379
+	replace(v.begin(),v.end(), string{"Yeah"}, string {"!"}); 
+	//replace(v.begin(),v.end(), +"Yeah", +"!"); 
+	Display(v);
+	
+	Biggies(v,6);
 	
 	return 0;
 }

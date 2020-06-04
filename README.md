@@ -6,11 +6,12 @@
 
 ## git is the upstream code base, Mobile C is a tesing facility
 
-if an old file in Mobile C contains change, it's high possibility to cause conflict.
+if a file in Mobile C contains change, it's high possibility to cause conflict.
 
-Empty Mobile C file folders.
+## milestones
 
-## TODO
+Empty Mobile C file folders. done!
 
-Test 2 new implementations using list and forward_list Library/Ch9Ex31EraseEvenAddOdd 
+new workflow imports code files instead of copy and paste, a substantial step forward.
 
+time complexity is becoming a key word in daily exercise.
