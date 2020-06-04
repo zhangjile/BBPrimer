@@ -61,9 +61,6 @@ int main(){
 	fill_n(back_inserter(v),3,"Yeah");
 	Display(v);
 	
-	//doesn't work on Mobile C, no function to call for replace!
-	//replace(v.begin(),v.end(), " yeah", "!"); 
-	
 	Biggies(v,5);
 	
 	return 0;

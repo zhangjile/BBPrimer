@@ -1,6 +1,7 @@
 ﻿//lambda makes its power seen
 
 #include<iostream>
+#include <algorithm>
 
 int main(){
 	int size = 6;

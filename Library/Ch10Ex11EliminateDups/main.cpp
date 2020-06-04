@@ -1,9 +1,12 @@
-//Chapter 10 Generic Algorithms 
-//Ex10.9, P385 mission: implement your own version of ElimDups
+﻿//Chapter 10 Generic Algorithms 
+//Ex10.9, P385 
+//mission: implement your own version of ElimDups
 //Ex10.11, P387 
 //reorder the words according length AND 
 	//keep the alphabetical order among elements of the same length words
-//Ex10.16, write your own version of void Biggies,
+//Ex16, P392, write your own version of void Biggies,
+//18, use partition
+//19, use stable_partition
 
 #include <iostream>
 #include <vector>
@@ -35,15 +38,17 @@ void EliminateDups (vector<string> &v){
 
 void Biggies(vector<string> &v, size_t sz){
 	EliminateDups(v);
-	auto it = find_if(v.begin(),v.end(),[sz](const string &s){return s.size() > sz;});
-	size_t Count = v.end() - it;
+	auto it = stable_partition(v.begin(),v.end(),[sz](const string &s){return s.size() >= sz;});
+	size_t Count = it - v.begin();
 	std::cout << Count << std::endl;
-	for_each(it, v.end(), [](const string &s){std::cout<< s << " ";});
-	std::cout << std::endl;
+
+	reverse(v.begin(), it);	//wahoo, I just guessed.
+	for_each(v.begin(), it, [](const string &s){std::cout<< s << " ";});
+	std::cout << std::endl; 	
 }
 
 int main(){
-	vector<string> v = {"Win","Will","Trump","Win", "Win", "United", "States","Donald","Win"};
+	vector<string> v = {"Win","Will","President","Trump","Win", "Win", "United", "States","Donald","Win"};
 	//v = {"the","quick","red","fox","jumps","over","the","slow","red","turtle"};
 	Display(v);
 	
@@ -51,12 +56,11 @@ int main(){
 	Display(v);
 	
 	//fill_n
-	fill_n(back_inserter(v),3," yeah");
+	fill_n(back_inserter(v),3,"Yeah");
 	Display(v);
 	
 	//doesn't work on Mobile C, no function to call for replace!
-	//cf BB/Section20/Algorithms
-	replace(v.begin(),v.end(), " yeah", "!"); 
+	//replace(v.begin(),v.end(), " yeah", "!"); 
 	
 	Biggies(v,5);
 	

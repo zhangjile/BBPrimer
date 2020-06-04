@@ -11,7 +11,7 @@ void LargerThanZero(int UpperBound){
 	while(UpperBound > 0) {
 		//good chance to see how prefix and postfix decrement work.
 		auto f1 = [&UpperBound] {std::cout << --UpperBound << std::endl;};
-		auto f2 = [&UpperBound] {std::cout << UpperBound-- << std::endl;};
+		//auto f2 = [&UpperBound] {std::cout << UpperBound-- << std::endl;};
 		f1();
 		//f2();
 	}
