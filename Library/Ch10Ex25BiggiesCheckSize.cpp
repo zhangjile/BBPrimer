@@ -31,13 +31,13 @@ void EliminateDups (vector<string> &v){
 }
 
 	// Ex10.22
-bool IsShorterThan6(const string &s){
-	return s.size() <= 6;
+bool NoMoreThan(const string &s, size_t sz){
+	return s.size() <= sz;
 }
 
 void ShortWords(const vector<string> &v){
 	Display(v);
-	size_t Count6 = count_if(v.begin(), v.end(), IsShorterThan6);
+	size_t Count6 = count_if(v.begin(), v.end(), bind(NoMoreThan, _1, 6));
 	std::cout<< Count6 << " words are as long as or shorter than 6" <<std::endl; 
 	
 }
@@ -65,6 +65,7 @@ int main(){
 	//v = {"the","quick","red","fox","jumps","over","the","slow","red","turtle"};
 	Display(v);
 	
+	ShortWords(v);
 		
 	Biggies(v,5);
 	
