@@ -1,4 +1,4 @@
-## rockstone
+## rock && stone
 
 SortArrayBySquareValue
     sort(v.begin(),v.end(), [](int a, int b){return a*a <b*b;})

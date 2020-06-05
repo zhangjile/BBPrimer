@@ -33,9 +33,12 @@ int CaptureByReference(int Local){
 
 
 int main(){
-	int p = 3.14;
-	LargerThanZero(p);
+	int p = 6;
+	//lambda in a clean for loop, 
+	//the null statement is cool!
+	for(auto f = [&p]()->bool {if(p == 0) {return true;};std::cout << p-- <<std::endl;return false;}; f() ==false;) {;} 
+	//LargerThanZero(p); //lambda in a function, an alternative concept 
 	std::cout << Mutable(p) << std::endl;
-	std::cout << CaptureByReference(p) << std::endl;	//101, not surprising:)
+	std::cout << CaptureByReference(p) << std::endl;
 	return 0;
 }
