@@ -1,7 +1,8 @@
 ﻿//Chapter 10.4.1 Revisiting Iterators
 //Ex 27. P403, copy the element from a vecor to list using unique_copy
-
+//Ex 28, check out front_inserter, back_inserter, and inserter
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <list>
 #include <forward_list>

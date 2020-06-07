@@ -7,6 +7,8 @@
 #include <list>
 #include <fstream>
 #include <algorithm>
+#include <iterator>
+#include <numeric> //accumulate, yeah!
 #include "SalesItem.h"
 using namespace std;
 
@@ -32,8 +34,8 @@ void BookstoreV1(){
 
 void BookstoreV2 (){
 	ifstream items {"book_sales"};
-	istream_iterator<Sales_item> it (items), EOD;
-	ostream_iterator<Sales_item> ot(cout, "\n");
+	std::istream_iterator<Sales_item> it (items), EOD;
+	std::ostream_iterator<Sales_item> ot(cout, "\n");
 	Sales_item sum = *it++;
 	while(it != EOD){
 		if(sum.isbn() == it->isbn()){
@@ -70,7 +72,7 @@ void BookstoreV3 (){
 	for(auto front = v.cbegin(), back = front;front != v.cend();front = back){
 		back = find_if(front,v.cend(), 
 				[=](const Sales_item &s){return s.isbn() != front->isbn();});
-		cout<< std::accumulate(front, back, Sales_item (front->isbn())) << endl;
+		cout<< accumulate(front, back, Sales_item (front->isbn())) << endl;
 	}
 
 	items.close();
