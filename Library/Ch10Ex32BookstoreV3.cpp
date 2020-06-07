@@ -1,6 +1,7 @@
 ﻿//Chapter 10.4.2 iostream iterators
 //Ex 10.32 P407 Rewrite the bookstore problem from chapter 1 using a vector to hold the transactions and various algorithms to do the processing. use sort with compareISBN to arrange transactions in order and then use find and accumulate to do the sum.
-//grasp find_if algorithm firmly, it returns a iterator to the first element when the predicate is evaluated false
+// find_if returns an iterator to the first element when unary predicate SUCCEEDS.
+	
 #include <iostream>
 #include <vector>
 #include <list>
@@ -62,9 +63,13 @@ void BookstoreV3 (){
 	
 	//traverse and regroup using find_if, sum using accumulate
 	cout<<"Bookstore V3.0"<<endl;
-	
+
+	//a spectacular use case of find_if, hard-core logic!
+	//we want to have an iterator to the first element in array 
+	//whose BookNo is different, find_if comes in play!
 	for(auto front = v.cbegin(), back = front;front != v.cend();front = back){
-		back = find_if(front,v.cend(), [=](const Sales_item &s){return s.isbn() != front->isbn();});
+		back = find_if(front,v.cend(), 
+				[=](const Sales_item &s){return s.isbn() != front->isbn();});
 		cout<< std::accumulate(front, back, Sales_item (front->isbn())) << endl;
 	}
 
