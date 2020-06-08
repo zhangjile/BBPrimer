@@ -8,14 +8,20 @@
 #include <fstream>
 #include <algorithm>
 #include <iterator>
+using std::for_each;
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) 
+{
     if(argc != 4) return -1;
+    
     std::ifstream ifs(argv[1]);
-    std::istream_iterator<int> is_iter (ifs), eo;
+    std::istream_iterator<int> is_iter (ifs), leo;
     std::ofstream os_odd(argv[2]), os_even(argv[3]);
-    std::ostream_iterator<int> osi1 (os_odd, " "), osi2(os_even, "\n");
-    std::for_each(is_iter, eo, [&osi1, &osi2](const int x){*((x % 2 == 0) ? osi1 : osi2)++ = x;} );
+    std::ostream_iterator<int> osi_odd (os_odd, " "), osi_even(os_even, "\n");
+    
+    for_each(is_iter, leo, [&osi1, &osi2](const int x){
+        *((x % 2 == 0) ? osi_even : osi_odd)++ = x;
+    });
     
     return 0;
 }
