@@ -8,3 +8,5 @@ Makefile
 Debug/
 *.orig
 *.out
+main
+.vscode/
