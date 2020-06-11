@@ -9,8 +9,10 @@
 #include <string>
 #include <fstream>
 #include <iterator>
+#include <stack>
 
-using std::map; using std::set; using std::vector; using std::string; using std::ifstream; using std::istream_iterator; using std::istringstream;
+using std::map; using std::multimap; using std::set; using std::vector; using std::string; using std::ifstream; using std::istream_iterator; using std::istringstream; 
+using std::stack;
 
 //keeps alphabets of each string and make all alphabets lower case
 void FormatWords(vector<string> &v){
@@ -38,18 +40,30 @@ void CountWords(const vector<string> &v){
 			++WordCount[v[i]];
 		}
 	}
-	
+    
+    //rank words by  occurrences
+    multimap<size_t, string> listing;
+    stack<std::pair<size_t, string>> rank;
+    for(const auto &e:WordCount){
+        listing.insert(std::make_pair(e.second, e.first));      //subscript method is invalid here:)
+    }
+    
+	for(const auto &e:listing){
+        if(e.first >1 )
+            rank.push(std::make_pair(e.first, e.second));
+    }
+    
 	//print the statistics
-	for(const auto &e:WordCount){
-		if(e.second >= 2){
-			std::cout << e.first <<" " << e.second <<std::endl;
-		}
+	while(!rank.empty()){
+        auto e = rank.top(); 
+        std::cout << e.second <<", " << e.first <<std::endl;
+        rank.pop();
 	}
 }
 
 int main()
 {
-	ifstream text("Review.md");
+	ifstream text("../Notes.md");
 	istream_iterator<string> ifs(text), eof;
 	vector<string> v;
 	copy(ifs, eof, back_inserter(v));

@@ -64,9 +64,9 @@ int main()
 {
 	vector<SalesData> l;
 	SalesReport(l);
-	//sort algorithm requires random access, that's why list container didn't work
-	//trivial and significant
-		std::cout << "sorted by BookNo:" << std::endl;
+	
+    //trivial and significant
+    std::cout << "sorted by BookNo:" << std::endl;
 	sort(l.begin(), l.end(), [](const SalesData &s1,const SalesData &s2){return s1.isbn() <s2.isbn();});	
 	DisplayList(l);
 	

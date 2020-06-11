@@ -12,32 +12,7 @@
 #include <string>
 #include <iomanip>
 
-class Person {
-    friend std::ostream &operator<<(std::ostream &os, const Person &p);
-    std::string name;
-    int age;
-public:
-    Person() : name{"Unknown"}, age{0} {}
-    Person(std::string name_val, int age_val) 
-        : name{name_val}, age{age_val}  {}
-    bool operator<(const Person &rhs) const {
-         return this->age < rhs.age;
-       // return this->name < rhs.name;
-    }
-    bool operator==(const Person &rhs) const {
-        return (this->name == rhs.name && this->age == rhs.age);
-    }
-};
 
-std::ostream &operator<<(std::ostream &os, const Person &p) {
-	
-    std::cout << std::setw(12) << std::left;
-    os << p.name
-    << std::setw(7) << std::right;
-    os << p.age << std::endl;
-    //os << p.name << ":" << p.age;
-    return os;
-}
 // This displays the priority queue by
 // repeatedly topping and popping the priority queue
 // It is being passed by value so we don't modify the 
@@ -113,7 +88,7 @@ void part1() {
     std::map<std::string, int> words;
     std::string line;       
     std::string word;   
-    std::ifstream in_file {"Review.md"};
+    std::ifstream in_file {"words"};
     
     std::set<std::string> exclude {"a","an","the","and","to","of"};
     
@@ -135,11 +110,7 @@ void part1() {
     } else {
         std::cerr << "Error opening input file" << std::endl;
     }
-    
-    std::priority_queue<Person> pq;
-    for (const auto &ele:words){
-    	pq.push(Person{ele.first,ele.second}); 
-    }
+
     /*
     std::multimap<int,std::string> m;
     for (const auto &ele:words){
@@ -148,7 +119,7 @@ void part1() {
         }
     display_words(m); //good practice:single responsibility pattern
         */
-    display(pq);
+   
 }
     
 // Part1 process the file and builds a map of words and a 
@@ -157,7 +128,7 @@ void part2() {
     std::map<std::string, std::set<int>> words;
     std::string line;
     std::string word;
-    std::ifstream in_file {"words.txt"};
+    std::ifstream in_file {"words"};
     if (in_file) {
         int line_number = 0;
         while (std::getline(in_file, line)) {
@@ -192,7 +163,7 @@ void part2() {
 
 int main() {
     part1();
-   // part2();
+    part2();
     return 0;
 }
 /*

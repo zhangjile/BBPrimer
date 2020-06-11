@@ -10,6 +10,7 @@
 #include <vector>
 #include <set>
 #include <iterator>
+#include <algorithm> //sort was not declared in this scope, if missing
 
 using std::string; using std::fstream; using std::vector;
 

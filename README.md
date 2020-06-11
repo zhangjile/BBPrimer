@@ -25,3 +25,5 @@ possible solution: upgrade gcc
 perfect code, successful build, but output is null, /Library/Ch10Ex33argviostreamiterator/
 
 3. /Library/Ch11Ex3, word counting, a bug that space is taken as a string and counted 67 occurences
+
+4. /Library/Ch10Ex34ReverseIterator, check out the  distance the tricky algorithm 
