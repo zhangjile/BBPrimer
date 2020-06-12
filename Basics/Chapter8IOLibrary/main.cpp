@@ -5,6 +5,8 @@
 // detach validation module from void Process, write a function for it
 // std::array and assign method
 // ++ use ostringstream to manipulate output
+// gcc 9 on SanDisk computer, SUCCESS!
+// error that came out on gcc 7.5 disappeared.
 
 #include <iostream>
 #include <sstream>
