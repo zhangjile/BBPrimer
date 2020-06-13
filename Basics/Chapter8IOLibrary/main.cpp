@@ -21,7 +21,7 @@ struct PersonInfo {
 
 std::string Format (std::string phone);
 
-//test file: sstream_err
+//test file:data_source and data_err( previously they were named sstream and  sstream_err, how stupid!)
 void ValidateFormat(const std::vector<PersonInfo> &People){
 
 	for(const auto &p : People){
@@ -54,7 +54,8 @@ void Process (std::istream& is, std::vector<PersonInfo> &People){
 			Record.Phone.push_back(PhoneNumbers);
 		}
 		People.push_back(Record);
-		Record.Phone = {};  
+		//Record.Phone = {};    LOLOLOL
+        Record.Phone.clear();
 	}
 }
 
