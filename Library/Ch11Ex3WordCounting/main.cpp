@@ -29,6 +29,16 @@ void FormatWords(vector<string> &v){
 	}
 }
 
+/*
+// remov punctuations from a string to be a clean word, nice expression
+auto strip(string& str) -> string const&
+{
+    for (auto& ch : str) ch = tolower(ch);
+    str.erase(remove_if(str.begin(), str.end(), ispunct), str.end());
+    return str;
+}
+*/
+
 //argument passed to the function is a formatted vector of words
 void CountWords(const vector<string> &v){
 	map<string, size_t> WordCount;

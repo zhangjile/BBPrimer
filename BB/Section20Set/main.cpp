@@ -101,6 +101,7 @@ void test3() {
     std::pair<std::set<std::string>::iterator,bool> result = s.insert("D");
     display(s);
     
+    //typical mistake: std::pair<string, bool> result; 
     
     std::cout << std::boolalpha;
     std::cout << "first: " <<  *(result.first)<< std::endl;

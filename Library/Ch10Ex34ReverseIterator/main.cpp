@@ -35,18 +35,18 @@ int main()
 	
 	//Ex10.35 Now print the elements in reverse order using ordinary iterator
 	std::cout << "prev algorithm" << std::endl;
-	for(auto it = prev(v.end()); true; --it){   //prefix decrement!
+	for(auto it = prev(v.end()); true; --it){   //either prefix or postfix is ok!
 		std::cout << *it << " ";
-		if (it == v.begin()) break;   //hahaha, run away from disaster in time without panic:)
+		if (it == v.begin()) break;   //ensure the iterator is valid
 	}
 	std::cout << std::endl;
 	
 	//Ex10.36 find the last element in a list of ints with the value 0;
-	list<int> li = {1,2,3,4,0,6,0,8,9,0,11};
-	//find algorithm is perfectly legal, and the problem is on Mobile C side.
-	auto it_0 = find(li.crbegin(), li.crend(), 0); //constant unimplemented
+	list<int> li;
+	li = {1,2,3,4,0,6,0,0,9,10,11};
+	auto it_0 = find(li.crbegin(), li.crend(), 0); 
 	if(it_0 != li.crend()){
-        size_t ind = distance(it_0, li.crend());    //12
+        size_t ind = distance(it_0, li.crend());    //8
         std::cout << ind << std::endl;
     }
 	
