@@ -29,10 +29,10 @@ MainDialogBaseClass::MainDialogBaseClass(wxWindow* parent,
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainSizer);
 
-    m_bmpButton17 = new wxBitmapButton(this, wxID_ANY, wxXmlResource::Get()->LoadBitmap(wxT("wxx")), wxDefaultPosition,
+    m_bmpButton17 = new wxBitmapButton(this, wxID_ANY, wxXmlResource::Get()->LoadBitmap(wxT("wx1")), wxDefaultPosition,
         wxDLG_UNIT(this, wxSize(-1, -1)), wxBU_AUTODRAW);
 
-    mainSizer->Add(m_bmpButton17, 1, wxALL | wxEXPAND, WXC_FROM_DIP(5));
+    mainSizer->Add(m_bmpButton17, 0, wxALL | wxEXPAND, WXC_FROM_DIP(5));
 
     m_staticLine15 =
         new wxStaticLine(this, wxID_ANY, wxDefaultPosition, wxDLG_UNIT(this, wxSize(-1, -1)), wxLI_HORIZONTAL);

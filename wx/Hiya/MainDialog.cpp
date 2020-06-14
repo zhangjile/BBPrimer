@@ -13,5 +13,5 @@ MainDialog::~MainDialog()
 
 void MainDialog::Hooke(wxCommandEvent& event)
 {
-    ::wxMessageBox(_("Hello World"));
+    ::wxMessageBox(_("Hiya!"));
 }
