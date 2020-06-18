@@ -20,6 +20,7 @@ time complexity is becoming a key word in daily exercise.
 
 1. build failure with PersonInfo, /Basics/Chapter8IOLibrary/
 possible solution: upgrade gcc
+status: bug fixed
 
 2. split a file of integers, put odd numbers in a file and even numbers in another.
 perfect code, successful build, but output is null, /Library/Ch10Ex33argviostreamiterator/
