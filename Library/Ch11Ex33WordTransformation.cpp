@@ -30,8 +30,8 @@ void WordTransfor(ifstream &rule, ifstream &input){
 	auto Pattern = BuildMap(rule);
 	string text;
 	while(input >> text){
-		std::cout <<text << std::endl;
-	//	std::cout << Transform(Pattern, text) << " ";
+		std::cout << Transform(Pattern, text) << std::endl;
+		//the friend is just around the corner. 'std::endl' solves the problem.
 	}
 }
 
