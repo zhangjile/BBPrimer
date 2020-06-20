@@ -35,7 +35,7 @@ int main()
 		{"WuSi", "Hidden rules"},	//吳思，『潛規則』		
 		{"Clint Eastwood","Gunman"}
 									};
-	pair<string, string> NobelPrize ("FangFang","Diay");
+	pair<string, string> NobelPrize ("FangFang","Dia");    // "FangFang","Diary" entry is in the multimap
 	DeletePiece(m, NobelPrize);
 	
 	

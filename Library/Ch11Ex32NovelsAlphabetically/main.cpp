@@ -22,14 +22,14 @@ void PrintAlphabetically(const multimap<string, string> &m){
 
 int main()
 {
-	multimap<string, string> m = {
+	multimap<string, string> authors = {
 		{"FangFang","Soft Burial"},	//方方，『軟埋』
 		{"FangFang", "Diary"},	//方方，『封城日記』
 		{"WuSi", "Hidden Rules"},	//吳思，『潛規則』		
 		{"Clint Eastwood","Gunman"}
 	};
 	
-	PrintAlphabetically(m);
+	PrintAlphabetically(authors);
 	
 	return 0;
 }
