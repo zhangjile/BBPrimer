@@ -17,6 +17,7 @@ map<string, string> BuildMap (ifstream &is){
 	return Pattern;
 }
 
+//from perspective of design, it‘s much better to return a transformed string than returning void and displaying the string here
 const string &Transform (map<string, string> m, const string &s){
 	auto it = m.find(s); 
 	if(it != m.end()){
