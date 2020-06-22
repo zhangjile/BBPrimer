@@ -30,7 +30,7 @@ bool MyApp::OnInit()
     return true;
 }
 MyFrame::MyFrame()
-    : wxFrame(NULL, wxID_ANY, "Hello World")
+    : wxFrame(NULL, wxID_ANY, "Hello  WestWorld", wxPoint(30, 30), wxSize( 350, 250 ))
 {
     wxMenu *menuFile = new wxMenu;
     menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
