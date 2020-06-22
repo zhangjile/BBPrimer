@@ -1,23 +1,15 @@
 //g++ main.cpp button.h  `wx-config --cxxflags --libs` -o ExitButton
 
-#include <wx/wxprec.h>
-#ifndef WX_PRECOMP
-    #include <wx/wx.h>
-#endif
-#include "button.h"
-
-class MyApp : public wxApp
-{
-  public:
-    virtual bool OnInit();
-};
+#include "main.h"
+#include "communicate.h"
 
 IMPLEMENT_APP(MyApp)
 
 bool MyApp::OnInit()
 {
-    Button *btnapp = new Button(wxT("globe"));
-    btnapp->Show(true);
+
+    Communicate *communicate = new Communicate(wxT("Widgets communicate"));
+    communicate->Show(true);
 
     return true;
 }
