@@ -1,14 +1,15 @@
-//Section 12 Dynamic Memory and Smart Pointers
-//Ex 12.2 write your version of StrBlob class including const version of front and back
-
+﻿
 #include <iostream>
 #include <string>
 #include <vector>
 #include <memory>
-
+#include "StrBlobPtr.h"
 using std::string; using std::vector; using std::shared_ptr; using std::initializer_list; using std::make_shared;
 
+class StrBlobPtr;
+
 class StrBlob {
+	friend class StrBlobPtr;	//grant friendship
 public:
     typedef vector<string>::size_type size_type;
     StrBlob (): data {make_shared<vector<string>> ()} {}
@@ -22,6 +23,9 @@ public:
     string& back() const {return data-> back();}
     void push_back(const string &t) {return data->push_back(t);}
     void pop_back();
+    
+    StrBlobPtr begin() {return StrBlobPtr(*this);}
+    StrBlobPtr end() {return StrBlobPtr(*this, data->size());}
     
 private:
     shared_ptr<vector<string>> data;
@@ -46,19 +50,4 @@ void StrBlob::pop_back (){
 void StrBlob::check(const string &s) const {
     if(data->size() == 0)
         std::cerr <<s <<std::endl;
-}
-
-int main()
-{
-    StrBlob sb1;  
-    
-    //a block of code
-    {
-    	StrBlob sb2 {"a","an","the"};
-    	sb1 = sb2;
-    	sb2.push_back("oh");
-    }
-    
-    std::cout<<sb1.size() <<std::endl;
-    return 0;
 }
