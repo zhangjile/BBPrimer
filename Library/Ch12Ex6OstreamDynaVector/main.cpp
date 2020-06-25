@@ -1,20 +1,22 @@
 ﻿//Section 12.1.2 Managing Memory Directly 
 //Ex12.6 write a function that returns a dynamically allocated vector of ints. Pass the vector to another function that reads stdin to insert elements into the vector. Pass the vector to another function to display the values that were read. 
 //Remember to deallocate the heap space at appropriate time.
+//Ex12.7 rewrite the previous exercise using shared_ptr and watch the magic
 
 #include <iostream>
 #include <vector>
+#include <memory> 
 
-using std::vector; using std::cout;
+using std::vector; using std::cout; using std::shared_ptr; using std::make_shared;
 
-typedef vector<int>* piv;
+typedef shared_ptr<vector<int>> piv;
 
 piv DynamicVector (){
-	return new vector<int> ();
+	return make_shared<vector<int>> ();
 }
 
 piv BuildVector(piv p){
-	for(int i = 0; std::cin >> i;){
+	for(int i = 0; cout <<"Enter here: ", std::cin >> i;){
 		p->push_back(i);
 	}
 	return p;
@@ -23,16 +25,15 @@ piv BuildVector(piv p){
 //this print function is colorful.
 auto Print(piv p) -> std::ostream&{	//if '&' is missing, ERROR!
 	for(const auto &i : *p){
-		std::cout << i << " ";
+		cout << i << " ";
 	}
 	return cout;
 }
 
 int main ()
 {
-	piv p = DynamicVector ();
-	p = BuildVector(p);
+	piv p = BuildVector(DynamicVector ());
 	Print(p) << std::endl;
-	delete p;	//watch the dynamic memory closely!
+	//shared_ptr handles the dynamic memory properly!
 	return 0;
 }
