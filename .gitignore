@@ -10,3 +10,5 @@ Debug/
 *.out
 main
 .vscode/
+CMakeFiles/
+
