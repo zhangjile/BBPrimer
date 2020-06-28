@@ -1,7 +1,6 @@
-﻿//Section 12 Dynamic Memory and Smart Pointers
-//Ex 12.2 write your version of StrBlob class including const version of front and back
-//Ex12.19 define your own version of StrBlobPtr class
-#include "StrBlob.cpp"
+#include "str.h"
+#include <fstream>
+using std::ifstream; using std::getline;
 
 int main()
 {
@@ -15,5 +14,16 @@ int main()
     }
     
     std::cout<<sb1.size() <<std::endl;
+    std::cout<<sb1.front() <<std::endl;
+    
+    ifstream is("ex12_20.cpp");
+    StrBlob blob;
+    for(string i; getline(is, i); ) {
+        blob.push_back(i);
+    }
+    
+    StrBlobPtr it (sb1.begin() );
+    std::cout <<it.deref() <<std::endl;
+
     return 0;
 }

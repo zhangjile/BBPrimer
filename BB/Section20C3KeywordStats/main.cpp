@@ -156,20 +156,9 @@ void part2() {
     }
 }
 
-/*
-//display top 10 words by creating a new map
-
-*/
 
 int main() {
     part1();
     part2();
     return 0;
 }
-/*
-//練習自己搭建腳手架:）#include <>,
-//寫外圍的一些組件，例如這次挑戰中的display function, 多載<, ==, <<等運算符。
-就是Frank幫我們打掃外圍細節以降低整體難度的那些細節，自己要全部熟練完成。
-17/07/2019
-
-*/

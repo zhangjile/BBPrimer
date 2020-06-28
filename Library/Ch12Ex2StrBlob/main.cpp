@@ -1,12 +1,12 @@
 //Section 12 Dynamic Memory and Smart Pointers
-//Ex 12.2 write your version of StrBlob class including const version of front and back
+//Ex 12.2 P458, write your version of StrBlob class including const version of front and back
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include <memory>
 
-using std::string; using std::vector; using std::shared_ptr; using std::initializer_list; using std::make_shared;
+using std::string; using std::vector; using std::shared_ptr; using std::initializer_list; using std::make_shared; using std::out_of_range;
 
 class StrBlob {
 public:
@@ -25,27 +25,27 @@ public:
     
 private:
     shared_ptr<vector<string>> data;
-    void check(const string &s  = "an empty vector") const;
+    void check(size_t i, const string &s  = "an empty vector") const;
 };
 
 string& StrBlob::front() {
-    check();
+    check(0);
     return data->front();
 }
 
 string& StrBlob::back() {
-    check();
+    check(0);
     return data-> back();
 }
     
 void StrBlob::pop_back (){
-    check();
+    check(0);
     return data->pop_back();
 }
 
-void StrBlob::check(const string &s) const {
-    if(data->size() == 0)
-        std::cerr <<s <<std::endl;
+void StrBlob::check(size_t i, const string &msg) const {
+    if(i >= data->size())
+        throw out_of_range(msg);
 }
 
 int main()

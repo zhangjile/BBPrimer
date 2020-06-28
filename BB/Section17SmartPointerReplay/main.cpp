@@ -19,9 +19,6 @@ private:
 typedef unique_ptr<vector<shared_ptr<Test>>> UPVS;
 
 UPVS CreateUP (){
-	//vector<shared_ptr<Test>> v;
-	//UPVS u = make_unique<vector<shared_ptr<Test>>> (v);
-	//return std::move(u);
 	return make_unique<vector<shared_ptr<Test>>> ();
 }
 void fill(vector<shared_ptr<Test>>& u, int items){

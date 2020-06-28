@@ -2,15 +2,15 @@
 // Interfaces - complete
 
 #include <iostream>
+#include <memory>
+
+using std::unique_ptr; 
 
 class I_Printable {
     friend std::ostream &operator<<(std::ostream &os, const I_Printable &obj);
 public:
     virtual void print(std::ostream &os) const = 0;
     virtual ~I_Printable (){};
-    //聯想到：翻筋斗，後空翻:）
-    // compiler throws an error if the parenthes are not supplied
-    // a run time error comes out if curly brackets are missing
     
 };
 
