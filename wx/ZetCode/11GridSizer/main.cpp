@@ -1,14 +1,14 @@
 //g++ main.cpp button.h  `wx-config --cxxflags --libs` -o ExitButton
 
 #include "main.h"
-#include "flexgridsizer.h"
+#include "gridsizer.h"
 
 IMPLEMENT_APP(cApp)
 
 bool cApp::OnInit()
 {
 
-    FlexGridSizer *gridsizer = new FlexGridSizer(wxT("FlexGrid") );
+    GridSizer *gridsizer = new GridSizer(wxT("Grid") );
     gridsizer->Show (true);
 
     return true;
