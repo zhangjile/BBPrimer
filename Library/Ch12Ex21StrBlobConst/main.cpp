@@ -1,10 +1,10 @@
-#include "strblobweak.h"
+#include "strblobconst.h"
 #include <fstream>
 #include <iostream>
 
 int main()
 {
-    std::ifstream ifs("Ch12Ex20StrBlobWeakPtr.project");
+    std::ifstream ifs("compile_flags.txt");
     StrBlob blob;
     for (std::string str; std::getline(ifs, str); )
         blob.push_back(str);
