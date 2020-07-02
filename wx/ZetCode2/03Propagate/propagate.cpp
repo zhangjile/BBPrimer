@@ -4,7 +4,7 @@
 const int ID_BUTTON = 1;
 
 Propagate::Propagate(const wxString& title)
-    : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(250, 230))
+    : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(350, 250))
 {
   MyPanel *panel = new MyPanel(this, -1);
 
