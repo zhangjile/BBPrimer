@@ -33,16 +33,15 @@ public:
 };
 
 TextQuery::TextQuery(istream &is)
-    : FileByLine(new vector<string> ())
+    : FileByLine(new vector<string> ())     //this line is bright!
 {	// Parsing text
 	string Line {};
 	int LineNumber {0};
 	while(getline(is, Line)){
 		++LineNumber;
-		string LineTemp = Line;
 		FileByLine->push_back(Line);
 		string word {};
-		istringstream iss(LineTemp);
+		istringstream iss(Line);
 		while(iss >>word){
 			Scan[word].insert(LineNumber);
 		}
