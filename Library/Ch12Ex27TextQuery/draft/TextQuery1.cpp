@@ -35,8 +35,8 @@ void TextQuery (istream &is, string KeyWord){
 
 int main ()
 {
-	std::ifstream is ("Interpolation.cpp");
-	std::string s = "index";
+	std::ifstream is ("../Notes.md");
+	std::string s = "list";
 	TextQuery (is, s);
 	return 0;
 	

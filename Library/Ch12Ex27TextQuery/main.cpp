@@ -20,7 +20,7 @@ private:
 	map<string, set<int>> Scan;
 public:
 	TextQuery(istream &is);
-	/*
+	
 	void Query(const string& key){
 		if(Scan.find(key) == Scan.end()){cout << key << " not found"<< endl;}
 		
@@ -29,10 +29,12 @@ public:
 		for(const auto &ele : Scan[key]){
 			cout <<"\t(line "<<ele << ")" <<"\t" <<(*FileByLine)[ele-1]<<endl;
 		}
-	}*/
+	}
 };
 
-TextQuery::TextQuery(istream &is){	// Parsing text
+TextQuery::TextQuery(istream &is)
+    : FileByLine(new vector<string> ())
+{	// Parsing text
 	string Line {};
 	int LineNumber {0};
 	while(getline(is, Line)){
@@ -50,9 +52,9 @@ TextQuery::TextQuery(istream &is){	// Parsing text
 
 int main ()
 {
-	std::ifstream is ("Interpolation.cpp");
+	std::ifstream is ("../Notes.md");
 	TextQuery tq(is);
-	/*
+	
 	while(true){
 		std::string s {};
 		cout<<"Enter your query: "<<endl;
@@ -63,7 +65,7 @@ int main ()
 		}
 		tq.Query (s);
 	} 
-	*/
+	
 	return 0;
 	
 }

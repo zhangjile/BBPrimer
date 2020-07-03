@@ -11,15 +11,15 @@ using std::string; using std::istream; using std::ifstream; using std::map;
 using std::cout; using std::endl; 
 using std::vector; using std::cin;
 
-void TextQuery (vector<string> file, string KeyWord){
+void TextQuery (const vector<string> &file, string KeyWord){
 	map<int, string> Summary;
 	int LineNumber {0}, Ocurrences {0};
 	string Line {};
 	
-	for(size_t i = 1; i <= file.size(); ++i){
+	for(size_t i = 0; i < file.size(); ++i){
 		if(file[i].find(KeyWord) != std::string::npos){
 			++Ocurrences;
-			LineNumber = i;
+			LineNumber = i+1;
 			Summary[LineNumber] = file[i];
 		}
 	}
@@ -38,7 +38,7 @@ void TextQuery (vector<string> file, string KeyWord){
 int main ()
 {
 	//create vector of lines for a file
-	std::ifstream is ("Interpolation.cpp");
+	std::ifstream is ("../Notes.md");
 	vector<string> FileByLine;
 	string Line {};
 	while(getline(is, Line)){
@@ -46,10 +46,17 @@ int main ()
 	}
 	
 	// accept query from stdin impromptu
-	std::string s {};
-	cout<<"Enter your query: "<<endl;
-	cin >> s;
-	TextQuery (FileByLine, s);
-	return 0;
+    while(true){
+        std::string s {};
+        cout<<"Enter your query: "<<endl;
+        cin >> s;
+        if(s == "q") {
+            cout<< "bye!" << endl;
+            break;
+        }
+        TextQuery (FileByLine, s);
+	}
 	
+	return 0;
+    
 }
