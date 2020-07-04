@@ -1,13 +1,11 @@
 #include "main.h"
-#include "togglebutton.h"
+#include "slider.h"
 
 IMPLEMENT_APP(MyApp)
 
 bool MyApp::OnInit()
 {
-    ToggleButton *tbt = new ToggleButton(wxT("Toggle button"));
-    tbt->Centre();
-    tbt->Show(true);
-
+    Slider *sl = new Slider(wxT("Slider, vertical"));
+   sl->Show(true);
     return true;
 }
