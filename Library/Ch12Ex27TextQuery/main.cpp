@@ -15,14 +15,15 @@ using std::vector; using std::cin; using std::set; using std::istringstream;
 using std::shared_ptr;
 
 //add class QueryResult, which is intended to be the return type of TextQuery::Query(const string& key).
-//overload print operator for QueryResult and print what Query function returns
+// print function (as a friend) prints a QueryResult object
 
 class QueryResult;      //forward declaration
 
 class TextQuery{
 private:
 	shared_ptr<vector<string>> FileByLine;
-	map<string, shared_ptr<set<int>>> Scan;     //make the mapped value a reference type
+	//make the mapped value a reference type,brilliant!
+	map<string, shared_ptr<set<int>>> Scan; 
 public:
 	TextQuery(istream &is);
 	
@@ -32,7 +33,7 @@ public:
 
 // Scanning/parsing text is the first procedure
 TextQuery::TextQuery(istream &is)
-    : FileByLine(new vector<string> ())     //this line is bright!
+    : FileByLine(new vector<string> ())     //brilliant!
 {	
 	string Line {};
 	int LineNumber {0};
@@ -42,8 +43,9 @@ TextQuery::TextQuery(istream &is)
 		string word {};
 		istringstream iss(Line);
 		while(iss >>word){
+			 //watchpoint, if loc is not initialized, core dump! LOL
             auto &loc = Scan[word];
-            if(!loc) loc.reset(new set<int>);       //watch point, if loc is not properly initialized, core dump! LOL
+            if(!loc) loc.reset(new set<int>);      
 			loc->insert(LineNumber);     
 		}
 	}
@@ -75,8 +77,10 @@ QueryResult TextQuery::Query(const string& key){
         
 std::ostream& print (std::ostream& os, const QueryResult& rhs){
     os << rhs.key <<" appeared "<<rhs.lines->size() << " times"<<endl;
-    for(int num: *rhs.lines){
-        os << "( line " << num  << " ) \t" << *(rhs.File->begin() + num -1) << endl;        //walk in your own style!
+    //' *rhs.lines == *(rhs.line)', precedence, cf P110, Primer
+    //walk by your own!
+    for(int num: *rhs.lines){ 
+        os <<"(line " <<num <<")\t" <<*(rhs.File->begin() + num -1) <<endl;        
     }
     return  os;
 }
@@ -94,7 +98,8 @@ int main ()
 			cout <<"bye"<<endl;
 			break;
 		}
-		print(std::cout,  tq.Query (s) )<<std::endl;    //stop copying, ie, stop walking with the walking-stick, stand steadily and walk firmly
+		print(std::cout,  tq.Query (s) )<<std::endl;    
+		//stop holding a walking-stick, stand steadily and walk firmly
 	} 
 	
 	return 0;

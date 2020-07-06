@@ -1,13 +1,14 @@
 //Chapter 5 Solving Problems With Classes
 //design decisions: class StudentCollection;
 //work towards a better structure 
+//it's something like watching a movie or play a level to go through a program
 #include<iostream>
 #include<string>
 
 using std::cout; using std::string; using std::endl;
 
-//exception handling is controvertial, 
-//if taken away, the user will have to take up the responsibility of ensuring the client code won't crash, and it's justifiable.
+// the user will have to ensure the client code won't crash if not handled
+// and it's justifiable.
 class InvalidGrade : public std::runtime_error
 {
 public:
@@ -68,12 +69,14 @@ string StudentRecord::LetterGrade(){
 	const string GRADELETTERS [] = {"F", "D", "D+", "C-", "C", "C+", "B-", "B", "B+", "A-", "A"};
 	const int LOWERBOUNDS[] = {0, 60, 67, 70, 73, 77, 80, 83, 87, 90, 93};
 	size_t index = 0;
-	while(index < CATEGORIES && LOWERBOUNDS[index] <= Grade){ //this->Grade
+	while(index < CATEGORIES && LOWERBOUNDS[index] <= Grade){
 		++index;
 	}
 	return GRADELETTERS[index-1];
 }
 
+//define class StudentCollection in the format of forward list. 
+//a group of students is a typical StudentCollection object
 class StudentCollection{
 private:
 	struct StudentNode{
@@ -137,9 +140,9 @@ StudentCollection& StudentCollection::operator =(const StudentCollection &rhs){
 	return *this; 
 }
 
-//copy one StudentList variable to another, 2 distinct addresses, no more double link
+//2 distinct addresses, no more double link
 StudentCollection::StudentList StudentCollection::CopiedList(const StudentCollection::StudentList &source){
-	StudentNode* NewList = new StudentNode;	//create a new node, a new empty box
+	StudentNode* NewList = new StudentNode;	//create a new node, an empty box
 	NewList-> StudentData = source-> StudentData;
 	StudentNode* NewLoopPtr = NewList; 
 	StudentNode* OldLoopPtr = source->next;
@@ -161,7 +164,7 @@ void StudentCollection::AddRecord(const StudentRecord &NewRecord){
 	ListHead = temp;
 }
 
-//search for a specific StudentRecord for a StudentID in a StudentCollection object
+//search for a specific StudentRecord in a StudentCollection object
 StudentRecord StudentCollection::RecordWithNum(int idNum){
     StudentNode* LoopPtr = ListHead;
     while(LoopPtr != nullptr && LoopPtr ->StudentData.GetStudentNum() != idNum){
@@ -194,7 +197,7 @@ void StudentCollection::RemoveRecord(int IDNum){
 		Trail->next = LoopPtr->next;	
 	}
 	delete LoopPtr; 
-	Trail = nullptr; 
+	delete Trail;	//every raw pointer should be handled manually 
 }
 	
 
