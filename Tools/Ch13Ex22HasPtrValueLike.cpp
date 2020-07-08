@@ -31,6 +31,11 @@ public:
         return *this;
     */
     }
+    
+    //pointer data member must be freed manually
+    ~HasPtr(){
+        delete ps;
+    }
     void Print(){
         std::cout << *ps <<", " << i <<std::endl;
     }
