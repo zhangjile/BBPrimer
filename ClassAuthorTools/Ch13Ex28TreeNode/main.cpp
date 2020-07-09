@@ -32,7 +32,7 @@ private:
 
 class BinStrTree{
 public:
-    BinStrTree (const TreeNode& node = nullptr) : root {node} {}
+    BinStrTree () : root {nullptr} {}
     BinStrTree& operator= (const BinStrTree& source){
         auto N = source.root;
         delete root;

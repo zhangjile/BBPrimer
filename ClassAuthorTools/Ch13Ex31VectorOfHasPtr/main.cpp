@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 class HasPtr{
 public:
@@ -60,12 +61,12 @@ int main()
     vhp.push_back(c3);
     HasPtr c4("Britanica");
     HasPtr c ("BNO");
-    swap(c,c4);
+    c.swap(c,c4);   //haha, what the hell is this? //HasPtr::swap(c, c4); error
     vhp.push_back(c4);
     HasPtr c5("Al Pacino");
     vhp.push_back(c5);
     
-   // sort(vhp.begin(), vhp.end());
+    sort(vhp.begin(), vhp.end());
     for(const auto& ele : vhp){
         ele.Print();
     }

@@ -30,7 +30,7 @@ void MyPanel::OnPaint(wxPaintEvent& event) {
 
         dc.DrawRectangle(wxRect(140, 30, 80, 140));  
 
-        wxBrush brush1(wxColour(197, 108, 0));
+        wxBrush brush1(wxColour(186,54,101)); //first time I use rgb value, wow!
         dc.SetBrush(brush1);
 
         dc.DrawRectangle(wxRect(140, 30, 80, fill));

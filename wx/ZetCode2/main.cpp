@@ -1,11 +1,11 @@
 #include "main.h"
-#include "slider.h"
+#include "scrwindow.h"
 
 IMPLEMENT_APP(MyApp)
 
 bool MyApp::OnInit()
 {
-    Slider *sl = new Slider(wxT("Slider, vertical"));
-   sl->Show(true);
+    ScrWindow *sw = new ScrWindow(wxT("scroll to view"));
+   sw->Show(true);
     return true;
 }
