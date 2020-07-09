@@ -8,6 +8,7 @@ int main()
     StrBlob blob;
     for (std::string str; std::getline(ifs, str); )
         blob.push_back(str);
+    //begin and end in client code, scenario of application
     for (StrBlobPtr pbeg(blob.begin()), pend(blob.end()); pbeg != pend; pbeg.incre())
         std::cout << pbeg.deref() << std::endl;
 }

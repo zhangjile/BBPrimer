@@ -84,9 +84,9 @@ private:
 	size_t curr;
 };
 
-//at this point of the play, both class StrBlob and class StrBlobPtr are complete 
-//I figured this out very soon, but have never imagined the redefinition problems are caused by something taken for granted
-// which made me furious! 
+//the right place for begin and end methods
+//the whole point of class StrBlobPtr is to create begin and end methods for a StrBlob object. 
+// auto is wicked in this end method, something significant is unspoken and implicit -> Check method is called behind scenes! 
 StrBlobPtr StrBlob::begin() {return StrBlobPtr(*this);}
 StrBlobPtr StrBlob::end() {auto ret = StrBlobPtr(*this, data->size()); return ret;}
 
