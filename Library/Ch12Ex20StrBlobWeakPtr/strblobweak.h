@@ -85,8 +85,8 @@ private:
 };
 
 //the right place for begin and end methods
-//the whole point of class StrBlobPtr is to create begin and end methods for a StrBlob object. 
-// auto is wicked in this end method, something significant is unspoken and implicit -> Check method is called behind scenes! 
+//the whole point of creating class StrBlobPtr is to create begin and end methods for a StrBlob object. 
+
 StrBlobPtr StrBlob::begin() {return StrBlobPtr(*this);}
 StrBlobPtr StrBlob::end() {auto ret = StrBlobPtr(*this, data->size()); return ret;}
 
