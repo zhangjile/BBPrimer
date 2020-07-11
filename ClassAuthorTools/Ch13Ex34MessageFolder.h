@@ -10,7 +10,7 @@
 class Folder;
 class Message {
     friend class Folder;    //grant friendship/access previlage
-    friend void Swap(Message& lhs, Message& rhs);
+    friend void swap(Message& lhs, Message& rhs); //swap not Swap, overloading!
 public:
     explicit Message (const std::string& str = ""): Content{str} {}
     ~Message (){RemoveFromAllFolders();}
@@ -24,27 +24,36 @@ private:
     std::set<Folder*> Folders;
     void AddToAllFolders ();
     void RemoveFromAllFolders ();
+    
+    //Ex13.37
+    void AddAFolder(Folder* f) {Folders.insert(f);}
+    void RmFolder(Folder* f){Folders.erase(f);}
 };
 
 
 class Folder {
     friend class Message;
-    friend void Swap(const Folder& lhs, const Folder& rhs);
+    friend void swap(Folder& lhs, Folder& rhs); //overloading!
 public:
     Folder () = default;
     Folder (const Folder& source);
     Folder& operator= (const Folder& source);
     ~Folder ();
+    
+    size_t MessageElements () {return AFolder.size();}
+    
+private:
+    //Folder as an abstract data type is a set of pointers to message entries
+    std::set<Message*> AFolder; 
+    
+    //helper functions for copy control
     //Message* m declares an addressable variable to store the parameter, 
     //not a reference to a variable
     void AddMsg(Message* m);    //critical
     void RmMsg (Message* m);
     
-    size_t Occurrences () {return AFolder.size();}
-    
-private:
-    //Folder as an abstract data type is a set of pointers to message entries
-    std::set<Message*> AFolder; 
+    void AddThisFolderToMessages();
+    void RemoveThisFolderFromMessages();
 };
 
 

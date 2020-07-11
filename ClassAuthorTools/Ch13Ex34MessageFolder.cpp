@@ -1,6 +1,16 @@
 ﻿#include "Ch13Ex34MessageFolder.h"
 #include <iostream>
 
+void swap(Message& lhs, Message& rhs){
+    using std::swap;
+    lhs.RemoveFromAllFolders ();
+    rhs.RemoveFromAllFolders ();
+    swap(lhs.Content, rhs.Content);
+    swap(lhs.Folders, rhs.Folders);
+    lhs.AddToAllFolders ();
+    rhs.AddToAllFolders ();
+}
+
 void Message::Save (Folder& rf){
     Folders.insert(&rf);    //insert address of a folder
     rf.AddMsg(this);    //add pointer to this message into a Folder object
@@ -37,52 +47,49 @@ Message& Message::operator= (const Message& source){
     return *this;
 }
 
-void Swap(Message& lhs, Message& rhs){
+//class Folder methods
+
+void swap(Folder& lhs, Folder& rhs){
     using std::swap;
-    for(auto f : lhs.Folders){
-        f->RmMsg(&lhs);
-    }
-    for(auto f : rhs.Folders){
-        f->RmMsg(&rhs);
-    }
-    swap(lhs.Content, rhs.Content);
-    swap(lhs.Folders, rhs.Folders);
-    
-    for(auto f : lhs.Folders){
-        f->AddMsg(&lhs);
-    }
-    for(auto f : rhs.Folders){
-        f->AddMsg(&rhs);
-    }
+    lhs.RemoveThisFolderFromMessages ();
+    rhs.RemoveThisFolderFromMessages ();
+    swap(lhs.AFolder, rhs.AFolder);
+    lhs.AddThisFolderToMessages ();
+    rhs.AddThisFolderToMessages ();    
+}
+
+Folder::Folder(const Folder& source)
+    :AFolder{source.AFolder}
+{
+    AddThisFolderToMessages ();
     
 }
 
+Folder& Folder:: operator= (const Folder& s){
+    RemoveThisFolderFromMessages ();
+    AFolder = s.AFolder;
+    AddThisFolderToMessages ();
+    return *this;
+}
 
-//class Folder methods
+//destructor works properly
+Folder::~Folder (){
+    RemoveThisFolderFromMessages();
+}
 
 void Folder::AddMsg(Message* m){AFolder.insert(m);}
 void Folder::RmMsg (Message* m){AFolder.erase(m);}
 
-Folder::~Folder (){
-//	for(Message *m : AFolder){
-    for(auto m : AFolder){
-		delete m;
-	}
+//engage the target, taking aim and shoot, 
+//say good-bye to taking random shots 
+void Folder::AddThisFolderToMessages(){
+    for(auto m: AFolder){
+        m->Folders.insert (this);
+    }
+}
+void Folder::RemoveThisFolderFromMessages(){
+    for(auto m: AFolder){
+        m->Folders.erase(this); 
+    }
 }
 
-//test the logic
-int main ()
-{
-    Message *m1 = new Message("Mike Pence");
-    Folder f1;
-    m1->Save(f1);
-    //very precious picture of an iceberg under water:)
-    std::cout << m1->Occurrences() <<std::endl; 
-    Message *m2 = new Message ("stupid");
-    f1.AddMsg(m2);
-    std::cout << f1.Occurrences() <<std::endl; 
-    //delete m1;
-    delete m1, m2;	// the whole world is in peace now.
-   
-    return 0;
-}
