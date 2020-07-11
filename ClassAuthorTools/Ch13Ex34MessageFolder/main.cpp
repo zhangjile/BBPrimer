@@ -1,4 +1,5 @@
 #include "Ch13Ex34MessageFolder.h"
+#include "Ch13Ex34MessageFolder.cpp"
 
 //test the logic
 int main ()

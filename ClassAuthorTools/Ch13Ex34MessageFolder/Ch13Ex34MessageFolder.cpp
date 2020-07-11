@@ -72,7 +72,7 @@ Folder& Folder:: operator= (const Folder& s){
     return *this;
 }
 
-//destructor works properly
+//destructor works properly, or manually delete m1 and m2, LOL
 Folder::~Folder (){
     RemoveThisFolderFromMessages();
 }
@@ -80,7 +80,7 @@ Folder::~Folder (){
 void Folder::AddMsg(Message* m){AFolder.insert(m);}
 void Folder::RmMsg (Message* m){AFolder.erase(m);}
 
-//engage the target, taking aim and shoot, 
+//engage the target, take aim and shoot, 
 //say good-bye to taking random shots 
 void Folder::AddThisFolderToMessages(){
     for(auto m: AFolder){

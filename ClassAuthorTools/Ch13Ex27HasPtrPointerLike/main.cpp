@@ -1,7 +1,6 @@
 ﻿//Chapter 13 Copy Control
 //Ex13.27 p516, Define your own reference-counted version of class HasPtr.
 //there's no dangling pointer or memory leak, of course.
-
 #include <iostream>
 #include <string>
 using std::string;
