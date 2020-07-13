@@ -1,6 +1,7 @@
-﻿//Chapter 12 Dynamic Memory, conclusion project, P484
-//interior decoration, redesign the major componets
-#include "StrVec.h"
+#ifndef _TEXTQUERY_H_
+#define _TEXTQUERY_H_
+#include "strvec.h"
+#include <iostream>
 #include <set>
 #include <sstream>
 #include <fstream>
@@ -72,24 +73,5 @@ std::ostream& print (std::ostream& os, const QueryResult& rhs){
     }
     return  os;
 }
-        
-int main ()
-{
-	std::ifstream is ("ex13_34_36_37.h");
-	TextQuery tq(is);
-	
-	while(true){
-		std::string s {};
-		cout<<"Enter your query: "<<endl;
-		cin >> s;
-		if(s == "q") {
-			cout <<"bye"<<endl;
-			break;
-		}
-		print(std::cout,  tq.Query (s) )<<std::endl;    
-		
-	} 
-	
-	return 0;
-	
-}
+
+#endif

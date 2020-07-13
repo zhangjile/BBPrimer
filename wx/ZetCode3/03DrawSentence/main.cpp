@@ -1,12 +1,12 @@
 //graphics device interface, device context
 #include "main.h"
-#include "pen.h"
+#include "drawonesentence.h"
 
 IMPLEMENT_APP(MyApp)
 
 bool MyApp::OnInit ()
 {
-    Pen* ds = new Pen(wxT("draw a square"));
+    DrawOneSentence* ds = new DrawOneSentence(wxT("draw a sentence"));
     ds->Show(true);
     
     return true;

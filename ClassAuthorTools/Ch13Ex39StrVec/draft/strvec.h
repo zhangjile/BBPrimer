@@ -16,24 +16,12 @@ class StrVec {
 public:
     StrVec():elements{nullptr}, first_free{nullptr}, cap{nullptr} {}
     ~StrVec(){Free ();}
-    StrVec (const StrVec& source){
-        auto data = AllocateNCopy(source.begin(), source.end());
-        elements = data.first;
-        first_free = cap = data.second;
-    }
-    StrVec& operator= (const StrVec& source){
-        Free ();
-        auto data = AllocateNCopy(source.begin(), source.end());
-        elements = data.first;
-        first_free = cap = data.second;
-        return *this;
-    }
+    StrVec (const StrVec& source);
+    StrVec& operator= (const StrVec& source);
     
     //top 3 methods
-    void push_back(const string& source){
-        CheckNReallocate ();
-        allo.construct(first_free, source);
-    }
+    void push_back(const string&source);
+    
     string* begin() const {return elements;}
     string* end() const {return first_free;}
     
@@ -45,17 +33,44 @@ public:
 private:
     static std::allocator<string> allo;
     
-    void CheckNReallocate (){
+    void CheckNReallocate();
+    std::pair<string*, string*> AllocateNCopy(const string* b, const string* e);
+    
+    //move the current data to a new bigger location
+    void Reallocate();
+    
+    //helper to destructor
+    void Free();
+        
+    string* elements;
+    string* first_free;
+    string* cap;
+};
+
+void StrVec::CheckNReallocate (){
         if(size() == capacity ()) Reallocate ();
     }
     
-    std::pair<string*, string*> AllocateNCopy(const string* b, const string* e){
+std::pair<string*, string*> StrVec::AllocateNCopy(const string* b, const string* e){
         auto data = allo.allocate(e - b);
         return {data, uninitialized_copy(b,e,data)};
     }
+
+void StrVec::Free (){
+        if(elements){
+            for(auto p = first_free; p != elements;)
+                allo.destroy(--p);
+            allo.deallocate(elements, cap-elements);
+        }
+    }
+
+
+void StrVec::push_back(const string& source){
+        CheckNReallocate ();
+        allo.construct(first_free, source);
+    }
     
-    //move the current data to a new bigger location
-    void Reallocate (){
+void StrVec::Reallocate (){
         size_t NewCap = (size() == 0)? 1 : size()*2;
         auto p = allo.allocate(NewCap);
         auto dest = p;
@@ -67,19 +82,20 @@ private:
         cap = p + NewCap;
         
     }
-    
-    //helper to destructor
-    void Free (){
-        if(elements){
-            for(auto p = first_free; p != elements;)
-                allo.destroy(--p);
-            allo.deallocate(elements, cap-elements);
-        }
+
+StrVec::StrVec (const StrVec& source){
+        auto data = AllocateNCopy(source.begin(), source.end());
+        elements = data.first;
+        first_free = cap = data.second;
     }
     
-    string* elements;
-    string* first_free;
-    string* cap;
-};
+StrVec& StrVec::operator= (const StrVec& source){
+        Free ();
+        auto data = AllocateNCopy(source.begin(), source.end());
+        elements = data.first;
+        first_free = cap = data.second;
+        return *this;
+    }
+    
 
 #endif
