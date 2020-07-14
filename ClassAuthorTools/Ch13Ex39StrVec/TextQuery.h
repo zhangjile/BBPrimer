@@ -1,5 +1,5 @@
 ﻿//Chapter 12 Dynamic Memory, conclusion project, P484
-//interior decoration, redesign the major componets
+// redesign the output section to be more efficienty, put all the desired info in a basket
 #include <iostream>
 #include <string>
 #include <vector>
@@ -14,7 +14,7 @@ using std::cout; using std::endl; using std::ostream;
 using std::vector; using std::cin; using std::set; using std::istringstream;
 using std::shared_ptr;
 
-//add class QueryResult, which is intended to be the return type of TextQuery::Query(const string& key).
+//class QueryResult is designed/intended to be the return type of Query operation.
 // print function (as a friend) prints a QueryResult object
 
 class QueryResult;      //forward declaration

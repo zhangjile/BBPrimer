@@ -31,7 +31,8 @@ public:
     void resize(size_t n);
     
 private:
-    static std::allocator<string> allo;
+    
+    static std::allocator<string> allo;     
     
     void CheckNReallocate();
     std::pair<string*, string*> AllocateNCopy(const string* b, const string* e);
@@ -46,6 +47,9 @@ private:
     string* first_free;
     string* cap;
 };
+
+//if this definition statement is missing On CodeLite, undefined reference error
+std::allocator<string> StrVec::allo;
 
 void StrVec::CheckNReallocate (){
         if(size() == capacity ()) Reallocate ();

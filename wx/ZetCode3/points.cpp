@@ -1,14 +1,27 @@
-#include "pen.h"
+#include "points.h"
+#include <time.h>
 
-Pen::Pen(const wxString& tittle)
-    :wxFrame(nullptr, wxID_ANY, tittle, wxDefaultPosition, wxSize(360,200))
+Points::Points(const wxString& tittle)
+    :wxFrame(nullptr, wxID_ANY, tittle, wxDefaultPosition, wxSize(360,250))
     {
-       Connect(wxEVT_PAINT, wxPaintEventHandler(Pen::OnPaint));  //watch
-        this->Centre();
+       Connect(wxEVT_PAINT, wxPaintEventHandler(Points::OnPaint));  //watch
+        srand(time(nullptr));
+        Centre();
     }
     
-void Pen::OnPaint(wxPaintEvent& event){
+void Points::OnPaint(wxPaintEvent& event){
     wxPaintDC dc(this);
+    
+    wxCoord x = 0, y = 0;
+    
+    wxSize size = this->GetSize();
+    
+    for(int i = 0; i < 100; ++i){
+        x = rand () % size.x + 1;
+        y = rand () % size.y + 1;
+        dc.DrawPoint(x,y);
+    }
+    
     wxColour col1, col2;
     col1.Set(wxT("#0c0c0c"));
     col2.Set(wxT("#000000"));

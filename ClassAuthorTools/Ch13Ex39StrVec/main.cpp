@@ -1,7 +1,5 @@
-#include "exStrVec.h"
-#include "exTextQuery.h"
-
-#include <iostream>
+﻿#include "strvec.h"
+#include "TextQuery.h"
 
 void runQueries(std::ifstream &infile)
 {
@@ -10,12 +8,26 @@ void runQueries(std::ifstream &infile)
         std::cout << "enter word to look for, or q to quit: ";
         std::string s;
         if (!(std::cin >> s) || s == "q") break;
-        print(std::cout, tq.query(s)) << std::endl;
+        print(std::cout, tq.Query(s)) << std::endl;
     }
 }
 
 int main()
 {
-    std::ifstream file("README.md");
-    runQueries(file);
+	std::ifstream is ("README.md");
+	TextQuery tq(is);
+	
+	while(true){
+		std::string s {};
+		cout<<"Enter your query: "<<endl;
+		cin >> s;
+		if(s == "q") {
+			cout <<"bye"<<endl;
+			break;
+		}
+		print(std::cout,  tq.Query (s) )<<std::endl;    
+		
+	} 
+    //std::ifstream file("README.md");
+    //runQueries(file);
 }

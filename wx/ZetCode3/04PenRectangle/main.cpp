@@ -1,13 +1,13 @@
 //graphics device interface, device context
 #include "main.h"
-#include "points.h"
+#include "pen.h"
 
 IMPLEMENT_APP(MyApp)
 
 bool MyApp::OnInit ()
 {
-    Points* p = new Points(wxT("draw points"));
-    p->Show(true);
+    Pen* ds = new Pen(wxT("draw a square"));
+    ds->Show(true);
     
     return true;
     
