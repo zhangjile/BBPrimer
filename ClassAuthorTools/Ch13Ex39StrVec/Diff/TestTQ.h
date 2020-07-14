@@ -85,9 +85,10 @@ ostream& print (ostream& os, const QueryResult& rhs){
     return  os;
 }
         
+/*
 int main ()
 {
-	ifstream is ("../Notes.md");
+	ifstream is ("README.md");
 	TextQuery tq(is);
 	
 	while(true){
@@ -105,3 +106,4 @@ int main ()
 	return 0;
 	
 }
+*/
