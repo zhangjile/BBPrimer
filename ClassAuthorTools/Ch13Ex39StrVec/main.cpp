@@ -14,6 +14,15 @@ void runQueries(std::ifstream &infile)
 
 int main()
 {
+	//test run operations of StrVec
+	StrVec sv;
+	sv.push_back("Hi");
+	std::cout <<*sv.begin() <<std::endl;
+	sv.resize(5, "oh");
+	StrVec sv2 ({"abc","oh"});
+	std::cout << sv.size()<<std::endl;
+	
+	//StrVec.h works as vector 
 	std::ifstream is ("README.md");
 	TextQuery tq(is);
 	
