@@ -20,14 +20,15 @@ public:
     StrVec& operator= (const StrVec& source);
     
     //top 3 methods
-    void push_back(const string&source);
+    void push_back(const string& source);
     
     string* begin() const {return elements;}
     string* end() const {return first_free;}
     
-    void reserve(size_t n);
     size_t size () const {return first_free - elements;}
     size_t capacity() const {return cap - elements; }  //getter
+
+    void reserve(size_t n);
     void resize(size_t n);
     
 private:
@@ -57,7 +58,7 @@ void StrVec::CheckNReallocate (){
     
 std::pair<string*, string*> StrVec::AllocateNCopy(const string* b, const string* e){
         auto data = allo.allocate(e - b);
-        return {data, uninitialized_copy(b,e,data)};
+        return {data, std::uninitialized_copy(b,e,data)};
     }
 
 void StrVec::Free (){
@@ -71,7 +72,7 @@ void StrVec::Free (){
 
 void StrVec::push_back(const string& source){
         CheckNReallocate ();
-        allo.construct(first_free, source);
+        allo.construct(first_free++, source);
     }
     
 void StrVec::Reallocate (){
@@ -79,7 +80,9 @@ void StrVec::Reallocate (){
         auto p = allo.allocate(NewCap);
         auto dest = p;
         auto elem = elements;
-        allo.construct(dest++, std::move(*elem++));
+        for(size_t i = 0; i < size(); ++i){     //sigsegv error fixed, finally!
+	        allo.construct(dest++, std::move(*elem++));
+        }        
         Free ();
         elements = p;
         first_free = dest;

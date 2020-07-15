@@ -1,4 +1,4 @@
-﻿#include "strvec.h"
+﻿#include "StrVec.h"
 #include "TextQuery.h"
 
 void runQueries(std::ifstream &infile)

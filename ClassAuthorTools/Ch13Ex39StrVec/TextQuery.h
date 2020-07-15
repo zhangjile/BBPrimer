@@ -1,8 +1,10 @@
 ﻿//Chapter 12 Dynamic Memory, conclusion project, P484
 // redesign the output section to be more efficienty, put all the desired info in a basket
+
+#include "StrVec.h"
 #include <iostream>
 #include <string>
-#include <vector>
+
 #include <set>
 #include <sstream>
 #include <fstream>
@@ -11,8 +13,7 @@
 
 using std::string; using std::istream; using std::ifstream; using std::map;
 using std::cout; using std::endl; using std::ostream;
-using std::vector; using std::cin; using std::set; using std::istringstream;
-using std::shared_ptr;
+using std::cin; using std::set; using std::istringstream; using std::shared_ptr;
 
 //class QueryResult is designed/intended to be the return type of Query operation.
 // print function (as a friend) prints a QueryResult object
@@ -21,7 +22,7 @@ class QueryResult;      //forward declaration
 
 class TextQuery{
 private:
-	shared_ptr<vector<string>> FileByLine;
+	shared_ptr<StrVec> FileByLine;
 	//make the mapped value a reference type,brilliant!
 	map<string, shared_ptr<set<int>>> Scan; 
 public:
@@ -33,7 +34,7 @@ public:
 
 // Scanning/parsing text is the first procedure
 TextQuery::TextQuery(istream &is)
-    : FileByLine(new vector<string> ())     //brilliant!
+    : FileByLine(new StrVec ())     //brilliant!
 {	
 	string Line {};
 	int LineNumber {0};
@@ -55,12 +56,12 @@ class QueryResult
 {
     friend ostream& print (ostream& os, const QueryResult& rhs); 
 public:
-    QueryResult(const string& s, shared_ptr<vector<string>> f, shared_ptr<set<int>> l)
+    QueryResult(const string& s, shared_ptr<StrVec> f, shared_ptr<set<int>> l)
             : key{s}, File{f}, lines {l} {}
     
 private:
     std::string key;
-    shared_ptr<std::vector<std::string>> File;
+    shared_ptr<StrVec> File;
     shared_ptr<std::set<int>> lines;
 };
 
@@ -85,25 +86,4 @@ ostream& print (ostream& os, const QueryResult& rhs){
     return  os;
 }
         
-/*
-int main ()
-{
-	ifstream is ("README.md");
-	TextQuery tq(is);
-	
-	while(true){
-		std::string s {};
-		cout<<"Enter your query: "<<endl;
-		cin >> s;
-		if(s == "q") {
-			cout <<"bye"<<endl;
-			break;
-		}
-		print(cout,  tq.Query (s) )<<endl;    
-		//stop holding a walking-stick, stand steadily and walk firmly
-	} 
-	
-	return 0;
-	
-}
-*/
+
