@@ -26,25 +26,27 @@ void Points::OnPaint(wxPaintEvent& event){
     col1.Set(wxT("#0c0c0c"));
     col2.Set(wxT("#000000"));
     
-    wxBrush brush(wxColour (255,255,255), wxTRANSPARENT);
+    wxBrush brush(wxColour (255,255,255), wxBRUSHSTYLE_TRANSPARENT);
+//    wxBrush brush(wxColour (255,255,255), wxTRANSPARENT);     //deprecated
     dc.SetBrush(brush);
     
-    dc.SetPen(wxPen(col1, 1, wxSOLID));
+    dc.SetPen(wxPen(col1, 1, wxPENSTYLE_SOLID));
+//    dc.SetPen(wxPen(col1, 1, wxSOLID));
     dc.DrawRectangle(10, 15, 90,60);
     
-    dc.SetPen(wxPen(col1, 1, wxDOT));
+    dc.SetPen(wxPen(col1, 1, wxPENSTYLE_DOT));
   dc.DrawRectangle(130, 15, 90, 60);
 
-  dc.SetPen(wxPen(col1, 1, wxLONG_DASH));
+  dc.SetPen(wxPen(col1, 3, wxPENSTYLE_LONG_DASH));
   dc.DrawRectangle(250, 15, 90, 60);
 
-  dc.SetPen(wxPen(col1, 1, wxSHORT_DASH));
+  dc.SetPen(wxPen(col1, 1, wxPENSTYLE_SHORT_DASH));
   dc.DrawRectangle(10, 105, 90, 60);
 
-  dc.SetPen(wxPen(col1, 1, wxDOT_DASH));
+  dc.SetPen(wxPen(col1, 1, wxPENSTYLE_DOT_DASH));
   dc.DrawRectangle(130, 105, 90, 60);
 
-  dc.SetPen(wxPen(col1, 1, wxTRANSPARENT));
+  dc.SetPen(wxPen(col1, 1, wxPENSTYLE_TRANSPARENT));    //no errors, no warnings!
   dc.DrawRectangle(250, 105, 90, 60);
     
     dc.DrawText(wxT("Xu Zhang Run            许章润"), 12,20);
