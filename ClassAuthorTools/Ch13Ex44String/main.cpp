@@ -1,5 +1,5 @@
-#include "String.h"
-#include "String.cpp"
+#include "Ch13Ex44String.h"
+#include "Ch13Ex44String.cpp"
 
 int main (){
 	char m[] = "Books";

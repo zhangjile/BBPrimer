@@ -1,13 +1,13 @@
 //graphics device interface, device context
 #include "main.h"
-#include "regions.h"
+#include "points.h"
 
 IMPLEMENT_APP(MyApp)
 
 bool MyApp::OnInit ()
 {
-    Regions* r = new Regions(wxT("regions"));
-    r->Show(true);
+    Points* p = new Points(wxT("draw points"));
+    p->Show(true);
     
     return true;
     
