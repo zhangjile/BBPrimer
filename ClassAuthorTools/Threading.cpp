@@ -27,7 +27,7 @@ void GetEvenSum(ull start, ull Num){
 
 int main (){
     ull start = 0;
-    ull Num = 1000000;
+    ull Num = 1000000000;
     auto StartTime = high_resolution_clock::now();
     
     //creating 2 threads
