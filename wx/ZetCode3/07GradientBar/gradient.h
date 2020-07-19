@@ -1,9 +1,9 @@
 #include <wx/wx.h>
 
-class Regions : public wxFrame
+class Gradient : public wxFrame
 {
 public:
-    Regions(const wxString& tittle);
+    Gradient(const wxString& tittle);
     
     void OnPaint(wxPaintEvent& event);
     

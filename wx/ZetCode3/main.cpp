@@ -1,13 +1,13 @@
-//graphics device interface, device context
+//the burning/downloading process is visually displayed
 #include "main.h"
-#include "regions.h"
+#include "burning.h"
 
 IMPLEMENT_APP(MyApp)
 
 bool MyApp::OnInit ()
 {
-    Regions* r = new Regions(wxT("regions"));
-    r->Show(true);
+    Burning* bu = new Burning(wxT("progress of burning/downloading"));
+    bu->Show(true);
     
     return true;
     
