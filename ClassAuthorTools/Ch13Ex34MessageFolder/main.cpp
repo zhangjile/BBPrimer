@@ -12,6 +12,7 @@ int main ()
     Message *m2 = new Message ("team leader fighting chinese wuhan virus");
     m2->Save(f1);
     std::cout << f1.MessageElements() <<std::endl; //the world falls in peace now
-   
+   	Message m3 = *m2;
+    m3 = Message("Pompeo");
     return 0;
 }

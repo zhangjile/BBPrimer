@@ -16,6 +16,11 @@ public:
     ~Message (){RemoveFromAllFolders();}
     Message (const Message& source);
     Message& operator= (const Message& source);
+    
+    //Ex13.49 add move operations
+    Message (Message&& m);
+    Message& operator= (Message&& m);
+    
     void Save(Folder& rf);
     void Delete (Folder& rf);
     size_t Occurrences () {return Folders.size();}

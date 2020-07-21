@@ -47,6 +47,21 @@ Message& Message::operator= (const Message& source){
     return *this;
 }
 
+//Ex13.49 add move operations to Message class
+Message::Message (Message&& m) {
+	std::cout<< "move constructor, Message" << std::endl;
+	Content = std::move(m.Content);
+	Folders = std::move(m.Folders);
+}
+
+Message& Message::operator= (Message&& m){
+	std::cout<< "Move Assignment, Message" << std::endl;
+	Content = std::move(m.Content);
+	Folders = std::move(m.Folders);
+	return *this;
+}
+
+
 //class Folder methods
 
 void swap(Folder& lhs, Folder& rhs){
