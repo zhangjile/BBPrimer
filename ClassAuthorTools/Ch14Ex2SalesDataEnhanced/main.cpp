@@ -43,7 +43,7 @@ int main()
 	SalesReport(l);
 	//sort algorithm requires random access, that's why list container didn't work
 	//trivial and significant
-	sort(l.begin(), l.end(), [](const SalesData &s1,const SalesData &s2){return s1.isbn() <s2.isbn();});	
+	std::sort(l.begin(), l.end(), [](const SalesData &s1,const SalesData &s2){return s1.isbn() <s2.isbn();});	
 	DisplayList(l);
     
     return 0;

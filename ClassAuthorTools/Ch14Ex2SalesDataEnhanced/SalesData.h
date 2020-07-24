@@ -8,6 +8,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using std::string; using std::fstream; using std::vector;
 
@@ -36,8 +37,7 @@ private:
 // member functions.
 SalesData& SalesData::operator+=(const SalesData& rhs)
 {
-    UnitsSold += rhs.UnitsSold;
-    Revenue += rhs.Revenue;
+    *this = *this + rhs;
     return *this;
 }
 
@@ -46,7 +46,12 @@ std::istream & operator>> (std::istream &is, SalesData &item)
 {
     double price = 0;
     is >> item.BookNo >> item.UnitsSold >> price;
-    item.Revenue = price * item.UnitsSold;
+    if(is) {
+        item.Revenue = item.UnitsSold * price;
+    } else {    //error handling, preserve consistency, very robust expression
+        item = SalesData ();
+    }
+    
     return is;
 }
 
@@ -60,7 +65,8 @@ std::ostream & operator<< (std::ostream &os, const SalesData &item)
 SalesData operator+(const SalesData &lhs, const SalesData &rhs)
 {
     SalesData sum = lhs;
-    sum += rhs;
+    sum.UnitsSold += rhs.UnitsSold;
+    sum.Revenue += rhs.Revenue;
     return sum;
 }
 
