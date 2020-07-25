@@ -11,15 +11,9 @@ public:
     Foo (std::vector<int> v) : data{v} {}
     Foo sorted () const &;  //'&' is required and should be placed at the back
     Foo sorted () &&;   //in the same "signature group" as the method above
-    Foo& Sorted (); //modify the data member
-/*
-    //correct method overloading statements
-    typedef comp = bool (const int &, const int &);
-    Foo sorted (*comp);
-    Foo sorted (*comp) const;
-    
-*/
+    Foo& Sorted (); //intend to modify the data member
     void Display ();
+
 private:
     std::vector<int> data;
 };
@@ -59,7 +53,7 @@ int main (){
     //std::vector<int> v {20,7,21};
     Foo f({20,7,21});
     
-    f.Sorted();
+    f.Sorted(); //data has been re-ordered
     f.Display();	//works as expected
 
 //    f.sorted().Display();

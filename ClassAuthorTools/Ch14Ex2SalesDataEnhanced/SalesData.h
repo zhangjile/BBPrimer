@@ -37,7 +37,8 @@ private:
 // member functions.
 SalesData& SalesData::operator+=(const SalesData& rhs)
 {
-    *this = *this + rhs;
+    UnitsSold += rhs.UnitsSold;
+    Revenue += rhs.Revenue;
     return *this;
 }
 
@@ -46,9 +47,10 @@ std::istream & operator>> (std::istream &is, SalesData &item)
 {
     double price = 0;
     is >> item.BookNo >> item.UnitsSold >> price;
+     //if there's error in istream, construction of an object won't start
     if(is) {
         item.Revenue = item.UnitsSold * price;
-    } else {    //error handling, preserve consistency, very robust expression
+    } else {   
         item = SalesData ();
     }
     
@@ -61,12 +63,11 @@ std::ostream & operator<< (std::ostream &os, const SalesData &item)
     return os;
 }
 
-//this function is not useful yet, but looks pretty.
+//its's the plain old addition operation
 SalesData operator+(const SalesData &lhs, const SalesData &rhs)
 {
     SalesData sum = lhs;
-    sum.UnitsSold += rhs.UnitsSold;
-    sum.Revenue += rhs.Revenue;
+    sum += lhs;
     return sum;
 }
 
