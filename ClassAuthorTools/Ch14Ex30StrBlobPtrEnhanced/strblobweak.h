@@ -79,12 +79,6 @@ public:
 		return temp;
 	}
 	
-	//dereference operator
-	string& operator*() const {
-		auto p = Check(curr, "past the end");
-		return (*p)[curr];
-	}
-	
 	//equality operator in pair
 	bool operator== (const StrBlobPtr &rhs) const {return rhs.curr == curr;}
     bool operator != (const StrBlobPtr &rhs) const {return rhs.curr != curr;}
