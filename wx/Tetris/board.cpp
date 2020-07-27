@@ -148,7 +148,7 @@ void Board::OneLineDown()
 void Board::PieceDropped()
 {
     for (int i = 0; i < 4; ++i) {
-        int x = curX + curPiece.x(i);
+        int x = curX + curPiece.x(i); //apparently a function call, but
         int y = curY - curPiece.y(i);
         ShapeAt(x, y) = curPiece.GetShape();
     }
