@@ -43,7 +43,7 @@ private:
 void Biggies(list<string> &v, size_t sz){
 	EliminateDups(v);
 	//v.remove_if([sz](const string &s){return s.size() < sz;});
-	v.remove_if(ShorterString(sz));	// i made it
+	v.remove_if(ShorterString(sz));	// function call operation is auto-load:)
 	
 	size_t Count = v.size(); 
 	std::cout << Count << std::endl;
