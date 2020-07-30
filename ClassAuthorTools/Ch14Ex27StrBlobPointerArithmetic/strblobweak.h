@@ -82,21 +82,9 @@ public:
 		return temp;
 	}
 	
-	//pointer arithmetic, 
-	StrBlobPtr& operator+(size_t n){
-		if(curr + n <= data.size())
-			return StrBlobPtr(*this, curr + n);
-		else
-			throw ("beyong end()");
-	}
-
-	
-	StrBlobPtr& operator-(size_t n){
-		if(curr - n >= 0)
-			return StrBlobPtr(*this, curr - n);
-		else
-			throw("invalid");
-	}	
+	//pointer arithmetic
+    StrBlobPtr& operator+(size_t n);
+    StrBlobPtr& operator-(size_t n);
 	
 	//equality operator in pair
 	bool operator== (const StrBlobPtr &rhs) const {return rhs.curr == curr;}
@@ -118,10 +106,25 @@ private:
 	size_t curr;
 };
 
-//the right place for begin and end methods
-//the whole point of creating class StrBlobPtr is to create begin and end methods for a StrBlob object. 
+// overloading operators is obviously easy, just consult a reference modify some lines and get things done.
+//however, under the hood there's something significant and something extremely beautiful
 
 StrBlobPtr StrBlob::begin() {return StrBlobPtr(*this);}
 StrBlobPtr StrBlob::end() {auto ret = StrBlobPtr(*this, data->size()); return ret;}
 
+	StrBlobPtr& StrBlobPtr::operator+(size_t n){
+        //so cute:)
+		auto m = Check(curr + n, "oh, yeah!");
+        wptr = m;
+        curr += n;
+        return *this;
+	}
+
+	
+	StrBlobPtr& StrBlobPtr::operator-(size_t n){
+        curr -= n;
+        Check(curr - n, "oh, f!");
+        return *this;
+
+	}	
 
