@@ -12,6 +12,7 @@ int Add (const int& a, const int& b){
 }
 
 class Divide {
+public:     //wahoo, it's this access specifier missing that caused all the failure!
     int operator()(const int& a, const int& b){
         return a/b;
     }
