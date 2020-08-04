@@ -13,15 +13,16 @@ using std::string;
 class Quote {
 public:
     Quote () = default;
-    Quote (string b, double p) :BookNo{b},Price{p} {}
+    Quote (string b, double p) :BookNo{b},Price{p} {}   //BookNo comes before Price
     string isbn () const {return BookNo;}
     virtual double NetPrice (size_t n) const {return n*Price;}
-
+    virtual ~Quote () = default;
+    
+private:
+    string BookNo;      //therefore BookNo should be placed before Price 
+    
 protected:
     double Price = 0.0;
-            
-private:
-    string BookNo;
 
 };
 

@@ -10,7 +10,7 @@
 //the man
 class Base {
 public:
-    void pub_mem ();
+    void pub_mem () {std::cout <<  priv_mem << std::endl;}  //define this member, otherwise error
     //not necessary to make it virtual, just test whether the base class public member is accessible to its children and grandchildren
     void memfcn (Base& b) {b = *this;}  //Ex15.19, over-verbose, but ok
 protected:
