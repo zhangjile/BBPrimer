@@ -56,3 +56,5 @@ int main () {
     
     return 0;
 }
+
+//cf, BB/Section16Polymorphism/InterfaceSimplified.cpp

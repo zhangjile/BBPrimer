@@ -1,4 +1,4 @@
-/*～～～～
+/*
 I've figured out the solution plan today
 set<size_t> line_numbers_All, line_numbers_A, line_numbers_B;
 
@@ -18,4 +18,17 @@ then, obj | C
 3.declare MyString as friend of QueryResult hierarchy;
 4.overload 3 operators of MyString: ~, &, |, 
 
-～～～～*/
+*/
+
+#include <iostream>
+
+/*
+//I find the difference of modifying code and writing original code based on an original design for a problem.
+//writing original code requires construction stage, in the same way as drawing that takes major parts into consideration before coding.
+//Just as Anton Spraul said, take the time to draw before coding
+*/
+
+int main ()
+{
+    return 0;
+}
