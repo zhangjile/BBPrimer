@@ -1,3 +1,4 @@
+//g++ HelloWorldApp.cpp `wx-config --libs` `wx-config --cxxflags` -o HelloWorldApp
 #include "main.h"
 #include "tetris.h"
 
