@@ -32,3 +32,6 @@ int main ()
 {
     return 0;
 }
+
+//don't spend more than 30 minutes on one issue which means it's too much above you, read the clues and move on
+// Errichto
