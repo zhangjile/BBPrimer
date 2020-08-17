@@ -22,6 +22,8 @@ auto mod = [](const int& a, const int& b){
     return a % b;
 };
 
+//test this map declaration on CodeLite
+//map<string, int(*)(int, int)> binops = 
 map<string, function<int(int, int)>> binops = {
     {"+", Add},
     {"-", std::minus<int> ()},
