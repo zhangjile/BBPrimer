@@ -1,22 +1,30 @@
+//CppNuts, count me in
+//How static variables behave in template class and template function?
 #include <iostream>
 using std::cout; using std::endl;
 
 template<typename T>
-void spin(T x){
-    static int var = 10;
-    cout<< ++var <<endl;
-}
+class Print{
+private:
+    int x;
+public:
+    static T val;
+    void spin() {cout << ++val <<endl;}
+};
 
-// 3 initiations, not one
+template<typename T>
+T Print<T>::val = 0;
+
+// 2 initiations, not one
 int main(){
-    //instantiating spin(int x)
-    spin(720);  //11
-    //spin(709);    //12
+    Print<int> i;
+    i.spin();  //1
     
-    //instantiating spin(float x)    
-    spin(7.20); //11
+    Print<int> i2;
+    i2.spin();
     
-    //instantiating spin(char x)
-    spin('L');  //11
+    Print<double> d;
+    d.spin(); //1
+    
     return 0;
 }
