@@ -1,7 +1,4 @@
-﻿//Section 15.9 Text Queries Revisited
-//Ex15.39, p648, Implement Query and QueryBase classes. Test your application by evaluating and printing a query such as 'fiery & bird | wind'
-
-#ifndef _QUERY_H
+﻿#ifndef _QUERY_H
 #define _QUERY_H
 
 #include <iostream>
@@ -42,6 +39,7 @@ ostream& operator<< (ostream& os, const Query& rhs){
 class WordQuery : public QueryBase {
 	friend class Query;
 	WordQuery (const string& s) : QueryWord(s) {}
+	//privately inherited member can be redefined!
 	QueryResult eval (const TextQuery& t) const override {return t.query(QueryWord);}
 	string rep () const override {return QueryWord;}
 	
@@ -51,6 +49,7 @@ class WordQuery : public QueryBase {
 	string QueryWord;
 };
 
+//brilliant, friendship means Query has full access to WordQuery class 
 inline
 Query::Query (const string& s) : q {new WordQuery(s)} {}
 
@@ -59,7 +58,7 @@ class NotQuery : public QueryBase {
 	NotQuery (const Query& source) :qq(source) {}
 	QueryResult eval (const TextQuery& t)const override;
 	string rep ()const override  {return "~(" + qq.rep() + ")";}
-	Query qq;
+	Query qq;	// this member is practically a WordQuery object
 };
 
 QueryResult NotQuery::eval (const TextQuery& t)const {
@@ -86,6 +85,7 @@ Query operator~ (const Query& rhs) {
 class BinaryQuery : public QueryBase {
 protected:
 	BinaryQuery (const Query& left, const Query& right, string operand) : l(left), r(right), Op(operand) {}
+	//'QueryResult eval (const TextQuery& t)const' is not overriden!
 	string rep () const {return "(" + l.rep() + " " + Op + " " + r.rep() + ")";}
 	Query l, r;
 	string Op;
