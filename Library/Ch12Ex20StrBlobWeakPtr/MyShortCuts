@@ -1,0 +1,29 @@
+top 10 short-cuts
+
+1. ctrl + alt + t, terminal
+2. ctrl + c, codelite
+3. super <--, snap
+4. ctrl + q, close application window
+5. super + d, minimizes all running application windows and show desktop
+6. super/alt + tab, switch between running applications
+
+5 codelite shortcuts
+//ctrl + c, CodeLite
+//alt + m toggles fullscreen
+//ctrl + f9, build and run
+//ctrl + f11 toggles minimal view
+
+10 magic commandlines
+history | grep cache  // search commands that contains 'cache' pattern
+file history  //check the info against history file
+
+
+
+super + l, lock screen
+
+super + a, show application menu
+
+ctrl + alt + up/down arrow, move between workspaces
+
+
+
