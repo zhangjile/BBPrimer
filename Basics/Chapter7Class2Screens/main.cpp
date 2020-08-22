@@ -35,8 +35,16 @@ private:
 	pos Cursor = 0;
 	pos Height = 0, Width = 0;
 	std::string Contents;
-	void DoDisplay(std::ostream &os) const {os << Contents;}
 	
+	//simulating a full-screen display, a persisting puzzle is solved, finally
+	void DoDisplay(std::ostream &os) const {
+		size_t s = Contents.size();
+		for(size_t i = 0; i < s; ++i){
+			os << Contents[i];
+			if((i+1)% Width == 0)
+				os <<"\n";
+		}		
+	}	
 };
 
 char Screen::Get(pos r, pos c) const {
@@ -61,7 +69,7 @@ inline Screen& Screen::Set(pos r, pos c, char ch){
 }
 
 Screen_mgr::Screen_mgr (){
-	Screens.push_back(Screen(20,40,'a')); //last stroke to secure a success
+	Screens.push_back(Screen(5,20,'a')); //last stroke to secure a success
 }
 
 void Screen_mgr::Clear(ScreenIndex i){
@@ -72,7 +80,7 @@ void Screen_mgr::Clear(ScreenIndex i){
 
 int main () {
 	Screen MyScreen(5,5,'#');
-	MyScreen.Move(1,0).Set('\'').Display(std::cout);
+	MyScreen.Move(1,0).Set('\\').Display(std::cout);
 	std::cout<<"\n";
 	MyScreen.Set('?').Display(std::cout);
 	std::cout<<"\n";
