@@ -37,6 +37,7 @@ private:
 	std::string Contents;
 	
 	//simulating a full-screen display, a persisting puzzle is solved, finally
+	//display"cccc cccc cccc" by 3 rows and 4 colums,just that simple
 	void DoDisplay(std::ostream &os) const {
 		size_t s = Contents.size();
 		for(size_t i = 0; i < s; ++i){
