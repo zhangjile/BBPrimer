@@ -1,4 +1,9 @@
+//Section 16.1.2 Class Templates
+//Ex16.12, p668, Write your own version of the Blob and BlobPtr templates. 
+//Section 16.1.4 Member Template
+//Ex16.24, p675, Add a new constructor that takes two iterators
 //implementing methods outside of the class declaration unexpectedly caused all the redefinition problems, Heck!
+
 
 #include <iostream>
 #include <string>
@@ -20,6 +25,11 @@ public:
     typedef typename vector<T>::size_type size_type;
     Blob (): data {make_shared<vector<T>> ()} {}
     Blob (initializer_list<T> il): data {make_shared<vector<T>> (il)} {}
+    
+    //Ex16.24, 
+    template<typename Iterator>
+    Blob(Iterator b, Iterator e) : data(make_shared<vector<T>> (b,e)) {}
+
     
     size_type size() {return data->size();}
     bool empty() {return data->empty();}

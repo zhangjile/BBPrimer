@@ -42,9 +42,19 @@ void Print(const T& a, std::ostream& os){
     std::cout << std::endl;
 }
 
+//fly with wings, not fot, this is a bright block of code
+template<typename It>
+void Print(It b, It e){    //Print(It* b, It* e), wrong way to specify parameter
+	for(; b != e; ++b){
+		std::cout << *b << std::endl;
+	}
+}
+
+
 int main(){
-    deque<string> v {"callables in C++", "functions", "pointers to functions", "lambdas","classes that overload the function-call operator" };
+    deque<string> v {"callables in C++,p576", "functions and pointers to functions", "objects created by bind","lambdas","classes that overload the function-call operator" };
     Print(v);
     Print(v, std::cout);
+    Print(v.begin(), v.end());
     return 0;
 }

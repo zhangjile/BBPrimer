@@ -34,6 +34,19 @@ public:
     Vec (Vec&& s);
     Vec& operator= (Vec&& s);
     
+    //Ex16.24, p675, add a constructor that takes two iterators to your vec template
+    //spend some time to understand this code block.
+    template<typename Iterator>
+    Vec(Iterator b, Iterator e) {
+    	auto data = AllocateNCopy(b,e);
+        elements = data.first;
+        first_free = cap = data.second;
+    }
+    
+    //Vec(Iterator b, Iterator e) : elements(b), first_free(e){}
+    //sigabrt error, signal abort, obviously, copying a pointer caused the error
+    //such errors can be felt by the 6th sense of mind, most of thm can be avoided
+    
 private:
     static std::allocator<T> allo;     
     
