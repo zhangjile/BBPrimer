@@ -99,7 +99,7 @@ ostream& print (ostream& os, const QueryResult& rhs){
         
 int main ()
 {
-	ifstream is ("README.md");
+	ifstream is ("100_git_commands");
 	TextQuery tq(is);
 	
 	while(true){

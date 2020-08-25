@@ -1,0 +1,33 @@
+Git
+
+git --version
+
+git init .  //create a git repository from current directory
+
+git log
+git show
+git ls-files  //list files managed by git in the current workspace
+
+git config --global alias.hist "log --oneline --graph --decorate --all"
+git hist
+git hist -- LICENSE.md
+
+
+git reset HEAD LICENSE.md    //unstage
+git checkout -- LICENSE.md   //undo the change
+
+git mv README.md READUS.md  //rename
+git rm READUS.md //delete
+git commit -m "delete md.READUS"  //commit and update the repo
+
+inner workings of renaming a file and create a new file in git repo
+vi create_new_file
+mv LICENSE.md LICENSE.txt  //rename a file tracked by git
+git add -A   //accepts renaming, stages the addition and renaming
+git add -u    //interpretes renaming as deletion and addition, stage the deletion!
+	      //addition is not accepted and is irrelevant to git repo
+
+view .gitignore
+
+grep cache history
+git rm --cached README.md
