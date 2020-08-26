@@ -34,3 +34,10 @@ int main()
     
     return 0;
 }
+/*
+summary
+QueryResult Query(const string& s) can be defined either:
+1) in wy_textquery.cpp
+2) or in a long file after class QueryResult{};
+
+*/

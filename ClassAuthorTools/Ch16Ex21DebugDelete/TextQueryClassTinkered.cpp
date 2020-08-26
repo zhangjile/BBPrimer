@@ -1,6 +1,7 @@
 ﻿//Section 16.1.4 Member Templates
 //Ex16.22, p675, Revise your TextQuery program so that the shared_ptr members uses a DebugDelete as their deleter.
 //Ex16.23, Predict when the call operator will be executed in your main query program. If your expectations and what happens differ, fix the error and be sure you understand why.
+//++tinkering around, set the mapped value to be a naked set<int>
 
 #include <iostream>
 #include <string>
@@ -37,8 +38,8 @@ class QueryResult;      //forward declaration
 class TextQuery{
 private:
 	shared_ptr<vector<string>> FileByLine;
-	map<string, shared_ptr<set<int>>> Scan;	
-	//set the mapped value reference type to be modifiable
+	map<string, set<int>> Scan;	
+	//set the mapped value to be a naked set container
 public:
 	TextQuery(istream &is);
 	
@@ -56,9 +57,7 @@ TextQuery::TextQuery(istream &is)
 		string word {};
 		istringstream iss(Line);
 		while(iss >>word){
-            auto &loc = Scan[word];
-            if(!loc) loc.reset(new set<int>);      
-			loc->insert(LineNumber);     
+            Scan[word].insert(LineNumber);     
 		}
 	}
 }
@@ -67,20 +66,20 @@ class QueryResult
 {
     friend ostream& print (ostream& os, const QueryResult& rhs); 
 public:
-    QueryResult(const string& s, shared_ptr<vector<string>> f, shared_ptr<set<int>> l)
+    QueryResult(const string& s, shared_ptr<vector<string>> f, set<int> l)
             : key{s}, File{f}, lines {l} {}
     
 private:
     std::string key;
     shared_ptr<std::vector<std::string>> File;
-    shared_ptr<std::set<int>> lines;
+    std::set<int> lines;
 };
 
 QueryResult TextQuery::Query(const string& key){
-        static shared_ptr<set<int>> NoData(new set<int> );
+        
         auto loc = Scan.find(key);
         if(loc == Scan.end()){
-            return QueryResult(key, FileByLine, NoData);
+            return QueryResult(key, FileByLine, set<int> ());
         } else {
             return QueryResult(key, FileByLine, loc ->second);
         }
@@ -88,10 +87,8 @@ QueryResult TextQuery::Query(const string& key){
 }
         
 ostream& print (ostream& os, const QueryResult& rhs){
-    os << rhs.key <<" appeared "<<rhs.lines->size() << " times"<<endl;
-    //' *rhs.lines == *(rhs.line)', precedence, cf P110, Primer
-    //walk by your own!
-    for(int num: *rhs.lines){ 
+    os << rhs.key <<" appeared "<<rhs.lines.size() << " times"<<endl;
+    for(int num: rhs.lines){ 
         os <<"(line " <<num <<")\t" <<*(rhs.File->begin() + num -1) <<endl;        
     }
     return  os;
@@ -111,7 +108,7 @@ int main ()
 			break;
 		}
 		print(cout,  tq.Query (s) )<<endl;    
-		//stop holding a walking-stick, stand steadily and walk firmly
+		//splashing in water
 	} 
 	
 	return 0;

@@ -19,6 +19,12 @@ size_t SizeArray(T (&arr) [N]){
     return end(arr) - begin(arr);
 }
 
+//smarter
+template<typename T, unsigned N> constexpr	//inline/constexpr 
+size_t Size(T (&arr) [N]){
+    return N;
+}
+
 int main () {
     double D[] {0.1,0.2,0.3};
     std::cout << SizeArray(D) <<std::endl;
