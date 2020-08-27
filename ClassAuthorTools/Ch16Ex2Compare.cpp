@@ -23,7 +23,15 @@ int main(){
     
     //cout<< Compare (19, 20.0) << endl;	//error, 
     //candidate template ignored: deduced conflicting types for T ("int", "double")
-    cout<< Compare (2024.12, 2020.12) << endl;
+//    cout<< Compare (2024.12, 2020.12) << endl;
+    
+    //Ex16.37, Ex16.39, p683
+    double d = 6.8;
+    std::cout << std::max<double>(d,3) << std::endl; 	//6.8
+    std::cout << std::max<int>(d,3) << std::endl; 	//6
+    
+    std::cout << Compare<std::string>("Trump", "Joe") << std::endl; 
+    
     
     //Compare ("Trump", "Biden"), error, call to Compare is ambiguous
     cout<< Compare ("Trump", "Biden bbbbb") << endl;	
