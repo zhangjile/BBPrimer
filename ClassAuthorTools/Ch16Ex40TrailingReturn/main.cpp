@@ -1,7 +1,6 @@
 //Section 16.2.3 Trailing return type and type transformation, type transformation library template classes
 //textbook reference
 //to be tested on codelite
-#include "Version_test.h"
 
 #include <iostream>
 using std::cout; using std::endl;
