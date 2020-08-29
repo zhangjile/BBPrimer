@@ -27,7 +27,7 @@ template <typename It>
 auto reffcn(It beg, It end) -> decltype(*beg)
 {
     // process the range
-    return *beg;  // return a copy of an element from the range
+    return *beg;  
 }
 
 // function that returns an element in the range by value
