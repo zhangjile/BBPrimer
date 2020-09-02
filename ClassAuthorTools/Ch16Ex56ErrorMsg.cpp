@@ -13,7 +13,7 @@ std::ostream& Print(std::ostream& os, const T& t){
 
 template<typename T, typename ... Args>
 std::ostream& Print(std::ostream& os, const T& t, const Args& ... Rest){
-    os << t << ", ";
+    os << t << ”, “;
     return Print(os, Rest...);	//Recursion is revisited
 }
 
@@ -25,13 +25,14 @@ std::string DebugRep(const T& t){
 }
 
 template<typename... Args>
-std::ostream& ErrorMSG (std::stream& os, const Args&... Rest){
+std::ostream& ErrorMSG (std::ostream& os, const Args&... Rest){
 	return Print(os, DebugRep(Rest)...);
 }
 
 
 int main () {
-
+	std::string item(”howdy“);
+	ErrorMSG(std::cerr, item, ”Faith“);
 	return 0;
 } 
 
