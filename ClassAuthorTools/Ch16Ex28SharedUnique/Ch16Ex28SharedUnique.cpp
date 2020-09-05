@@ -1,6 +1,7 @@
 //Section 16.1.5 controlling initiation, efficiency and flexibility
 //Ex16.28, p678, write your own shared_ptr and unique_ptr
 //Frankly, I've never imagined that implementing smart pointers comes so sooon.
+//it's the core of modern C++, give it 5 days to build them!
 
 #include <iostream>
 
