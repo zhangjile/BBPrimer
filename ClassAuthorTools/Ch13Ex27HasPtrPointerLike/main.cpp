@@ -31,6 +31,11 @@ public:
         return *this;
     }
     
+    
+    //extract the pointer behind objects created from assignment.
+    void UnderlyingPointer() {std::cout << ps <<std::endl;}
+    
+    
     ~HasPtr (){
     	if(--*use == 0){
     		delete ps;
@@ -60,5 +65,15 @@ int main()
     c2.Modify("Charles Kirk");  //we intend the change to be effective elsewhere
     
     c1.Print(); //Charles Kirk, 2, success!
+    
+    HasPtr c3(c2);
+    
+    //look deeper: the underlying pointer of c1,c2 and c3 is the same, 
+    //because they are created from c1
+    c1.UnderlyingPointer();
+    c2.UnderlyingPointer();
+    c3.UnderlyingPointer();
+    c3.Print();
+    
     return 0;
 }
