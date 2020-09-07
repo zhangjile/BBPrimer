@@ -10,7 +10,7 @@ using std::cout; using std::endl; using std::less;
 template<typename T>
 int Compare (const T& a, const T& b){
 	std::cout << "const T&"<<std::endl;
-    if(less<T>()(a,b)) return -1;
+    if(less<T>()(a,b)) return -1;   //std::less<T> () is a function object 
     if(less<T>()(b,a)) return 1;
     return 0;
 }
@@ -56,3 +56,10 @@ int main(){
     	
     return 0;
 }
+
+//Artificial intelligence, machine learning, neutral network and computer vision
+
+//Do programmers brains work something like Virtual Machines? Very likely.
+//translate the code blocks into natural language, describe the functionalities and how the concepts are implemented.
+//envision them as storyline. it's natural to develop the skill starting from reproducing the code from memory.
+
