@@ -35,9 +35,13 @@ bool NoMoreThan(const string &s, size_t sz){
 	return s.size() <= sz;
 }
 
+//revision and association
+auto Bind6 = bind(NoMoreThan, _1, 6);	//create a new callable taking 1 argument
+
 void ShortWords(const vector<string> &v){
 	Display(v);
-	size_t Count6 = count_if(v.begin(), v.end(), bind(NoMoreThan, _1, 6));
+//	size_t Count6 = count_if(v.begin(), v.end(), bind(NoMoreThan, _1, 6));
+	size_t Count6 = count_if(v.begin(), v.end(), Bind6);	//use the callable
 	std::cout<< Count6 << " words are as long as or shorter than 6" <<std::endl; 
 	
 }
@@ -54,12 +58,30 @@ void Biggies(vector<string> &v, size_t sz){
 	size_t Count = it - v.begin();
 	std::cout << Count << std::endl;
 
-	reverse(v.begin(), it);	
+	reverse(v.begin(), it);	//change the range to be in descending order
 	for_each(v.begin(), it, [](const string &s){std::cout<< s << " ";});
 	std::cout << std::endl; 	
 }
 
+// Ex10.25, second implementation
+bool CheckLessThan(const string& s, size_t sz){
+	return s.size() >= sz;
+}
+
+void BIGGES(vector<string> &v, size_t sz){
+	EliminateDups(v);
 	
+	//this one liner extracts the count
+	size_t Count = count_if(v.begin(),v.end(),bind(CheckLessThan, _1, sz));
+	
+	std::cout << Count << std::endl;
+
+	reverse(v.begin(), v.end());	//descending order, longest in the front	
+	for_each(v.begin(), v.begin()+Count, [](const string &s){std::cout<< s << " ";});
+	std::cout << std::endl; 
+}
+	
+
 int main(){
 	vector<string> v = {"Win","Will","President","Trump","Win", "Win", "United", "States","Donald","Win"};
 	//v = {"the","quick","red","fox","jumps","over","the","slow","red","turtle"};
@@ -67,7 +89,7 @@ int main(){
 	
 	ShortWords(v);
 		
-	Biggies(v,5);
+	BIGGES(v,5);
 	
 	return 0;
 }
