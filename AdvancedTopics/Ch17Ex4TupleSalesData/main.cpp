@@ -103,6 +103,7 @@ int main()
 	store.push_back(Sales_data("0-399-82477-1", 5, 226.95));
 
 	File.push_back(store);
+    store.clear();
     
     store.push_back(Sales_data("0-201-70353-X", 4, 99.96));
 	store.push_back(Sales_data("0-201-78345-X", 5, 110));
