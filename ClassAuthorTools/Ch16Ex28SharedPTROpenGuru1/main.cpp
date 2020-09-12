@@ -1,4 +1,6 @@
-﻿/*
+﻿//reference code, nice code, looks successful with 1 bug
+
+/*
  * Simple implementation of shared_ptr.
  * Below code is non thread safe.
  *
@@ -55,6 +57,8 @@ public:
             }
         }
 
+
+//SMELLS VERY BAD! decrement use_count of *this seems to be missing, check it out!
         shared_ptr& operator=(const shared_ptr& copy) {	// Assignment operator
             ptr = copy.ptr;
             ref_count = copy.ref_count;

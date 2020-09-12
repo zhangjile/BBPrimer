@@ -1,4 +1,7 @@
-﻿#include <iostream> 
+﻿//GeekforGeek.com
+//this is a successful implementation because the use_count works as expected.
+
+#include <iostream> 
 using namespace std; 
 
 // Class representing a reference counter class 
@@ -159,4 +162,3 @@ int main()
 
 	return 0; 
 } 
-

@@ -3,6 +3,8 @@
 //Ex16.23, Predict when the call operator will be executed in your main query program. If your expectations and what happens differ, fix the error and be sure you understand why.
 //Ex16.28, write your version shared pointer
 
+//verify the working of use_count, which is the very soul of shared pointer
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -240,7 +242,7 @@ ostream& print (ostream& os, const QueryResult& rhs){
         
 int main ()
 {
-	ifstream is ("revision_logical_and.cpp");
+	ifstream is ("README.md");
 	TextQuery tq(is);
 	
 	while(true){
