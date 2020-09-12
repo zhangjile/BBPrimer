@@ -1,4 +1,4 @@
-﻿//reference code, nice code, looks successful with 1 bug
+﻿//good reference, nice code, fixed a bug
 
 /*
  * Simple implementation of shared_ptr.
@@ -9,9 +9,19 @@
  */
  
 #include <iostream>
+#include <cstddef>
+using std::cout; using std::endl;
+
 namespace my {
 template <class T>
 class shared_ptr {
+		friend std::ostream& operator<<(std::ostream& os, shared_ptr<T>& sp) 
+		{ 
+			os << "Address pointed : "
+			<< sp.ptr << "; " << *(sp.ref_count) << endl; 
+			return os;
+		}
+		 
         T* ptr;
 		int* ref_count;
 
@@ -57,9 +67,19 @@ public:
             }
         }
 
-
-//SMELLS VERY BAD! decrement use_count of *this seems to be missing, check it out!
+		//SMELLS VERY BAD! decrement use_count of *this seems to be missing! Primer, p453,465
+        //I was right!
         shared_ptr& operator=(const shared_ptr& copy) {	// Assignment operator
+        	
+        	--(*ref_count);
+			if (*ref_count == 0) {
+				delete ref_count;
+                ref_count = nullptr;
+				delete ptr;
+                ptr = nullptr;
+            }
+        	//decrementing ref_count properly
+            
             ptr = copy.ptr;
             ref_count = copy.ref_count;
 			if (ref_count != nullptr) {
@@ -68,13 +88,8 @@ public:
 			return *this;
         }
 
-        T& operator*() const {	// Returns stored object reference
-			return *ptr;
-        }
-
-        T* operator->() const {	// Returns stored object pointer
-			return ptr;
-        }
+        T operator*() const {return *ptr;}	//dereferencing
+        T* operator->() const {return ptr;}	//arrow
     };
 }
 
@@ -107,6 +122,7 @@ return ptr;
 }
 
 int main(int argc, char **argv){
+	/*
     my::shared_ptr<Base> ptr1;	// Default constructor
     {
         my::shared_ptr<Base> ptr2 = func();	// Parameterized constructor
@@ -115,5 +131,38 @@ int main(int argc, char **argv){
         ptr1 = ptr3;	// assignment operator call
     }
     std::cout << "  data set to: " << (*ptr1).get_data() << std::endl;
+    */
+    // ptr1 pointing to an integer. 
+	my::shared_ptr<int> ptr1(new int(151)); 
+	cout << "--- Shared pointers ptr1 ---\n"; 
+	*ptr1 = 100; 
+	cout << " ptr1's value now: " << *ptr1 << endl; 
+	cout << ptr1; 
+
+	{ 
+		my::shared_ptr<int> ptr2 = ptr1; 
+		cout << "--- Shared pointers ptr1, ptr2 ---\n"; 
+		cout << ptr1; 
+		cout << ptr2; 
+
+		{ //innermost scope
+			my::shared_ptr<int> ptr3(new int(200));
+			ptr2 = ptr3;
+			cout << "--- Shared pointers ptr1, ptr2, ptr3 ---\n"; 
+			cout << ptr1; 
+			cout << ptr2; 
+			cout << ptr3; 
+		} 
+
+		// ptr3 is out of scope,destructed. 
+		cout << "--- Shared pointers ptr1, ptr2 ---\n"; 
+		cout << ptr1; 
+		cout << ptr2; 
+	} 
+
+	// ptr2 is out of scope. 
+	cout << "--- Shared pointers ptr1 ---\n"; 
+	cout << ptr1; 
+	
 	return 0;
 }

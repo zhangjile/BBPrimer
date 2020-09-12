@@ -2,8 +2,7 @@
 //Ex16.22, p675, Revise your TextQuery program so that the SharedPTR members uses a DebugDelete as their deleter.
 //Ex16.23, Predict when the call operator will be executed in your main query program. If your expectations and what happens differ, fix the error and be sure you understand why.
 //Ex16.28, write your version shared pointer
-
-//verify the working of use_count, which is the very soul of shared pointer
+//the working of use_count in reset is verified. 
 
 #include <iostream>
 #include <string>
@@ -33,63 +32,13 @@ private:
     std::ostream& os;
 };
 
-// Class representing a reference counter class 
-class Counter { 
-public: 
-	Counter() : m_counter(0){}; 
-	Counter(const Counter&) = delete; 
-	Counter& operator=(const Counter&) = delete; 
-
-	// Destructor 
-	~Counter() {} 
-
-	void reset() { 
-		m_counter = 0; 
-	} 
-
-	unsigned int get() { 
-		return m_counter; 
-	} 
-
-	// Overload post/pre increment 
-	void operator++() { 
-		m_counter++; 
-	} 
-
-	void operator++(int) { 
-		m_counter++; 
-	} 
-
-	// Overload post/pre decrement 
-	void operator--() 
-	{ 
-		m_counter--; 
-	} 
-	void operator--(int) 
-	{ 
-		m_counter--; 
-	} 
-
-	// Overloading << operator 
-	friend ostream& operator<<(ostream& os, const Counter& counter) { 
-		os << "Counter Value : "
-		<< counter.m_counter << endl; 
-		return os;
-	} 
-
-private: 
-	unsigned int m_counter{}; 
-}; 
-
-// Class representing a shared pointer 
 template <typename T> 
-
 class SharedPTR { 
 public: 
 	// Constructor 
 	explicit SharedPTR(T* ptr = nullptr) { 
 		m_ptr = ptr; 
-		m_counter = new Counter(); 
+		m_counter = new size_t(); 
 		if (ptr) { 
 			(*m_counter)++; 
 		} 
@@ -103,28 +52,22 @@ public:
 	} 
 
 	// Reference count 
-	unsigned int use_count() { 
-		return m_counter->get(); 
-	} 
+	size_t use_count() {return *m_counter; } 
 
-	// Get the pointer 
-	T* get() { 
-		return m_ptr; 
-	} 
+	// Get the pointer
+	T* get() {return m_ptr; } 
+ 
+	// Overload * operator, dereferencing
+	T& operator*() {return *m_ptr; } 
 
-	// Overload * operator 
-	T& operator*() { 
-		return *m_ptr; 
-	} 
-
-	// Overload -> operator 
-	T* operator->() const {	//watch again, const correctness! 
-		return m_ptr; 
-	} 
+	// Overload -> operator, watch out the const correctness!
+	T* operator->() const {return m_ptr; } 
 	
+	//Primer, p465,
+	//if p is the only shared_ptr pointing at its object, reset frees p's existing object. If the optional built-in pointer q is passed, makes p point to q, otherwise mkaes p nullptr.
 	SharedPTR reset(T* ptr = new T()){
 		m_ptr = ptr;
-		m_counter = new Counter();
+		m_counter = new size_t();
 		if(ptr) ++*m_counter;
 		return *this;	//final touch, wow!
 	}
@@ -132,7 +75,7 @@ public:
 	// Destructor 
 	~SharedPTR() { 
 		(*m_counter)--; 
-		if (m_counter->get() == 0) { 
+		if (*m_counter == 0) { 
 			delete m_counter; 
 			delete m_ptr; 
 		} 
@@ -146,35 +89,9 @@ public:
 	} 
 
 private: 
-	Counter* m_counter; 
+	size_t* m_counter; 
 	T* m_ptr; 
 }; 
-
-
-/*
-//SharedPTR
-template<typename T>
-class SharedPTR{
-public:
-	SharedPTR(DebugDelete d = DebugDelete()) : p(new T()), use(new size_t(1)){}
-	SharedPTR(SharedPTR& r, DebugDelete d = DebugDelete()){
-		DebugDelete()(*this);
-		p = r.p;
-		use = r.use;
-		++*r.use;
-	}
-	SharedPTR operator=(const SharedPTR& r){
-		DebugDelete()(*this);
-		p = r.p;
-		use = r.use;
-		++*r.use;
-	}
-private:
-	T* p;
-	size_t* use;
-};
-
-*/
 
 class QueryResult;      //forward declaration
 
@@ -190,7 +107,7 @@ public:
 };
 
 TextQuery::TextQuery(istream &is)
-    : FileByLine(new vector<string> ())  //standard syntax, p465!
+    : FileByLine(new vector<string> ())  
 {	
 	string Line {};
 	int LineNumber {0};
@@ -254,7 +171,6 @@ int main ()
 			break;
 		}
 		print(cout,  tq.Query (s) )<<endl;    
-		//stop holding a walking-stick, stand steadily and walk firmly
 	} 
 	
 	return 0;
