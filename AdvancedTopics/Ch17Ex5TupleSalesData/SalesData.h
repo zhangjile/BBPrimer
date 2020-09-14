@@ -65,7 +65,7 @@ std::ostream & operator<< (std::ostream &os, const SalesData &item)
     return os;
 }
 
-//its's the plain old addition operation
+//calling += operator
 SalesData operator+(const SalesData &lhs, const SalesData &rhs)
 {
 	SalesData sum = lhs;
