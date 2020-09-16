@@ -14,18 +14,23 @@ bool valid(const smatch& m){
 	if(m[1].matched) 
 		return m[3].matched && (m[4].matched == 0 || m[4].str() == " ");
 	else return !m[3].matched && m[4].str() == m[6].str();
+	//== has higher precedence over &&, !m[3].matched && (m[4].str() == m[6].str());
 }
 
 int main (){
-	//'[-. ]?' produces wrong result
-	string phone = "(\\()?(\\d{3})(\\))?([-. ]?)(\\d{3})([-. ]?)(\\d{4})";
+	string phone = "(\\()?(\\d{3})(\\))?([-. ]*?)(\\d{3})([-. ]?)(\\d{4})";
 	regex r(phone);
 	smatch m;
 	std::ifstream f("phones");
 	string str;
 	while(getline(f, str)){
 		for(sregex_iterator it(str.begin(), str.end(),r), end_it; it != end_it; ++it){
-			if(valid(*it)) cout <<"yes, " <<it->str() <<endl;
+			if(valid(*it)) {		//iterator to a smatch object
+				cout <<it->length() <<endl; //it->length(6), 6th subexpression
+				cout <<(*it)[7] <<endl;	//extract the content of sstr_match,yeah!
+				cout <<"yes, " <<it->str() <<endl;
+				
+			}
 			else cout <<"no, " << it->str() <<endl; 
 		}
 	}
