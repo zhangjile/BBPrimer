@@ -26,6 +26,8 @@ int main (){
 	std::ifstream f("phones");
 	string str;
 	while(getline(f, str)){
+		auto pos = str.find(" ");
+		cout << str.substr(0,pos) <<": "; //wow!
 		auto v = valid(r,str);
 		if(v.size() == 1) {cout <<regex_replace(v[0].str(), r, fmt); }
 		for(size_t i = 1; i < v.size(); ++i){
