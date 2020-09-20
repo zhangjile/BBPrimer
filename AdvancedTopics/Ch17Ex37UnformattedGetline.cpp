@@ -9,10 +9,10 @@ using std::cin; using std::cout;
 using std::ifstream; 
 
 int main(){
-	//returns nothing on Mobile C, test it on desktop
+	//take out the delim and it works!
 	ifstream ifs("README.md");
 	char ch[100];
-	while(ifs.getline(ch, 100, '.')){
+	while(ifs.getline(ch, 100)){
 		cout << ch[3] <<"\n";
 		cout.write(ch,100);
 	}
