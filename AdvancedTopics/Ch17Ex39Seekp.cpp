@@ -13,6 +13,7 @@ int main(){
 	
 	if(!in_out){
 		std::cerr <<"error";
+		return EXIT_FAILURE;	//good practice
 	}
 	
 	fstream::pos_type end_mark = in_out.tellg();
