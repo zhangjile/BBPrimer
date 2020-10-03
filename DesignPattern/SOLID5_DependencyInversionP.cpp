@@ -59,18 +59,22 @@ struct Research // high-level
       cout << "John has a child called " << child.name << endl;
     }
   }
-//  Research(const Relationships& relationships)
-//  {
-//    auto& relations = relationships.relations;
-//    for (auto&& [first, rel, second] : relations)
-//    {
-//      if (first.name == "John" && rel == Relationship::parent)
-//      {
-//        cout << "John has a child called " << second.name << endl;
-//      }
-//    }
-//  }
+  /*
+    //this implementation is extremely weak, 
+    //whenever a modification is made, related code will have to be updated
+  Research(const Relationships& relationships)
+  {
+    auto& relations = relationships.relations;
+    for (auto&& [first, rel, second] : relations)
+    {
+      if (first.name == "John" && rel == Relationship::parent)
+      {
+        cout << "John has a child called " << second.name << endl;
+      }
+    }
+  }
 };
+*/
 
 int main()
 {

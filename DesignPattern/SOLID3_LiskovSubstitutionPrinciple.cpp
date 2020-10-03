@@ -1,6 +1,8 @@
 ﻿// Objects in a program should be replaceable with instances of their subtypes
 // w/o altering the correctness of the program
 
+//ok, i got it, we set up the dynamic polymorhpism and the run-time binding is ready to go, but the value of some base class members are modified by accident,therefore, when some method of base class are called in which modified data members are involved, notorious chaos occur.
+
 #include <iostream>
 
 class Rectangle

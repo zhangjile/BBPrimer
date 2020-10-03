@@ -1,3 +1,5 @@
+//to create a long complicated string, which is Html code. 
+//in this case, C_string concatenation or string constructors doesn't suffice.
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,15 +18,12 @@ struct HtmlElement
 
   HtmlElement() {}
   HtmlElement(const string& name, const string& text)
-    : name(name),
-    text(text)
-  {
-  }
+    : name(name),text(text){}
 
   string str(int indent = 0) const
   {
     ostringstream oss;
-    string i(indent_size*indent, ' ');
+    string i(indent_size*indent, ' '); //a string of this number of whitespaces
     oss << i << "<" << name << ">" << endl;
     if (text.size() > 0)
       oss << string(indent_size*(indent + 1), ' ') << text << endl;
@@ -73,33 +72,34 @@ struct HtmlBuilder
 
 int main()
 {
-  // <p>hello</p>
-  auto text = "hello";
+  // <p>hallo</p>
+  auto text = "hallo";
   string output;
   output += "<p>";
   output += text;
   output += "</p>";
-  printf("<p>%s</p>", text);
+  cout << output << endl;
+  cout << endl;
 
-  // <ul><li>hello</li><li>world</li></ul>
-  string words[] = { "hello", "world" };
+  // <ul><li>hiya</li><li>world</li></ul>
+  string words[] = { "hiya", "world" };
   ostringstream oss;
   oss << "<ul>";
   for (auto w : words)
     oss << "  <li>" << w << "</li>";
   oss << "</ul>";
-//  printf(oss.str().c_str());
+  cout << oss.str() <<endl;
+  cout << endl;
 
   // easier
   HtmlBuilder builder{ "ul" };
-  builder.add_child("li", "hello").add_child("li", "world");
+  builder.add_child("li", "hello").add_child("li", "C world");
   cout << builder.str() << endl;
+  cout << endl;
 
+  auto builder2 = HtmlElement::build("ul");	//done, fixed, wahoo!
+    builder2->add_child_2("li", "hello")->add_child_2("li", "C++ world");
+  cout << builder2->str() << endl;
 
-  auto builder2 = HtmlElement::build("ul")
-    ->add_child_2("li", "hello")->add_child_2("li", "world");
-  cout << builder2 << endl;
-
-  getchar();
   return 0;
 }
