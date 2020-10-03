@@ -71,7 +71,7 @@ struct HtmlBuilder
   HtmlElement root;
 };
 
-int demo()
+int main()
 {
   // <p>hello</p>
   auto text = "hello";
@@ -88,7 +88,7 @@ int demo()
   for (auto w : words)
     oss << "  <li>" << w << "</li>";
   oss << "</ul>";
-  printf(oss.str().c_str());
+//  printf(oss.str().c_str());
 
   // easier
   HtmlBuilder builder{ "ul" };
