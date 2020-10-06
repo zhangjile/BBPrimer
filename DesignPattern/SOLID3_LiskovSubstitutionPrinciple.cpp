@@ -62,5 +62,5 @@ int main()
 /*
 analysis:
 the derived class Square is totally not necessary and totally disastrous.
-
+replay the SOLID game on daily basis until they're absolutely easy to play.
 */
