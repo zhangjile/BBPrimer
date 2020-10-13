@@ -6,3 +6,6 @@ it's something like a set of moves in go and boxing
 
 ## the value of design patterns
 design patterns are employed for a definitive purpose, or targeting a specific problem.
+
+##Emergency
+halt design pattern project, REPLAY the chapters learnt recently from the Primer, replay the data structure problems or follow the path of leetcode
