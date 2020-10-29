@@ -13,17 +13,13 @@ int main (){
     
 	auto StartTime = high_resolution_clock::now();
 	string pattern ("[^c]ei");
-	pattern = "[[:alpha:]]*" + pattern + "[[:alpha:]]*";
-	string text ="receipt freind, theif, receive, thief";
+	pattern = "([[:alpha:]]*)" + pattern + "([[:alpha:]]*)";
+	string text ="receipt, freind,. theif, receive, thief";
 	regex r(pattern, regex::icase);
-	
-	//capture the first qualified string
-	smatch Result;
-	if(regex_search(text, Result, r))
-		std::cout << Result.str() << "\n";
 
 	//capture all the qualified strings
 	for(sregex_iterator it(text.begin(), text.end(), r),end_it; it != end_it; ++it){
+		std::cout <<(*it)[2]<<"\n";
 		std::cout << it->str() << "\n";
 	}
 	//using '\n' lowers the time consumption from 53 to 50.
