@@ -7,7 +7,9 @@ using namespace std;
 int main() 
 { 
     string sp("geeksforgeeks"); 
-    regex re("(geeks)(.*)"); 	//. is required:)
+//    string sp("worldgeeksforgeeksforgeeks"); 
+    regex re("(geeks)(.*)"); 	//what does '.' mean? 
+//    regex re("(geeks)(.)"); 	//output: f
   
     smatch match; 
   
