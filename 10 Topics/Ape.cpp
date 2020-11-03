@@ -74,5 +74,10 @@ int main(){
     std::regex r9("a[a-z]+");
     PrintMatches2(text9, r9);
     
+    //challenge: validate email address
+    std::string text10 = "db@aol.com, m@com @apple.com, db@.com";
+    std::regex r10("[a-zA-Z._%+-]{1,20}@[\\w.-]{2,20}\\.[a-zA-Z]{2,3}");
+    PrintMatches2(text10, r10);
+    
     return 0;
 }
