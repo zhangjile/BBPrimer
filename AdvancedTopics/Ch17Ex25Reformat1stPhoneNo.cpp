@@ -23,6 +23,7 @@ int main (){
 	string phone("(\\()?(\\d{3})(\\))?([-. ]?)(\\d{3})([-. ]?)(\\d{4})");
 	regex r(phone);
 	string fmt = "$2-$5-$7 ";
+//	fmt = "($2)$5-$7";	//yeah (201)555-0168
 	std::ifstream f("phones");
 	string str;
 	while(getline(f, str)){
