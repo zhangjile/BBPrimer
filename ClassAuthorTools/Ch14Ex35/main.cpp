@@ -11,15 +11,24 @@ using std::string; using std::vector;
 
 class ReadLine{
 public:
-    ReadLine (std::istream& i = std::cin) : is {i} {}
+    ReadLine (std::istream& i = std::cin, std::string st = "") : is {i}, s{st}{}
+    // constructor for 'ReadLine' must explicitly initialize the reference member 's'
     string operator()() const {
-        string s;
         std::getline(is,s);
-        return is ? s : string ("");
+        return s;
     }
     
 private:
     std::istream& is;
+    std::string& s;	// make it a reference for getline method, otherwise error
+};
+
+//overloading call operator
+class AbInt{
+public:
+	int operator()(int val){
+		return (val>0) ? val:-val;
+	}
 };
 
 int main (){
@@ -29,6 +38,9 @@ int main (){
     //Ex14.36
     v.push_back(rd());
     std::cout<< v[0].size() <<std::endl;
+//    int arg = -8;
+    AbInt a;
+    std::cout << a(-8);
     
     return 0;
 }

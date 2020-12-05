@@ -22,27 +22,27 @@ int main (){
 	while(std::cin >> text){
 		if(text == "q") break;	//yeah!
 		if(regex_search(text, Result, r)){
-			std::cout << Result.str()<<", ok" << std::endl;
+			std::cout << Result.str()<<", misspelling" << std::endl;
 		}
 		else{
-			std::cout << "no" << std::endl;
+			std::cout << "correct" << std::endl;
 		}
 	}
 	
 	/* tests
 	
 	nice
-	no
+	correct
 	receive
-	no
+	correct
 	recieve
-	no
+	correct
 	theif
-	theif, ok
+	theif, misspelling
 	freind
-	freind, ok
+	freind, misspelling
 	friend
-	no
+	correct
 	
 	*/
 	
