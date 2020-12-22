@@ -1,6 +1,6 @@
 ﻿//Section 17.3.3 Using Subexpressions
 //Ex17.19, p741, Why is it ok to call m[4].str() without checking whether m[4] was matched?
-//because there are 7 subexpressions in the pattern, the 4th subexpression is sure to be matched.
+//because optional subexpressions are not required to match
 //Ex17.20, Write your own version of the program to validate phone numbers
 
 #include <iostream>
