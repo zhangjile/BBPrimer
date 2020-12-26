@@ -1,7 +1,7 @@
 ﻿
 //Section 17.5.3 Random access to a stream
 //Ex17.39, p 768, write your own version of seek program presented in this section
-
+//pulled out a prick today, the code finally produces the expected result '5 9 12 14'.
 #include <iostream>
 #include <fstream>
 #include <string>
