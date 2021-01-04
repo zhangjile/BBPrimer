@@ -7,54 +7,55 @@
 
 using std::string; using std::cout; using std::endl; using std::ostringstream;
 
-template<typename T>
+template<typename T>	//1
 string DebugRep(const T& t){
     ostringstream s;
-    s << "const T&, ";
+    s << "const T&, " <<"\n";
     s << t;
     
     return s.str();
 }
 
-template<typename T>
+template<typename T>	//2
 string DebugRep (T* t){
-//    string s;
-//    s = "T* " + *t;
     ostringstream s;
-    s << "T*, " << t;
+    s << "T*, " << t <<"\n";
     if(t)
-        s << ", "<< *t;
+        s << DebugRep(*t) ;
     else
         s << "NULL";
     
     return s.str();
 }
 
+//3, if 3 is not seen when 5 is called, 1 will be called.
 string DebugRep(const string& s){
     cout << "const string&, ";
     return "'" + s + "'"; 
 }
 
-string DebugRep(char* s){
+string DebugRep(char* s){	//4
+	cout << "char*, ";
     return DebugRep(string(s));
 }
 
-string DebugRep(const char* s){
+string DebugRep(const char* s){		//5
+	cout << "const char*, ";
     return DebugRep(string(s));
 }
 
 
 int main (){
-    cout << DebugRep("Hello world!")<<endl;
-    
+//    cout << DebugRep("Hello world!")<<endl; //5 and 3 relay
+   
     string st("Hello!");
-    cout << DebugRep(st)<<endl;
-    
+//    cout << DebugRep(st)<<endl;	//3
+   
     string* stp = nullptr;
-    cout << DebugRep(stp)<<endl;
+//    cout << DebugRep(stp)<<endl;		//2
     
     stp = &st;    
-    cout << DebugRep(stp)<<endl;
+    cout << DebugRep(stp)<<endl;		//2 and 1 relay
     
     return 0;
 }
