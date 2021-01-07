@@ -11,7 +11,7 @@
 using namespace std;
 
 //cplusplus.com, this test code makes EOF and 'is.eof()' visible
-void test(){
+void TestEOF(){
   std::ifstream is("OpenFile"); 
   char c;
   //loop getting single characters
@@ -46,16 +46,30 @@ istream& hit(istream& i){
     return i;
 }
 
+//testflight for tie()
 
-int main(){
-	
-//    hit(cin); //bare bone calling method:)
-    //reference call method
+void TestTie(){
+	std::ostream *prevstr;  //nice pointer
+    std::ofstream ofs;
+    ofs.open ("test.txt");
+
+    std::cout << "tie example:\n";
+
+    *std::cin.tie() << "This is inserted into cout";
+    prevstr = std::cin.tie (&ofs);//store
+    *std::cin.tie() << "This is inserted into the file";
+    std::cin.tie (prevstr); //restore
+
+    ofs.close();
+}
+
+int main(){	
     istream& is = hit(std::cin);
     //display the machine-specific integer
     std::cout<<"iostate: " << is.rdstate() << std::endl;
   
     
-//    test();
+//    TestEOF();
+//    TestTie();
     return 0;
 }
