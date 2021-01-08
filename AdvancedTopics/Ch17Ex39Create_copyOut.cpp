@@ -5,9 +5,10 @@
 #include <string>
 using namespace std;
 
-void Create(){
+//this function creates data file manually
+void CreateBackUp(){
 	ofstream ofs;
-	ofs.open("copyOut");
+	ofs.open("Ch17Ex39Backup");
 	string s{};
 	for(size_t i=0; i < 4; ++i){
 		cin >>s;
@@ -15,7 +16,20 @@ void Create(){
 	}
 }
 
+//create a copy and try out everything on the copy
+void Create(){
+	ofstream ofs;
+	ofs.open("copyOut");
+	ifstream b("Ch17Ex39Backup");
+	string s{};
+	for(size_t i=0; i < 4; ++i){
+		getline(b,s);
+		ofs << s <<"\n";
+	}
+}
+
 int main(){
+	//CreateBackUp();
 	Create();
 	return 0;
 }

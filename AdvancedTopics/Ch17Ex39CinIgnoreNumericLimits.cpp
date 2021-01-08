@@ -18,7 +18,7 @@ void TestIgnore1(){
 void TestIgnore2(){
 	int T, i = 1;
     string line;
-	ofstream OpenF("OpenFile");
+	ofstream OpenF("copyOut");
     cin >> T;
 	std::cin.ignore(std::numeric_limits<streamsize>::max(),'\n' );
     while (i <= T) {

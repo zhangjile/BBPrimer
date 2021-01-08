@@ -1,5 +1,5 @@
-//9.36 Container operations may invalidate iterators, p354
-//Ex 9.31 implement same operations using list and forward_list
+//Chapter 9.3.6 Container operations may invalidate iterators,
+//Ex 9.31, p356, implement same operations using list and forward_list
 #include <iostream>
 #include <vector>
 #include <list>
@@ -7,7 +7,7 @@
 using std::vector; using std::list; using std::forward_list;
 
 //traverse a vector<int>, erase the even elements and add duplicate of each odd after itself
-void EraseEvenAddOddDuplicate (vector<int> &vi){
+void EraseEvenAddOdd (vector<int> &vi){
 	vector<int>::iterator iter = vi.begin();
 	while(iter != vi.end()){
 		if(*iter % 2){
@@ -20,29 +20,31 @@ void EraseEvenAddOddDuplicate (vector<int> &vi){
 	}
 }
 
-//insert an int 0 after each element of a vector<int>
-
+//insert 42 after each element of a vector<int>
 void Insert42(vector<int> &vi){
 	auto Begin = vi.begin();
 	while (Begin != vi.end()){
 		++Begin;
-		Begin = vi.insert(Begin, 0);
+		//moves the iterator, doesn't modify vi.
+		Begin = vi.insert(Begin, 42);
 		++Begin;
 	}
 }
 
-void ListEraseEvenAddOdd (list<int> &li){
+void EraseEvenAddOdd (list<int> &li){
 	list<int>::iterator it = li.begin();
 	while(it != li.end()){
 		if(*it % 2) {
-			li.insert(it, *it); //it is fresh and valid
+			//it = li.insert(it, *it)' modifies li!
+			li.insert(it, *it); 
 			++it;
 		}
-		else it = li.erase(it); //refresh it is a must
+		//a list node has two pointers pointing to the neighboring nodes
+		else it = li.erase(it); 
 	}
 }
 
-void ForwardListEraseEvenAddOdd (forward_list<int> &fi){
+void EraseEvenAddOdd (forward_list<int> &fi){
 	forward_list<int>::iterator prev = fi.before_begin();
 	auto curr = fi.begin();
 	while(curr != fi.end()){
@@ -57,37 +59,31 @@ void ForwardListEraseEvenAddOdd (forward_list<int> &fi){
 	}
 }
 
+template<typename T>
+void Display(const T& t){
+	for(const auto& e:t){
+		std::cout << e << " ";
+	}
+	std::cout << std::endl;
+}
 
 int main (){
 	vector<int> v = {1,2,3,4,5,6,7,8};
 	list<int> li;
 	li.assign(v.begin(), v.end()); //play with assign
-	forward_list<int> fi;
-	fi.assign(v.begin(), v.end());
+	forward_list<int> fi(v.begin(), v.end()); //initialization
 	
-	EraseEvenAddOddDuplicate(v);
-	for(const int &e : v){
-		std::cout<< e << " ";
-	}
-	std::cout << std::endl;
+	EraseEvenAddOdd(v);
+	Display(v);
 	
 	Insert42(v);
-	for(const int &e : v){
-		std::cout<< e << " ";
-	}
-	std::cout << std::endl;
+	Display(v);
 	
-	ListEraseEvenAddOdd(li);
-	for(const int &e : li){
-		std::cout<< e << " ";
-	}
-	std::cout << std::endl;
+	EraseEvenAddOdd(li);
+	Display(li);
 	
-	ForwardListEraseEvenAddOdd(fi);
-	for(const int &e : li){
-		std::cout<< e << " ";
-	}
-	std::cout << std::endl;
+	EraseEvenAddOdd(fi);
+	Display(fi);
 	
 	return 0;
 }
