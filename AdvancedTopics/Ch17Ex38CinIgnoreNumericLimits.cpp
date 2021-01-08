@@ -1,4 +1,6 @@
-﻿//signature of cin.ignore():
+﻿
+//Chapter 17.5.2, unformatted IO operations, p763,
+//signature of cin.ignore():
 //istream& ignore (streamsize n = 1, int delim = EOF);
 #include <iostream>
 #include <limits>
@@ -12,22 +14,21 @@ void TestIgnore1(){
 	cout<<"NAME:"<<name; // THIS PRINTS 'im' for 'Kim'
 }
 
-//This fuction creates copyOut in 'pure' machine file format, assign 4 to T and type abcd efg hi j in 4 lines
+//https://stackoverflow.com/questions/5918451/why-getline-skips-first-line?noredirect=1&lq=1
 void TestIgnore2(){
 	int T, i = 1;
     string line;
-	ofstream OpenF("copyOut");
+	ofstream OpenF("OpenFile");
     cin >> T;
 	std::cin.ignore(std::numeric_limits<streamsize>::max(),'\n' );
     while (i <= T) {
         getline(cin,line);
-        OpenF << line << endl;
+        OpenF << line <<std::endl;
         i++;
     }
 }
-
 int main () {
-    
+//    TestIgnore1();
 	TestIgnore2();
     return 0;
 }
