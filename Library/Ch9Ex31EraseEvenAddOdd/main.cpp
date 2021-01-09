@@ -1,5 +1,6 @@
 //Chapter 9.3.6 Container operations may invalidate iterators,
-//Ex 9.31, p356, implement same operations using list and forward_list
+//Ex 9.31, p356, the program on p354 to remove even-valued elements and duplicate odd ones will not work on a list or forward_list. Why?
+//implement same operations using list and forward_list
 #include <iostream>
 #include <vector>
 #include <list>
@@ -20,26 +21,15 @@ void EraseEvenAddOdd (vector<int> &vi){
 	}
 }
 
-//insert 42 after each element of a vector<int>
-void Insert42(vector<int> &vi){
-	auto Begin = vi.begin();
-	while (Begin != vi.end()){
-		++Begin;
-		//moves the iterator, doesn't modify vi.
-		Begin = vi.insert(Begin, 42);
-		++Begin;
-	}
-}
-
 void EraseEvenAddOdd (list<int> &li){
 	list<int>::iterator it = li.begin();
 	while(it != li.end()){
 		if(*it % 2) {
-			//it = li.insert(it, *it)' modifies li!
+			//it = li.insert(it, *it)' modifies node li points to!
 			li.insert(it, *it); 
 			++it;
 		}
-		//a list node has two pointers pointing to the neighboring nodes
+		//a node object in a list has two pointer members: left, right
 		else it = li.erase(it); 
 	}
 }
@@ -74,9 +64,6 @@ int main (){
 	forward_list<int> fi(v.begin(), v.end()); //initialization
 	
 	EraseEvenAddOdd(v);
-	Display(v);
-	
-	Insert42(v);
 	Display(v);
 	
 	EraseEvenAddOdd(li);

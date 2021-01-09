@@ -11,6 +11,7 @@ void InsertAfter (forward_list<string> & fl, string a, string b){
 	while (curr != fl.end()){
 		if(*curr == a){
 			curr = fl.insert_after(curr,b);
+			++prev; //optional, wow, in-depth skilled tracking:)
 			++cnt;
 		}
 		else{
@@ -34,3 +35,12 @@ int main (){
 	std::cout<<std::endl;
 	return 0;
 }
+
+/*
+This is an even more engaging story, choose a robust implementation.
+everything is fine if the user calls the function normally, but what if the user accidentally calls 'InsertAfter(fl, a,a)', well, there will be an endless loop, the program crashes!
+another route is, take away else operator and the curly brackets, which means the code after if block will be executed in every run, and it's a great idea that can prevent the crash from happening when a user makes a mistake.
+
+and this code block clarifies one piece of truth, if statement and else statement are exclusive and non-compatible, just like elements in a sample space. ie, if else operator is not taken away, the else block will not be executed if if condition is true, which is quite obvious and now 1000% certain.
+
+*/
