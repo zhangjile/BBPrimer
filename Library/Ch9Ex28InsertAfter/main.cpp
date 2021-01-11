@@ -29,7 +29,7 @@ int main (){
 	string a = "Mike";
 	string b {"Great"};
 	InsertAfter(fl, a, b);
-	for(const auto e: fl){
+	for(const auto& e: fl){
 		std::cout<< e <<" ";
 	}
 	std::cout<<std::endl;

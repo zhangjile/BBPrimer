@@ -1,21 +1,29 @@
-//chapter 9.4 How a vector grows 
-//Ex 9.38: write a program to explore how vectors grow in the library you use. P359
+// Exercise 9.38:
+// Write a program to explore how vectors grow in the library you use.
+
 #include <iostream>
+#include <string>
 #include <vector>
-using std::vector;
 
-void VectorGrow();
+int main()
+{
+    std::vector<std::string> v;
+//    for (std::string buffer; std::cin >> buffer; v.push_back(buffer))
+        std::cout << v.capacity() << std::endl;
 
-int main (){
-	vector<int> vi = {1,2,3};
-	std::cout << vi.capacity() <<std::endl;	//3
-	vi.resize(5);
-	std::cout << vi.size() << std::endl;	//5
-	std::cout << vi.capacity() <<std::endl;	//6
-	for(const auto e : vi){
-		std::cout<< e <<std::endl;
-	}
-	vi.reserve(50);
-	std::cout << vi.capacity() <<std::endl;	//50
-	return 0;
+    v.reserve(50);
+    std::cout<< v.capacity() <<std::endl;
+
+    for(auto i = 0; i != 50; ++i){
+    	v.push_back("Stop ");
+    }
+    std::cout<< v.capacity() <<std::endl;
+    v.push_back ("the steal!");
+    std::cout<< v.capacity() <<std::endl;
+
+    for(const std::string& s:v){
+    	std::cout<< s;
+    }
+    std::cout << std::endl;
+    return 0;
 }
