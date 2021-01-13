@@ -13,13 +13,15 @@ void FindFirstOf (const string &s){
 		Numeric.push_back(s[pos]);
 		++pos;
 	}
-	/*
+	
 	pos = 0;
 	while((pos = s.find_first_not_of(("0123456789"),pos))!= string::npos){
 		Alphabetic.push_back(s[pos]);
 		++pos;
 	}
-	*/
+	
+	/*
+	// o(n squared) implementation, clumsy, silly, abandoned!
 	int j = 0;
 	string temp = s;
 	for(int i = 0; i < temp.size(); ++i){
@@ -34,6 +36,7 @@ void FindFirstOf (const string &s){
 		if(temp[i] != '@')
 			Alphabetic.push_back(temp[i]);
 	}
+	*/
 	
 	Display(Numeric);
 	Display(Alphabetic);
@@ -46,10 +49,35 @@ void Display(const string &s){
 	std::cout<<std::endl;
 }
 
-void FindFirstNotOf (const string &s);
+//s.find_first_of(s2,pos,n)
+void FindFirstOf_n(const string& s, size_t n){
+	string::size_type pos = 0;
+	if(s.find_first_of(("0123456789"),2,n) != std::string::npos)
+		std::cout << s.find_first_of(("0123456789"),2,n) << std::endl;
+	else
+		std::cout << "not found" <<std::endl;
+}
+
+
+//gratitude to the author
+void cplusplus_example (){
+  std::string str ("Please, replace the vowels in this sentence by asterisks.");
+  std::size_t found = str.find_first_of("aeiou");
+  while (found!=std::string::npos)
+  {
+    str[found]='*';
+    found=str.find_first_of("aeiou",found+1);
+  }
+
+  std::cout << str << '\n';
+
+}
 
 int main() {
-	string source = "ab2c3dR4E6";
-	FindFirstOf(source);
+	string s = "ab8c7dR6E4";
+	FindFirstOf(s);
+	FindFirstOf_n(s, 7);	//9, if n=4 -> not found
+	
+	cplusplus_example();
 	return 0;
 }

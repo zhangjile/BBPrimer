@@ -1,8 +1,43 @@
-﻿//more methods to manipulate strings
+﻿//Ch9Ex41, this exercise is a great step forward. 
+//more methods to manipulate strings
 #include <iostream>
 #include <string>
 #include <vector>
 using std::string;
+
+//It's a proof of the technique/methology of simplifying problems.
+//this is a simplified/basic version of a problem,very EASY to work out
+string ExpectedS1(string s, string OldVal, string NewVal){
+	//calculate the index manually to understand
+	s.erase(3, 4);
+	std::cout << s <<std::endl;		
+	s.insert(4, NewVal);
+	return s;
+}
+
+string ExpectedS2(string s, string OldVal, string NewVal){
+	s.replace(3,4,NewVal);
+	return s;
+}
+
+string ExpectedS3(string s, string OldVal, string NewVal){
+	while(s.find(OldVal) != string::npos){
+		s.replace(s.find(OldVal),OldVal.size(),NewVal);
+	}
+	return s;
+}
+
+
+int main (){
+	string s = "go thru the tunnel", OldVal ="thru", NewVal = "through";
+	std::cout << ExpectedS3(s, OldVal, NewVal) <<std::endl;
+	
+//	ExampleP360();
+//	ExamplesP362();
+
+	return 0;
+}
+
 
 void ExampleP360(){	//Primer, 
 	const char* cp = "Hello, Mr. Donald Trump!!!";
@@ -63,37 +98,5 @@ void ExamplesP362(){
 //	st2.replace(11, 3, "5th");	//replace 3 characters with 3 characters identically.
 	std::cout << st2 << std::endl;
 	
-}
-
-//Ch9Ex41, this exercise is a great step forward. 
-//It's a proof of the technique/methology of simplifying problems.
-string ExpectedS1(string s, string OldVal, string NewVal){
-	s.erase(3, 4);
-	std::cout << s <<std::endl;		//calculate the index manually to understand
-	s.insert(4, NewVal);
-	return s;
-}
-
-string ExpectedS2(string s, string OldVal, string NewVal){
-	s.replace(3,4,NewVal);
-	return s;
-}
-
-string ExpectedS3(string s, string OldVal, string NewVal){
-	while(s.find(OldVal) != string::npos){
-		s.replace(s.find(OldVal),OldVal.size(),NewVal);
-	}
-	return s;
-}
-
-
-int main (){
-	string s = "go thru the tunnel", OldVal ="thru", NewVal = "through";
-	std::cout << ExpectedS3(s, OldVal, NewVal) <<std::endl;
-	
-//	ExampleP360();
-//	ExamplesP362();
-
-	return 0;
 }
 
