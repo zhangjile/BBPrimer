@@ -15,13 +15,23 @@ void double_and_insert(std::vector<int>& v, int some_val){
 	}    
 }
 
-int main(){
-	std::vector<int> vi = { 9,1,2,9,  3,1,4,9,  5,6,  7,8,9,9,  1,1,9,9 }; 
-    double_and_insert(vi, 9);
-	for(auto it = vi.begin(); it != vi.end(); ++it){
-		std::cout<<*it <<std::endl;
+//if we swap vi[6] and vi[7](ie, 9 and 4), in the next trip, mid will vi[10] (9), but iter will be vi[11] (5), in this case, iter will never be == to mid, ...crash! 
+//18 9 1 2 18 9 3 1 4 18 9 5 6 7 8 9 9 1 1 9 9 
+void double_and_insert_lambda(std::vector<int>& v, int some_val){
+	auto mid = [&]{return v.begin() + v.size()/2;};
+	for(auto iter = v.begin(); iter != mid(); ++iter){
+		if(*iter == some_val){
+			++(iter = v.insert(iter, some_val*2));
+		}
 	}
-
+}
+int main(){
+	std::vector<int> vi = { 9,1,2,9,  3,1,9,4,  5,6,  7,8,9,9,  1,1,9,9 }; 
+    double_and_insert_lambda(vi, 9);
+	for(auto it = vi.begin(); it != vi.end(); ++it){
+		std::cout<<*it << " ";
+	}
+	std::cout<<std::endl;
 	return 0;
 }
 

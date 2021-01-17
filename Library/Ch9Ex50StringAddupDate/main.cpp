@@ -45,15 +45,23 @@ Date::Date(const string &str){
 	year = stoi(alpha.substr(alpha.size()-4,4)); //the last 4 digits represent year
 	alpha.resize(alpha.size()-4);
 	
-	day = stoi(alpha.substr(alpha.find_first_of(numbers)));
+	//
+	day = stoi(alpha.substr(alpha.find_last_of(numbers)));
+	// remove 2 characters/digits in the end, eg,'18','01', ',5'
+	alpha.resize(alpha.size()-2); 
+	//if the month is the number in the beginning of the string
+	if(isdigit(str[0]))
+		month = stoi(alpha.substr(alpha.find_first_of(numbers)));
+	//otherwise, the month is a word
+	else{
+		vector<string> m = {"jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"};
 	
-	vector<string> m = {"jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"};
-	
-	for(int i = 0; i < m.size(); ++i){
-		if(alpha.find(m[i])!= string::npos){ //if(alpha.find(m[i])), wrong!
-			month = i + 1;
-			break;
-		}		
+		for(int i = 0; i < m.size(); ++i){
+			if(alpha.find(m[i])!= string::npos){ //if(alpha.find(m[i])), wrong!
+				month = i + 1;
+				break;
+			}		
+		}
 	}
 }
 
@@ -61,16 +69,7 @@ void Date::DisplayDate(){
 	std::cout<<"The date: " <<month <<"/" <<day <<"/"<<year<<"\n"<<std::endl;
 }
 
-int main ()
-{
-	//Add
-	vector<string> vs {"12","34","50"};
-	std::cout <<AddUp(vs)<<std::endl;
-	
-	//Date
-	Date today("June the. /04, 1989");
-	today.DisplayDate();
-	
+void VerifyExample(){
 	//verifying the example code
 	string name = "HongKong2020Freedom";
 	string numbers = "0123456789";
@@ -84,6 +83,22 @@ int main ()
 	
 	auto i = stoi(name.substr(name.find_first_of(numbers),2)); //2020, numbers only
 	std::cout << i << std::endl;
+	
+}
+
+int main ()
+{
+	//Add
+	vector<string> vs {"12","34","50"};
+	std::cout <<AddUp(vs)<<std::endl;
+	
+	//Date
+	Date today("June the. /04, 1989");
+	today = Date("06, 04, 1989");
+	today.DisplayDate();
+	
+	//recap the code in example
+	VerifyExample();
 	
 	return 0;
 }
