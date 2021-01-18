@@ -8,6 +8,8 @@
 		
 		<title>FlashCard</title>
 	</head>
+		
+		
 	<body>
 		<h1> Hello World again!</h1>
 		<p>Math is a <small>game</smalll>, an <big><b><i>interesting</i></b></big> game</p>
@@ -35,6 +37,34 @@
 			</nav>
 		</header>
 		
+		<!-- test1, set the style for h2 tag: h2 {color:red;} -->
+		<!-- test2, css class, reusable style that can be used on html elements, eg, .red-text  -->
+		<!-- <link href="https;//fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css"> -->
+		<!-- h2 {font-family:Lobster;} -->
+		<!--  -->
+		<style>
+		
+			.thick-green-border{
+				border-color:green; 
+				border-width:5px; 
+				border-style:solid;
+			}
+			.red-text{
+				color: red;
+			}
+			
+			p {
+				font-size:30px;
+				font-family:Helvetica,monospace;
+				
+				
+				
+			}
+			.large-image{
+				width:500px;
+			}
+		</style>
+		
 		<main>
 			<article>
 				<section>
@@ -44,9 +74,11 @@
 			</article>
 			
 			<article>
-				<!--a stands for attribute-->
-				<h2 style="color:green"> Links </h2>
-				<p><a href="https://www.sohu.com">Pteranodon</a></p>
+				<!--a stands for anchor-->
+				<h2> Links </h2>
+				
+				<!-- test2, .red-text for a tag, it doesn't work on exterior p tag-->
+				<p><a class="red-text" href="https://www.sohu.com">green fox</a></p>
 				
 				<a href="https://www.sohu.com" target="_blank">Pteranodon</a>
 				<br/>
@@ -59,7 +91,7 @@
 				<h2 style="color:green"> Images </h2>
 					<h3></h3>
 				<!-- the ending / is required -->
-				<img width="100" height="100" src="https://www.mathy.com/cat.jpeg" alt="a cute cat" />
+				<img width="100" height="100" src="https://www.hellokitty.com/cat.jpeg" alt="a cute cat" />
 				<br/>
 				<img width="100" src="img.png" alt="automatic adjustment" />
 			</article>
@@ -68,7 +100,7 @@
 			<article>
 				<p>this image is a link to sohu</p>
 				<a href="https://www.sohu.com" target="_blank">
-					<img width="100" src="img.png" alt="automatic adjustment" />
+					<img class="large-image thick-green-border" width="100" src="img.png" alt="automatic adjustment" />
 				</a>
 			</article>
 			
@@ -142,7 +174,7 @@
 				<span>span3</span>
 				<br/>
 				
-				<p>div is a block containter/wrapper</p>
+				<p class="red-text">div is a block containter/wrapper</p>
 				<div>div1</div>
 				<div>div2</div>
 				<div>div3</div>
