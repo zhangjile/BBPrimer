@@ -59,6 +59,7 @@ void BookstoreV3 (){
 	list<Sales_item> l;
 	l.assign(v.begin(),v.end());
 	copy(l.begin(), l.end(), back_inserter(v));
+	items.close();	//close the ifstream here
 	
 	//sort
 	stable_sort(v.begin(), v.end(), [](const Sales_item &a, const Sales_item &b){return a.isbn() < b.isbn();});
@@ -75,14 +76,32 @@ void BookstoreV3 (){
 		cout<< accumulate(front, back, Sales_item (front->isbn())) << endl;
 	}
 
-	items.close();
+}
+
+void MyPitch(){
+	ifstream items {"book_sales"};
+	vector<Sales_item> v;
+	istream_iterator<Sales_item> it(items), EOD;
+	copy(it, EOD, back_inserter(v));
+	items.close();	//close the stream
+
+	std::stable_sort(v.begin(), v.end(), [](const Sales_item& a, const Sales_item& b){return a.isbn()< b.isbn();});
+	Sales_item sum = v[0];
+	for(auto iter= v.begin(); iter != v.end();){
+		auto last = find_if_not(iter,v.end(), [sum](const Sales_item& s){return s.isbn() == sum.isbn();});
+		std::cout << accumulate(iter, last, Sales_item (sum.isbn())) <<endl;
+		iter = last;
+		sum = *iter;
+	}
 }
 
 int main() 
 {
 //	BookstoreV1();
 //	BookstoreV2();
+	cout <<endl;
 	BookstoreV3();
+	MyPitch();
 	return 0;
 
 }
