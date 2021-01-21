@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="math" >
+		<meta name="author" content="Anki" >
+		<meta name="keyword" content="memorization, recap, math">
+		
+		<title>FlashCard</title>
+	</head>
+		
+		
+	<body>
+		<h1> Hello World again!</h1>
+		<p>Math is a <small>game</smalll>, an <big><b><i>interesting</i></b></big> game</p>
+		<hr/>
+		<h2>basics: new line, horizontal line, etc</h2>
+		<p>x<sup>2</sup></p>
+		<p>H2O</p>
+		<p>H<sub>2</sub>O</p>
+		<h2> style and color</h2>
+		
+		<!-- comment sparingly/note/reference -->
+		
+		<p><i>shortcut: ctrl + r = refresh</i> </p>
+		<!--assigning or spedifying attribute/parameter/property value  -->
+		<H2 style="color:green">Style and color</H2>
+		
+		<!--local value overrides global setting, eg, <body style="background-color:lightgreen"> is overriden in this container-->
+		<p style="color:red; background-color:blue;">set style attribute </p>
+		
+		
+		<!-- using structure tags is best practice, which achives better organized, improved readability. it's a part of search engine optimization -->
+		<H2 style="color:green">Format a page</H2>
+		<header>
+			<nav>
+			</nav>
+		</header>
+		
+		<!-- test1, set the style for h2 tag: h2 {color:red;} -->
+		<!-- test2, css class, reusable style that can be used on html elements, eg, .red-text  -->
+		<!-- <link href="https;//fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css"> -->
+		<!-- h2 {font-family:Lobster;} -->
+		<!--  -->
+		<style>
+			[type='radio']{
+				margin:30px;
+			}
+			.yellow-box{
+				background-color: yellow;
+				
+			}
+			#sohu{
+				color:green;
+			}
+			.silver-background{
+				background-color:silver;
+			}
+			.thick-green-border{
+				border-color:green; 
+				border-width:5px; 
+				border-style:solid;
+				border-radius:10px;
+			}
+			.red-text{
+				color: red;
+			}
+			
+			p {
+				font-size:30px;
+				font-family:Helvetica,monospace;
+				
+				
+				
+			}
+			.large-image{
+				width:500px;
+			}
+		</style>
+		
+		<main>
+			<article>
+				<section>
+					<aside>
+					</aside>
+				</section>
+			</article>
+			
+			<article>
+				<!--a stands for anchor-->
+				<h2 class="silver-background"> Links </h2>
+				
+				<!-- test2, .red-text for a tag, it doesn't work on exterior p tag-->
+				<p><a id="sohu" class="red-text" href="https://www.sohu.com">green fox</a></p>
+				
+				<a href="https://www.sohu.com" target="_blank">Pteranodon</a>
+				<br/>
+				<a href="dir1/page2.html">Page2</a>
+				<a href="dir2/cat.jpeg">Cat</a>
+					<h3> </h3>
+						<h4></h4>
+			</article>
+			<article>
+				<h2 style="color:green"> Images </h2>
+					<h3></h3>
+				<!-- the ending / is required -->
+				<img width="100" height="100" src="https://www.hellokitty.com/cat.jpeg" alt="a cute cat" />
+				<br/>
+				<img width="100" src="img.png" alt="automatic adjustment" />
+			</article>
+			
+			<!--img.png is a link to www.sohu.com-->
+			<article>
+				<p >this image is a link to sohu</p>
+				<a href="https://www.sohu.com" target="_blank">
+					<img class="large-image thick-green-border" width="100" src="img.png" alt="automatic adjustment" />
+				</a>
+			</article>
+			
+			<article>
+				<h2 style="color:green"> Embedding Videos </h2>
+				<video src="30k_M.MP3" poster="Elkmont-fireflies.jpg" controls width="300" alt="what.mp4">video sample</video>
+				<hr/>
+				
+			</article>
+			
+			<article>
+				<h2 style="color:green"> Lists </h2>
+				<!--ul stands for unordered list, ol for ordered list -->
+				<ol type="A">
+					<li>Apples</li>
+					<li><a href="https://www.orange.com/">Oranges</a></li>
+					<li>Watermelon</li>
+				</ol>
+			</article>
+			
+			<article>
+				<!--dl is description list, dt is description item -->
+				<dl>
+					<dt>Apples </dt>
+					<dd>-red-colored</dd>
+					<dd>-green-colored</dd>
+				</dl>
+			</article>
+				<h2 style="color:green"> Tables </h2>
+				<!--tr:table row, th:table header, td:table data, -->
+				<table>
+					<thead>
+ 						<caption><h3>List of Numbers</h3> </caption>
+						<tr>
+							<th>one </th>
+							<th>two </th>
+							<th>three </th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="2">one </td>
+							<td>two </td>
+							<td>three </td>
+							<td>three and a half </td>
+						</tr>
+						<tr>
+							<td>one </td>
+							<td>two </td>
+							<td>three </td>
+						</tr>
+					</tbody>
+				</table>
+			<article>
+				<h2 style="color:green"> containers in html: div and span </h2>
+				<p>Inline tags takes as much space as is needed</p>
+				<p>block tags takes the entire width(whole column space) of the page</p>
+				<p>Here are some examples:</p>
+				
+				<a href="https://www.orange.com/">Oranges</a>
+				<a href="https://www.apple.com/">and apples</a>
+				<hr/>
+				<p>paragraph1</p>
+				<p>paragraph2</p>
+				<p class="yellow-box">We can see that no matter how much space there is after paragraph1, paragraph2 won't go after paragraph1 in the same line</p>
+				<br>
+				
+				<p>span is inline container/wrapper</p>
+				<span>span1</span>
+				<span>span2</span>
+				<span>span3</span>
+				<br/>
+				
+				<p class="red-text">div is a block containter/wrapper</p>
+				<div class="silver-background">div1</div>
+				<div>div2</div>
+				<div>div3</div>
+			</article>
+			
+			<article>
+				<h2 style="color:green"> Input and Forms </h2>
+				<input type="text" />
+				<input name="btn" type="radio" />
+				<input name="btn" type="radio" />
+				<p>Input tag is a single tag</p>
+				<form>
+					<input type="date" />
+				</form>
+			</article>
+			
+			<br/>
+			<br/>
+		</main>
+		
+		<footer>
+		</footer>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
