@@ -1,4 +1,4 @@
-//Chapter 10.4.2 iostream iterators 
+//Chapter 10.4.2, p407, iostream iterators 
 //Ex10.33 write a program that takes the names of an input file and two output files.
 // the input file should hold integers. using istream_iterator read the input file
 // using ostream_iterator write the odd numbers into the first output file, each value should be followed by a space

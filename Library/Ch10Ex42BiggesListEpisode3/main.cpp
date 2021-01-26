@@ -10,8 +10,8 @@
 using std::string; using std::list; using std::stable_sort; using std::unique; 
 using std::replace;
 
-void Display (const list<string> &v){
-	for(const string s : v){
+void Display (const list<string> &Words){
+	for(const string s : Words){
 		std::cout << s << " ";
 	}
 	std::cout << "\n";
@@ -23,39 +23,39 @@ bool IsShorter(const string &s1, const string &s2){
 
 //I'm in love with algorithms.
 //algorithms are ballistic bombs, which hit the targets and get things done.
-void EliminateDups (list<string> &v){
-	v.sort();
-	v.unique();	
-	v.sort(IsShorter); 
+void EliminateDups (list<string> &Words){
+	Words.sort();
+	Words.unique();	
+	Words.sort(IsShorter); 
 }
 
-void Biggies(list<string> &v, size_t sz){
-	EliminateDups(v);
-	v.remove_if([sz](const string &s){return s.size() < sz;});
-	size_t Count = v.size(); 
+void Biggies(list<string> &Words, size_t sz){
+	EliminateDups(Words);
+	Words.remove_if([sz](const string &s){return s.size() < sz;});
+	size_t Count = Words.size(); 
 	std::cout << Count << std::endl;
 
-	Display(v);
+	Display(Words);
 	std::cout << std::endl; 	
 }
 
 int main(){
-	list<string> v = {"Win","Will","President","Trump","Win", "Win", "United", "States","Donald","Win"};
-	//v = {"the","quick","red","fox","jumps","over","the","slow","red","turtle"};
-	Display(v);
+	list<string> Words = {"Win","Will","President","Trump","Win", "Win", "United", "States","Donald","Win"};
+	//Words = {"the","quick","red","fox","jumps","over","the","slow","red","turtle"};
+	Display(Words);
 	
-	EliminateDups(v);
-	Display(v);
+	EliminateDups(Words);
+	Display(Words);
 	
 	//fill_n
-	fill_n(back_inserter(v),3,"Yeah");
-	Display(v);
+	fill_n(back_inserter(Words),3,"Yeah");
+	Display(Words);
 
-	replace(v.begin(),v.end(), string{"Yeah"}, string {"!"}); 
-	//replace(v.begin(),v.end(), +"Yeah", +"!"); 
-	Display(v);
+	replace(Words.begin(),Words.end(), string{"Yeah"}, string {"!"}); 
+	//replace(Words.begin(),Words.end(), +"Yeah", +"!"); 
+	Display(Words);
 	
-	Biggies(v,6);
+	Biggies(Words,6);
 	
 	return 0;
 }
