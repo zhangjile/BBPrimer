@@ -1,7 +1,6 @@
 ﻿//Chapter 11 Associative containers
 //Ex 11.3 write your version of word-counting program
 //Ex 11.4 extend your program to ignore case and punctuation.for example, "Example." "example," and "Example" should all increment the same counter.
-//++ list words by occurrence using multimap and crbegin(), cool 
 
 #include <iostream>
 #include <map>
@@ -15,52 +14,53 @@
 using std::map; using std::multimap; using std::set; using std::vector; using std::string; using std::ifstream; using std::istream_iterator; using std::istringstream; 
 using std::stack;
 
-//Solution 1, 
-//remove_if algorithm is tricky
+//Solution 3, 
+//using erase method
 auto strip(string& str) -> string const&
 {
-    for (auto& ch : str) ch = tolower(ch);
-    str.erase(remove_if(str.begin(), str.end(), ispunct), str.end());
-     //it pretends to works, LOL!
-//    remove_if(str.begin(), str.end(), ispunct);
+	for (auto& ch : str) ch = tolower(ch);
+    for(size_t i=0; i < str.size(); ++i){
+    	if(ispunct(str[i])){
+    		str.erase(i--, 1);
+    	}
+    }
     return str;
 }
+
 
 void Format(vector<string> &v){
 	for(size_t i = 0; i < v.size(); ++i){		
 		string word;
 		word = strip(v[i]);
 		v[i] = word;
+		//Supposing the function body is only RemoveCopyIf(v[i])', v will not be modified
+		//RemoveCopyIf function implicitly invalidated the argument passed by reference!!! wow!!!		
 	}
 }
 
-/*remove_if(b,e,unaryPred)
-"Removes" elements from the sequence by overwriting them with elements that are to be kept. The removed elements are those that are == val or for which unaryPred succeeds. 
 
-!Returns an iterator just past the last element that was not removed.
+//Solution 4, the champion, strip is a one liner in function that transforms the vector
+void Format4(vector<string> &v){
+	for(size_t i = 0; i < v.size(); ++i){		
+		string word;
+		remove_copy_if(v[i].begin(),v[i].end(),back_inserter(word),ispunct);
+		v[i] = word;
+	}
+}
 
-if we trace the process of the following lines, the first character erased is the period in the end of the string s.
-	string s = " ?*-this.";	
-	s.erase (std::remove_if (s.begin (), s.end (), ispunct),s.end());
-	std::cout << s<< std::endl;
-	//	remove_if(s.begin(), s.end(), ispunct); //thishis. LOL
 
-*/
-
-//Solution 2
-// remove punctuations from a string by identifying alphabets
+//Solution 5
+// remove punctuations by excluding punctuation
 //keeps alphabets of each string and make all alphabets lower case
 void FormatWords(vector<string> &v){
 	for(size_t i = 0; i < v.size(); ++i){
 		string word;		
 		for(char& c:v[i]){
-			if(isalpha(c)){
-				c = tolower(c);
-				word += c;
+			if(!ispunct(c)){	//don't remove char from string using range for 
+				word += tolower(c);
 			}
 		}
-		v[i] = word;
-		
+		v[i] = word;		
 	}
 }
 
@@ -80,29 +80,35 @@ void CountWords(const vector<string> &v){
     
     //rank words by occurrences
     multimap<size_t, string> listing;
-    for(const auto &e:WordCount){
-    		//multimap doesn't have subscript method
+	for(const auto &e:WordCount){
         listing.insert(std::make_pair(e.second, e.first));      
     }
+    //preparing for desired display
+    stack<std::pair<size_t, string>> rank;
+	for(const auto &e:listing){
+        if(e.first >1 )
+            rank.push(std::make_pair(e.first, e.second));
+    }
     
-    auto it = listing.crbegin();
-	while(it != listing.crend()){
-		if(it->first >1)
-			std::cout <<it->second << ", " << it->first <<std::endl;
-		++it;
-	}
-//	for_each(listing.crbegin(), listing.crend(), [](std::pair<size_t, string> e){if(e.first > 1) std::cout <<e.second << ", " << e.first <<std::endl;});
+	//display 
+	while(!rank.empty()){
+        auto e = rank.top(); 
+        std::cout << e.second <<", " << e.first <<std::endl;
+        rank.pop();
+	}	
 }
 
 int main()
 {
-	ifstream text("../Notes.md");
+	ifstream text("Notes.md");
 	istream_iterator<string> ifs(text), eof;
 	vector<string> v;
 	copy(ifs, eof, back_inserter(v));
-	
-	Format(v);	
-//	FormatWords(v);	//format a vector of words
+
+	//any of the 3 is good enough to format a vector of words	
+//	Format(v);	
+	Format4(v);
+//	FormatWords(v);	
 	
 	CountWords(v);
 	
