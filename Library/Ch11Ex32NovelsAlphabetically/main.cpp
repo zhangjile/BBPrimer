@@ -41,8 +41,7 @@ void PrintAlpha3 (const multimap<string, string> & Authors){
 	for(auto range = Authors.equal_range(name);range.first != Authors.end();){
 		set<string> works {};
 		//handling exit condition in the first place
-		// but 'range.first != Author.end()'
-		if(range.second == Authors.end()){
+		if(range.second == Authors.end()){ // but 'range.first != Author.end()'
 			while(range.first != range.second){
 			works.insert(range.first->second);
 			++range.first;
@@ -63,6 +62,22 @@ void PrintAlpha3 (const multimap<string, string> & Authors){
 	PrintMapOfStringSet(Ordering);
 }
 
+//this one is the most triumphant!
+void PrintAlpha4 (const multimap<string, string> & Authors){
+	mss Ordering;
+	set<string> works;
+	for(auto beg = Authors.begin(), Upper = beg; beg != Authors.end(); beg = Upper){
+		while(beg->first == Upper->first){
+			works.insert(Upper->second);
+			Upper++;
+		}
+		Ordering.insert({beg->first, works});
+		works.clear();
+	}
+	
+	PrintMapOfStringSet(Ordering);
+}
+
 int main()
 {
 	multimap<string, string> authors = {
@@ -72,7 +87,7 @@ int main()
 		{"Clint Eastwood","Gunman"}
 	};
 	
-	PrintAlpha3(authors);
+	PrintAlpha4(authors);
 	
 	return 0;
 }
