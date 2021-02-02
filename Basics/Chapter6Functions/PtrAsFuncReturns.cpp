@@ -47,8 +47,10 @@ int main(){
 //understanding call stack push and pop behind the scene is meaningful
 int* Add(int* a, int* b){
 	int c = (*a)+(*b);
-	//returning a local variable is error-prone, 
-	return &c;	//C++ compiler complains about this and stops it
+	//returning a the address of a local variable is error-prone and dangerous!
+   //modern C++ compiler complains about this and stops the program
+ return &c;
+
 }	
 
 int main(){

@@ -8,10 +8,12 @@ using std::map; using std::multimap; using std::string; using std::pair;
 using std::set;
 
 //module of utilities, seperation of concerns, avoiding duplicate code
+// p[e.first] can behave unexpectedly
 using mss = map<string, set<string>>;
 void PrintMapOfStringSet(mss p){
 	for(const auto &e:p){
-		for(const auto &o:p[e.first]){
+	//e is a local variable and safe!
+		for(const auto &o:e.second){
 			std::cout <<e.first <<": " <<o << std::endl;
 		}
 	}
