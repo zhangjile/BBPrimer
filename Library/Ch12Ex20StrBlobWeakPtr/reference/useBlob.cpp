@@ -25,6 +25,10 @@ int main()
 	}
 	cout << b1.size() << endl;
 
+	//this line represents the spirit of mordern C++:
+	// 1. using auto
+	// 2. encapsulation, StrBlobPtr type is totally hidden in implementation.
+	// 3. consistent user interface.
 	for (auto it = b1.begin(); neq(it, b1.end()); it.incr())
 		cout << it.deref() << endl;
 
