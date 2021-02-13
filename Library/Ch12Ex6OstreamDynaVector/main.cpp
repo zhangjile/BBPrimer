@@ -10,14 +10,45 @@
 
 using std::vector; using std::cout; using std::shared_ptr; using std::make_shared;
 using std::string; using std::endl;
-typedef shared_ptr<vector<int>> piv;
+typedef shared_ptr<vector<int>> spvi;
 
-piv DynamicVector (){
-	return make_shared<vector<int>> ();
+//Ch12Ex6, this is pure gameplay, use smart pointers exclusively!
+using std::istream; using std::cin;
+using vip = vector<int>*;	//type definition
+
+vip pv(){
+	auto ptr(new vector<int>());
+	return ptr;
 }
 
-piv BuildVector(piv p){
-	for(int i = 0; cout <<"Enter here: ", std::cin >> i, i != 1989;){
+vip Initialize(vip p, istream& is = cin){
+	int i = 0;
+	while(is >> i){
+		p->push_back(i);
+	}
+	return p;
+}
+
+void Print_vip(vip p){
+	for(const int& i : *p){
+		cout << i << " ";
+	}
+	cout << endl;
+	
+	//the caller is responsible for deallocating the heap memory and cleaning up.
+	//this is the key, destroy the link, free the memory and 
+	//it is destroyed after the block is executed
+	delete p;	
+}
+
+
+//Ch12Ex7
+spvi DynamicVector (){
+	return shared_ptr<vector<int>> (new vector<int> ());
+}
+
+spvi BuildVector(spvi p){
+	for(int i = 0; cout <<"Enter here: ", std::cin >> i;){
 		p->push_back(i);
 	}
 	return p;
@@ -25,7 +56,7 @@ piv BuildVector(piv p){
 
 //this print function is colorful.
 //auto Print(piv p) -> std::ostream&{	//if '&' is missing, ERROR!
- std::ostream& Print(piv p){	
+ std::ostream& Print(spvi p){	
 	for(const auto &i : *p){
 		cout << i << " ";
 	}
@@ -44,45 +75,19 @@ void TestReset466(){
 }
 
 
-//Ch12Ex6, this is pure gameplay, use smart pointers exclusively!
-using std::istream; using std::cin;
-using vip = vector<int>*;
-
-vip pv(){
-	auto ptr(new vector<int>());
-	return ptr;
-}
-
-vip Initialize(vip p, istream& is = cin){
-	int i = 0;
-	while(is >> i){
-		p->push_back(i);
-	}
-	return p;
-}
-
-void Print(vip p){
-	for(const int& i : *p){
-		cout << i << " ";
-	}
-	cout << endl;
-	
-	//the caller is responsible for deallocating the heap memory and cleaning up.
-	//this is the key, destroy the link, free the memory and 
-	//it is destroyed after the block is executed
-	delete p;	
-}
-
 int main ()
 {
-	piv p = BuildVector(DynamicVector ());
+	spvi p = BuildVector(DynamicVector ());
 	//shared_ptr handles the dynamic memory properly!
 	Print(p) << std::endl;	
 	TestReset466();
 	
-	//Ex6
+	/*
+	//Ex6, if pv and Initialize are called but Print_vip is missing, memory leak!
+	{
 	vip p_raw = pv();
 	vip p_data = Initialize(p_raw);
-	Print(p_data);
+	Print(p_data);	
+	}*/
 	return 0;
 }
