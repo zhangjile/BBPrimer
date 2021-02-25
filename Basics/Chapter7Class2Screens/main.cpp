@@ -11,9 +11,12 @@ class Screen_mgr {
 	using ScreenIndex = std::vector<Screen>::size_type;
 	Screen_mgr ();
 	void Clear(ScreenIndex i);
-	const Screen& Get() const {return Screens[0];}
+	const Screen& Get(ScreenIndex i = 0) const {return Screens[i];}
 	private:
 	std::vector<Screen> Screens;
+	// Screen is an incomplete class by now, 
+	//in-class initializing not viable!
+//	std::vector<Screen> Screens{Screen(10,20,' ')};
 };
 
 class Screen {
@@ -24,7 +27,7 @@ public:
 	Screen (pos ht, pos wd): Height(ht),Width(wd), Contents(ht*wd, ' ') {}
 	Screen (pos ht, pos wd, char c):Height (ht), Width (wd), Contents (ht*wd, c){}
 	char Get() const {return Contents[Cursor];}
-	inline char Get(pos ht, pos wd) const; //inline modifier
+	inline char Get(pos ht, pos wd) const; //inline specifier
 	Screen &Move (pos r, pos c);
 	Screen &Set(char c);
 	Screen &Set(pos r, pos c, char ch);
@@ -37,7 +40,7 @@ private:
 	std::string Contents;
 	
 	//simulating a full-screen display, a persisting puzzle is solved, finally
-	//display"cccc cccc cccc" by 3 rows and 4 colums,just that simple
+	//display contents of "cccc cccc cccc" by Height=3 and Width=4, Period.
 	void DoDisplay(std::ostream &os) const {
 		size_t s = Contents.size();
 		for(size_t i = 0; i < s; ++i){
@@ -53,18 +56,21 @@ char Screen::Get(pos r, pos c) const {
 	return Contents[Row + c];
 }
 
-inline Screen& Screen::Move(pos r, pos c){    //inline modifier
+inline 
+Screen& Screen::Move(pos r, pos c){ 
 	pos Row = r * Width;
 	Cursor = Row + c;
 	return *this;
 }
 
-inline Screen& Screen::Set(char c){
+inline 
+Screen& Screen::Set(char c){
 	Contents[Cursor] = c;
 	return *this;
 }
 
-inline Screen& Screen::Set(pos r, pos c, char ch){
+inline 
+Screen& Screen::Set(pos r, pos c, char ch){
 	Contents[r*Width +c] = ch;
 	return *this;
 }
@@ -89,11 +95,11 @@ int main () {
 	Black.Display(std::cout);
 	std::cout<<"\ndefault:\n";
 	Screen_mgr m ;
-	Screen n = m.Get();
+	Screen n = m.Get(0);
 	n.Display(std::cout);
 	std::cout<<"\nclear:\n";
 	m.Clear(0);
-	n = m.Get();
+	n = m.Get(0);
 	n.Display(std::cout);
 	return 0;
 }

@@ -69,7 +69,8 @@ public:
 }
     bool operator != (const StrBlobPtr &rhs) const {return rhs.curr != curr; };
 private:
-	shared_ptr<vector<string>> Check (size_t i, const string& msg) {
+    //it's good practice to specify a member method as 'const' if it doesn't modify 'this'.
+	shared_ptr<vector<string>> Check (size_t i, const string& msg) const {
         auto it = wptr.lock();
         if(!it){
             throw runtime_error("unbound");

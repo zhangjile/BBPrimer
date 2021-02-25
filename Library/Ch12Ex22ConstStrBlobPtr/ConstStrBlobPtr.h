@@ -19,17 +19,10 @@ public:
     StrBlob (): data {make_shared<vector<string>> ()} {}
     StrBlob (initializer_list<string> il): data {make_shared<vector<string>> (il)} {}
     
-    size_type size() {return data->size();}
-    bool empty() {return data->empty();}
-    string& front()  {
-        check(0, "oh");
-        return data->front();
-    }
-    string& back() {
-        check(0, "oh");
-        return data->back();
-    }
+    size_type size() const {return data->size();}
+    bool empty() const {return data->empty();}
     
+    //it's good practice to makr a member method 'const' if it doesn't modify 'this'.
     string& front() const {return data->front();}
     string& back() const {return data-> back();}
     
@@ -39,7 +32,7 @@ public:
         data-> pop_back();
     }
     
-    //new methods
+    //these methods must be modified to be const method, or it won't work, no modification is required in ConstStrBlobPtr class, period!
     ConstStrBlobPtr begin() const;
     ConstStrBlobPtr end() const;
     
@@ -51,13 +44,14 @@ private:
     }
 };
 
-//class ConstStrBlobPtr;
-//StrBlobPtr type becomes useless. 
+//class ConstStrBlobPtr, a new class name is required to accomodate 'const StrBlob cb; cb.begin()' 
+//simply copy everthing in StrBlobPtr 
 class ConstStrBlobPtr {
 public:
 	ConstStrBlobPtr () : curr(0) {}
-	//critical consistency in constructor layer
-	ConstStrBlobPtr (const StrBlob &a, size_t sz = 0)
+	//either const or nonconstr is fine
+	//because a.data is an initializer
+	ConstStrBlobPtr (StrBlob &a, size_t sz = 0)
 		: wptr(a.data), curr(sz) {}
 	string& deref () const {
         auto p = Check(0, "oh");
