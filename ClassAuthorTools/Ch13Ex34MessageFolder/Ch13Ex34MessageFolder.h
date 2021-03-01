@@ -43,7 +43,9 @@ public:
     Folder () = default;
     Folder (const Folder& source);
     Folder& operator= (const Folder& source);
-    ~Folder ();
+    ~Folder (){
+    RemoveThisFolderFromMessages();
+}
     
     size_t MessageElements () {return AFolder.size();}
     

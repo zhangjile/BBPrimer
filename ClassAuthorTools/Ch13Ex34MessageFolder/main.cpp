@@ -1,7 +1,10 @@
 #include "Ch13Ex34MessageFolder.h"
 #include "Ch13Ex34MessageFolder.cpp"
 
-//test the logic
+//test driver
+//references/aliases are used in every method, therefore, no need to worry about memory leak at all.
+//precision shooting, the offset is neither too much or too less, just engage the target.
+
 int main ()
 {
     Message *m1 = new Message("Mike Pence");
@@ -13,6 +16,6 @@ int main ()
     m2->Save(f1);
     std::cout << f1.MessageElements() <<std::endl; //the world falls in peace now
    	Message m3 = *m2;
-    m3 = Message("Pompeo");
+    m3 = Message("Mike Pompeo is a true man!");
     return 0;
 }

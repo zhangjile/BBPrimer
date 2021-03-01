@@ -87,11 +87,6 @@ Folder& Folder:: operator= (const Folder& s){
     return *this;
 }
 
-//destructor works properly, or manually delete m1 and m2, LOL
-Folder::~Folder (){
-    RemoveThisFolderFromMessages();
-}
-
 void Folder::AddMsg(Message* m){AFolder.insert(m);}
 void Folder::RmMsg (Message* m){AFolder.erase(m);}
 
