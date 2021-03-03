@@ -67,7 +67,8 @@ void StrVec::Free (){
         if(elements){
             for(auto p = first_free; p != elements;)
                 allo.destroy(--p);
-            allo.deallocate(elements, cap-elements);
+            //deallocate in one line, compare it to String destructor!
+            allo.deallocate(elements, cap - elements);
         }
     }
 
@@ -78,6 +79,7 @@ void StrVec::push_back(const string& source){
     }
     
 void StrVec::Reallocate (){
+        //Laugh out loud
         size_t NewCap = (size() == 0)? 1 : size()*2;
         auto p = allo.allocate(NewCap);
         auto dest = p;

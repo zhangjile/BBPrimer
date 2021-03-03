@@ -67,6 +67,7 @@ public:
 #endif
 
 	// unconditionally delete the memory because each String has its own memory
+	//this is very interesting: 1),elements in String are built-in type 'char', calling destroy method is not required or troublesome, 2) deallocate can be executed in the same way as 'destroy', ie, one by one.
 #ifdef NOEXCEPT
 	~String() noexcept { if (p) a.deallocate(p, sz); }
 #else
@@ -91,6 +92,7 @@ public:
 	void swap(String &s)
 	                { auto tmp = p; p = s.p; s.p = tmp; 
 	                  auto cnt = sz; sz = s.sz; s.sz = cnt; }
+	                  
 private:
 #ifdef IN_CLASS_INITS
 	std::size_t sz = 0;

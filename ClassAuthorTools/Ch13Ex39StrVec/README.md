@@ -24,7 +24,10 @@ status: bug fixed
 
 2. split a file of integers, put odd numbers in a file and even numbers in another.
 perfect code, successful build, but output is null, /Library/Ch10Ex33argviostreamiterator/
+status:fixed
 
 3. /Library/Ch11Ex3, word counting, a bug that space is taken as a string and counted 67 occurences
+status:fixed
 
 4. /Library/Ch10Ex34ReverseIterator, check out the  distance the tricky algorithm 
+status: not tricky at all now

@@ -94,7 +94,7 @@ void Folder::RmMsg (Message* m){AFolder.erase(m);}
 //say good-bye to taking random shots 
 void Folder::AddThisFolderToMessages(){
     for(auto m: AFolder){
-        m->Folders.insert (this);
+        m-> AddAFolder (this);
     }
 }
 void Folder::RemoveThisFolderFromMessages(){
