@@ -2,20 +2,25 @@
 #include "Ch13Ex34MessageFolder.cpp"
 
 //test driver
-//references/aliases are used in every method, therefore, no need to worry about memory leak at all.
-//precision shooting, the offset is neither too much or too less, just engage the target.
-
 int main ()
 {
     Message *m1 = new Message("Mike Pence");
     Folder f1;
     m1->Save(f1);
-    //precious picture of an iceberg under water:)
-    std::cout << m1->Occurrences() <<std::endl; 
-    Message *m2 = new Message ("team leader fighting chinese wuhan virus");
+    
+    Message *m2 = new Message ("team leader fighting wuhan virus");
     m2->Save(f1);
-    std::cout << f1.MessageElements() <<std::endl; //the world falls in peace now
+    
    	Message m3 = *m2;
-    m3 = Message("Mike Pompeo is a true man!");
+    std::cout << "f1: " << f1.MessageElements() <<std::endl; //3
+    
+    Message m4("Mike Pompeo is a true man!");
+    Folder f2;
+    m4.Save(f2);
+    std::cout << "f2: " << f2.MessageElements() <<std::endl; //1
+    m4 = std::move(m3);
+//    m4 = m3;
+    std::cout << "f1: " << f1.MessageElements() <<std::endl; //3
+    std::cout << "f2: " << f2.MessageElements() <<std::endl; //0
     return 0;
 }

@@ -11,14 +11,14 @@ void swap(Message& lhs, Message& rhs){
     rhs.AddToAllFolders ();
 }
 
-void Message::Save (Folder& rf){
-    Folders.insert(&rf);    //insert address of a folder
-    rf.AddMsg(this);    //add pointer to this message into a Folder object
+void Message::Save (Folder& f){
+    Folders.insert(&f);    //insert address of a folder
+    f.AddMsg(this);    //add pointer to this message to a Folder 
 }
 
-void Message::Delete(Folder& rf){
-    Folders.erase(&rf);
-    rf.RmMsg(this);
+void Message::Delete(Folder& f){
+    Folders.erase(&f);
+    f.RmMsg(this);
 }
 
 void Message::AddToAllFolders (){
@@ -47,23 +47,34 @@ Message& Message::operator= (const Message& source){
     return *this;
 }
 
-//Ex13.49 add move operations to Message class
-Message::Message (Message&& m) {
-	std::cout<< "move constructor, Message" << std::endl;
-	Content = std::move(m.Content);
-	Folders = std::move(m.Folders);
+//Ex13.49 add move operations to Message class, 
+//move Folders is done and code is correct now
+Message::Message(Message&& m): Content{std::move(m.Content)}{
+	std::cout<< "Move ctor, Message" << std::endl;
+	Folders =std::move(m.Folders);
+	for(auto f:m.Folders){
+		f->RmMsg(&m);
+		f->AddMsg(this);
+	}
+	m.Folders.clear();
 }
 
 Message& Message::operator= (Message&& m){
-	std::cout<< "Move Assignment, Message" << std::endl;
-	Content = std::move(m.Content);
-	Folders = std::move(m.Folders);
+	std::cout<< "Move =, Message" << std::endl;
+	if(this != &m){
+		RemoveFromAllFolders();
+		Content = std::move(m.Content);
+		Folders = std::move(m.Folders);
+		for(auto f:m.Folders){
+			f->RmMsg(&m);
+			f->AddMsg(this);
+		}
+		m.Folders.clear();
+	}
 	return *this;
 }
 
-
 //class Folder methods
-
 void swap(Folder& lhs, Folder& rhs){
     using std::swap;
     lhs.RemoveThisFolderFromMessages ();
@@ -91,7 +102,6 @@ void Folder::AddMsg(Message* m){AFolder.insert(m);}
 void Folder::RmMsg (Message* m){AFolder.erase(m);}
 
 //engage the target, take aim and shoot, 
-//say good-bye to taking random shots 
 void Folder::AddThisFolderToMessages(){
     for(auto m: AFolder){
         m-> AddAFolder (this);
