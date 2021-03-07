@@ -49,7 +49,7 @@ Message& Message::operator= (const Message& source){
 
 //Ex13.49 add move operations to Message class, 
 //move Folders is done and code is correct now
-Message::Message(Message&& m): Content{std::move(m.Content)}{
+Message::Message(Message&& m) noexcept : Content{std::move(m.Content)}{
 	std::cout<< "Move ctor, Message" << std::endl;
 	Folders =std::move(m.Folders);
 	for(auto f:m.Folders){
@@ -59,7 +59,7 @@ Message::Message(Message&& m): Content{std::move(m.Content)}{
 	m.Folders.clear();
 }
 
-Message& Message::operator= (Message&& m){
+Message& Message::operator= (Message&& m) noexcept {
 	std::cout<< "Move =, Message" << std::endl;
 	if(this != &m){
 		RemoveFromAllFolders();

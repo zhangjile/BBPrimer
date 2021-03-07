@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <algorithm>
 
 using std::string;
 
@@ -35,8 +36,8 @@ public:
     StrVec (const std::initializer_list<string> &il);
     
     //move operation
-    StrVec (StrVec&& s);
-    StrVec& operator= (StrVec&& s);
+    StrVec (StrVec&& s) noexcept;
+    StrVec& operator= (StrVec&& s) noexcept;
     
 private:
     static std::allocator<string> allo;     
@@ -67,6 +68,13 @@ std::pair<string*, string*> StrVec::AllocateNCopy(const string* b, const string*
         return {data, std::uninitialized_copy(b,e,data)};
     }
 
+    
+void StrVec::Free(){
+	for_each(elements, first_free, [](string& s){allo.destroy(&s);});
+	allo.deallocate(elements, cap - elements);
+}
+    
+    /*
 void StrVec::Free (){
         if(elements){
             for(auto p = first_free; p != elements;)
@@ -74,7 +82,7 @@ void StrVec::Free (){
             allo.deallocate(elements, cap-elements);
         }
     }
-
+*/
 
 void StrVec::push_back(const string& source){
         CheckNReallocate ();
@@ -112,7 +120,7 @@ StrVec& StrVec::operator= (const StrVec& source){
     
 
 void StrVec::reserve(size_t n){
-    if(n<size()) return;
+    if(Capacity()< n) 
     auto p = allo.allocate(n);
         auto dest = p;
         auto elem = elements;
@@ -128,22 +136,7 @@ void StrVec::reserve(size_t n){
 void StrVec::resize(size_t n){
     resize(n, string ());
 }
-/*
-void StrVec::resize(size_t n, const string& s){
-	if(n > size()){
-		if(n>capacity()) reserve (n*2);
-		for(size_t i = size(); i < n; ++i){
-			allo.construct(first_free++, s);
-		}
-	}
-	else if(n < size()){
-		while(first_free != elements+ n){
-			allo.destroy(--first_free);
-		}
-	}
-}
-    */
-    //loop using size and n
+
 void StrVec::resize(size_t n, const string& s){
     if( n< size()){
         while( size() - n > 0)
@@ -162,13 +155,14 @@ StrVec::StrVec (const std::initializer_list<string> &il){
 }
 
 //defining move operations
-StrVec::StrVec (StrVec&& s) :elements{s.elements}, first_free{s.first_free}, cap{s.cap} {
+StrVec::StrVec (StrVec&& s)noexcept :elements{s.elements}, first_free{s.first_free}, cap{s.cap} {
 	std::cout <<"Move constructor" << std::endl;
 	s.elements = s.first_free = s.cap = nullptr;
 }
     
-StrVec& StrVec::operator= (StrVec&& s){
+StrVec& StrVec::operator= (StrVec&& s) noexcept {
 	std::cout <<"Move-assignment" << std::endl;
+	Free(); // this->Free(); //memory leak is certain if not deallocate 'this' first:)
 	elements = s.elements;
 	first_free = s.first_free; 
 	cap = s.cap;

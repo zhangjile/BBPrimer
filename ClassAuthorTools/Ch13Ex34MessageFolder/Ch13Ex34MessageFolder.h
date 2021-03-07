@@ -18,8 +18,8 @@ public:
     Message& operator= (const Message& source);
     
     //Ex13.49 add move operations
-    Message (Message&& m);
-    Message& operator= (Message&& m);
+    Message (Message&& m) noexcept;
+    Message& operator= (Message&& m) noexcept;
     
     void Save(Folder& rf);
     void Delete (Folder& rf);

@@ -8,7 +8,6 @@
 
 #ifndef _MYSTRING_H_
 #define _MYSTRING_H_
-
 #include <iostream>
 #include <algorithm>
 #include <cstddef>
@@ -24,8 +23,8 @@ public:
     ~MyString ();
     
     //Ex13.49
-    MyString (MyString&& s);
-    MyString& operator=(MyString&& s);
+    MyString (MyString&& s) noexcept;
+    MyString& operator=(MyString&& s) noexcept;
     
     char front() {return *cp;}
     char back() {return *(cp + v -1);}
@@ -34,22 +33,16 @@ public:
 private:
     char* cp;
     size_t v =0;
-    void Free ();
+//    void Free (); //unnecessary to destroy 'char'
     static std::allocator<char> alloc;
 };
 
 std::allocator<char> MyString::alloc;
 
-void MyString::Free (){
-    while(cp){
-        alloc.destroy(cp++);
-    }
-}
-
 MyString::MyString(const char* c){
 	v = std::strlen(c);
 	cp = alloc.allocate(v);
-	std::uninitialized_copy(c,c+v, cp);	//nuance, workabout, conversion under hood
+	std::uninitialized_copy(c,c+v, cp);	//conversion under hood
 }
 /*
 MyString::MyString(const char* c){
@@ -76,27 +69,31 @@ MyString& MyString::operator= (const MyString& source){
     Free();
     v = strlen(source.cp);
     cp = alloc.allocate(v);
-    std::uninitialized_copy(source.cp, source.cp+v, cp);	//deep copy
+    std::uninitialized_copy(source.cp, source.cp+v, cp);	
     return *this;
 }
 
 //destructor
 MyString::~MyString(){
-    Free();
+    alloc.deallocate(cp, cp+v); //good enough
 }
 
 //move operations
-MyString::MyString (MyString&& s) : cp{s.cp},v{s.v} {
+MyString::MyString (MyString&& s) noexcept: cp{s.cp},v{s.v} {
 	std::cout << "Move constructor" << std::endl;
 	s.cp = nullptr;
 	s.v = 0;
 }
-MyString& MyString::operator=(MyString&& s){
+MyString& MyString::operator=(MyString&& s) noexcept {
 	std::cout << "Move assignment" << std::endl;
-	cp = s.cp;
-	v = s.v;
-	s.cp = nullptr;
-	s.v = 0;
+	if(cp != &s){
+	    if(cp)
+            alloc.deallocate(cp,v);
+        	cp = s.cp;
+	    v = s.v;
+        	s.cp = nullptr;
+        	s.v = 0;
+    }
 	return *this;
 }
 
