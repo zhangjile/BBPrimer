@@ -39,34 +39,38 @@ private:
 
 std::allocator<char> MyString::alloc;
 
+/*
 MyString::MyString(const char* c){
 	v = std::strlen(c);
 	cp = alloc.allocate(v);
 	std::uninitialized_copy(c,c+v, cp);	//conversion under hood
-}
-/*
+}*/
+
+//what a remarkable accomplishment!
+//it's brave of me to try out anything in mind, keep up the good work!
+//what a progress to figure out the errors and get them fixed 
+//and have working code in the end
 MyString::MyString(const char* c){
     size_t Size = strlen(c);
     cp = alloc.allocate(Size);
+    auto Alias = cp;    //assign cp to 'Alias', leave cp untouched!
     for(size_t i = 0; i < Size; ++i){
-        alloc.construct(cp++,*c++); //error,initialize non-const with const
+        alloc.construct(Alias++,*c++); 
     }
     v = Size;
 }
-*/
 
 //copy operations
 MyString::MyString (const MyString& source){
 	std::cout <<"Copy constructor" << std::endl;
     v = strlen(source.cp);
     cp = alloc.allocate(v);
-    std::uninitialized_copy(source.cp, source.cp+v, cp);
-    
+    std::uninitialized_copy(source.cp, source.cp+v, cp);    
 }
 
 MyString& MyString::operator= (const MyString& source){
 	std::cout <<"Copy_Assignment" << std::endl;
-    Free();
+    if(cp) alloc.deallocate(cp, v);
     v = strlen(source.cp);
     cp = alloc.allocate(v);
     std::uninitialized_copy(source.cp, source.cp+v, cp);	
@@ -75,7 +79,7 @@ MyString& MyString::operator= (const MyString& source){
 
 //destructor
 MyString::~MyString(){
-    alloc.deallocate(cp, cp+v); //good enough
+    alloc.deallocate(cp, v); //good enough
 }
 
 //move operations
@@ -86,13 +90,15 @@ MyString::MyString (MyString&& s) noexcept: cp{s.cp},v{s.v} {
 }
 MyString& MyString::operator=(MyString&& s) noexcept {
 	std::cout << "Move assignment" << std::endl;
-	if(cp != &s){
+	//'&s' is the address of rvalue reference(a variable), 
+	//'&s' is definitely not s.cp, 'this' is definitely not 'this->cp'!
+	if(this != &s){	//the last stroke to finish the work
 	    if(cp)
             alloc.deallocate(cp,v);
-        	cp = s.cp;
+        cp = s.cp;
 	    v = s.v;
-        	s.cp = nullptr;
-        	s.v = 0;
+        s.cp = nullptr;
+        s.v = 0;
     }
 	return *this;
 }

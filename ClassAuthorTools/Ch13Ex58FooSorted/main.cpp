@@ -11,7 +11,7 @@ public:
     Foo (std::vector<int> v) : data{v} {}
     Foo sorted () const &;  //'&' is required and should be placed at the back
     Foo sorted () &&;   //in the same "signature group" as the method above
-    Foo& Sorted (); //intend to modify the data member
+    Foo& Sorted (); //intend to modify the caller
     void Display ();
 
 private:
@@ -25,6 +25,7 @@ Foo Foo::sorted () && {
 }
 
 Foo Foo::sorted () const & {
+	std::cout<< "const &" <<std::endl;
 	return Foo(*this).sorted();	//move semantics works as expected
 	
 	/*
@@ -37,6 +38,7 @@ Foo Foo::sorted () const & {
 }
 
 Foo& Foo::Sorted(){
+	std::cout<< "Foo&" <<std::endl;
 	std::sort(data.begin(), data.end());
 	return *this;
 }
@@ -50,15 +52,18 @@ void Foo::Display(){
 }
 
 int main (){
-    //std::vector<int> v {20,7,21};
     Foo f({20,7,21});
+    auto alias = f.sorted(); 
     
-    f.Sorted(); //data has been re-ordered
-    f.Display();	//works as expected
-
-//    f.sorted().Display();
+	alias.Display(); //the data in f is sorted and copied to alias, sorted!	
+    f.Display();	//BUT the source data f is untouched and unsorted!
     
-    Foo({19,89,64}).sorted ().Display();
+    //these two versions 
+    f.Sorted().Display();//f is modified.
+    f.sorted().Display();//'f.sorted()' is the temporary rvalue assigned to alias!
+    
+    
+//    Foo({19,89,64}).sorted ().Display();
     
     return 0;
 }

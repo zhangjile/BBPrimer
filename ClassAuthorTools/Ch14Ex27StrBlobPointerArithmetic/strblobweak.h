@@ -48,6 +48,7 @@ public:
     
 private:
     shared_ptr<vector<string>> data;
+    //washing potatoes
     void check(size_t i, const string &msg  ) const {
         if(i >= data->size())
             throw out_of_range (msg);
@@ -106,22 +107,21 @@ private:
 	size_t curr;
 };
 
-// overloading operators is obviously easy, just consult a reference modify some lines and get things done.
-//however, under the hood there's something significant and something extremely beautiful
+
+// under the hood there's something significant and extremely beautiful in overloading operators, moreover, it makes everyone's life much easier.
 
 StrBlobPtr StrBlob::begin() {return StrBlobPtr(*this);}
 StrBlobPtr StrBlob::end() {auto ret = StrBlobPtr(*this, data->size()); return ret;}
 
-	StrBlobPtr& StrBlobPtr::operator+(size_t n){
+StrBlobPtr& StrBlobPtr:: operator+(size_t n) {
         //so cute:)
-		auto m = Check(curr + n, "oh, yeah!");
+		auto m = Check(curr + n, "oh, n!");
         wptr = m;
         curr += n;
         return *this;
 	}
 
-	
-	StrBlobPtr& StrBlobPtr::operator-(size_t n){
+StrBlobPtr& StrBlobPtr:: operator-(size_t n) {
         curr -= n;
         Check(curr - n, "oh, f!");
         return *this;
