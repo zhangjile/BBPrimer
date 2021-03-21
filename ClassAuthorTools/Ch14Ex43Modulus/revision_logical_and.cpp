@@ -14,7 +14,7 @@ int main()
   
     // using transform to call logical_and on two array
     // 3 ways to use predicate 
-  auto predicate = std::logical_and<bool> ();	//a function object is NOT bool!
+  std::function<bool(bool,bool)> predicate = std::logical_and<bool> ();	//a function object is NOT bool!
   std::logical_and<bool> b;
   transform(z,z+n, y, result, b);	//1
 //  transform(z, z + n, y, result, std::logical_and<bool>()); //2    

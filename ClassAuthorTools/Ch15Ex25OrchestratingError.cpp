@@ -1,6 +1,16 @@
 ﻿//Section 15.7 Constructors and Copy Control
-//Ex 15.25, p 625, why did we define a default constructor for DiscQuote? What effect, if any, would removing that constructor have on the behavior of BulkQuote?
+//Ex 15.25, p 625, why did we define a default constructor for DiscQuote? What effect would removing that constructor have on the behavior of BulkQuote?
+//
+/*
+the compiler complains that:
+> 'Bulk_quote::Bulk_quote()' is implicitly deleted because the default definition would be ill-formed.
 
+ A constructor taking 4 parameters has been defined, which prevents compiler generating synthesized version default constructor.
+
+As a result, the default constructor of any class derived from it has been defined as deleted. 
+
+rule of thumb is, the default constructor be defined explicitly so that the derived classes can call it when executing its default constructor.
+*/
 
 #include <iostream>
 #include <string>
@@ -75,7 +85,7 @@ int main (){
     Quote q("C++ Primer, 5th", 89.5);
     PrintTotal(std::cout, q, 1);
     
-    	//successful in orchestrating an error, overwhelming happiness:)
+    	//successfully orchestrated an error, overwhelming happiness:)
     BulkQuote f;
     //error, call to implicitly-deleted default constructor of 'BulkQuote'
     

@@ -13,7 +13,9 @@ public:
     virtual double NetPrice (size_t n) const override {
         if(n >= MinimumOrder)
             return n * Price * (1-Discount);
-        return n * Price;
+        //explicit, good taste and good practice by instinct
+        else 
+            return n * Price;
     }
 private:
     size_t MinimumOrder = 0;
