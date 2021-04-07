@@ -1,6 +1,12 @@
+//Section 12 Dynamic Memory and Smart Pointers
+//Ex 12.2 P458, write your version of StrBlob class including const version of front and back
 #include "BlobPtrTemplate.h"
-#include <fstream>
 #include <iostream>
+#include <vector>
+#include <memory>
+#include <fstream>
+
+using std::string; using std::vector; using std::shared_ptr; using std::initializer_list; using std::make_shared; using std::out_of_range;
 
 int main()
 {
@@ -8,10 +14,7 @@ int main()
     Blob<string> blob;
     for (std::string str; std::getline(ifs, str); )
         blob.push_back(str);
-    //begin and end in client code, scenario of application
     //this for loop is the soul and purpose of class StrBlobPtr.
-    //when 3 methods are joined together to make a statement, everything makes sense
-    //!= operator, increment method and dereference method
-    for (BlobPtr<string> pbeg(blob.begin()), pend(blob.end()); pbeg != pend; pbeg.incre())
-        std::cout << pbeg.deref() << std::endl;
+    for (BlobPtr<string> pbeg(blob.begin()), pend(blob.end()); pbeg != pend; ++pbeg)
+        std::cout << *pbeg << std::endl;
 }

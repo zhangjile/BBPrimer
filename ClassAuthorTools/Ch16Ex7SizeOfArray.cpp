@@ -8,9 +8,10 @@ T* begin(T (&arr)[N]) {
     return arr;
 }
 
+//cool!
 template<typename T, unsigned N>
-T* end(T (&arr)[N]) {
-	return arr + N;
+T* end(T (*arr)[N]) {
+	return *arr + N;
 }
 
 
@@ -27,7 +28,7 @@ size_t Size(T (&arr) [N]){
 
 int main () {
     double D[] {0.1,0.2,0.3};
-    std::cout << SizeArray(D) <<std::endl;
+    std::cout << Size(D) <<std::endl;
     return 0;
     
 }

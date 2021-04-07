@@ -3,14 +3,15 @@
 //Section 16.1.4 Member Template
 //Ex16.24, p675, Add a new constructor that takes two iterators
 //implementing methods outside of the class declaration unexpectedly caused all the redefinition problems, Heck!
+// the last line in p656: "headers for templates typically include definition as welll as declaration", which i just read through but didn't truly understand, LOL
 
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include <memory>
-//#include <stdexcept>
-//#include <initializer_list>
+#include <exception>
+#include <initializer_list>
 
 using std::string; using std::vector; using std::shared_ptr; 
 using std::initializer_list; using std::make_shared; 
@@ -67,12 +68,12 @@ public:
 	BlobPtr () : curr(0) {}
 	BlobPtr (Blob<T> &a, size_t sz = 0)
 		: wptr(a.data), curr(sz) {}
-	T& deref () {
+	T& operator* () {
         auto p = Check(0, "oh");
         return (*p)[curr];
     }
 
-	BlobPtr& incre (){
+	BlobPtr& operator++ (){
         Check(curr, "oh");
         ++curr;
         return *this;
