@@ -4,16 +4,11 @@
 #include <DebugDelete.h>
 
 // forward declarations for friendship
-
 template<typename, typename> class unique_pointer;
 template<typename T, typename D> void
                 swap(unique_pointer<T, D>& lhs, unique_pointer<T, D>& rhs);
 
-/**
- *  @brief  std::unique_ptr like class template.
- */
-template <typename T, typename D = DebugDelete>
-class unique_pointer
+template <typename T, typename D = DebugDelete> class unique_pointer
 {
     friend void swap<T, D>(unique_pointer<T, D>& lhs, unique_pointer<T, D>& rhs);
 
@@ -22,7 +17,7 @@ public:
     unique_pointer(const unique_pointer&) = delete;
     unique_pointer& operator = (const unique_pointer&) = delete;
 
-    // default constructor and one taking T*
+    // default constructor
     unique_pointer() = default;
     explicit unique_pointer(T* up): ptr(up) { }
 
@@ -35,8 +30,6 @@ public:
 
     // std::nullptr_t assignment
     unique_pointer& operator =(std::nullptr_t n) noexcept;
-
-
 
     // operator overloaded :  *  ->  bool
     T& operator  *() const   { return *ptr; }
@@ -55,7 +48,6 @@ public:
 
     // return ptr and make ptr point to nullptr.
     T* release();
-
 
     ~unique_pointer()
     {
@@ -105,7 +97,7 @@ unique_pointer<T, D>::operator =(std::nullptr_t n) noexcept
     return *this;
 }
 
- // relinquish contrul by returnning ptr and making ptr point to nullptr.
+ // relinquish control by returnning ptr and making ptr point to nullptr.
 template<typename T, typename D>
 inline T*
 unique_pointer<T, D>::release()

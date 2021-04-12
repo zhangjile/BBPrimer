@@ -1,9 +1,5 @@
 /***************************************************************************
- *  @file       shared_pointer.h
- *  @author     Alan.W
- *  @date       04  Feb 2014
- *  @remark     This code is for the exercises from C++ Primer 5th Edition
- *  @note       06  Feb 2014    ctor taking std::shared_ptr&& added
+ *  implementing shared_ptr becomes a piece of cake, that's something
  ***************************************************************************/
 #ifndef SHARED_POINTER_H
 #define SHARED_POINTER_H
@@ -18,24 +14,19 @@ template<typename> class shared_pointer;
 template<typename T> void swap(shared_pointer<T>& lhs, shared_pointer<T>& rhs);
 
 
-/**
- *  @brief shared_ptr like template class
- *  @note   don't mix this one with std::shared_ptr.
- *          DebugDelete is the default deleter which can be replaced at run time
- */
+  
+// DebugDelete provides a default deleter which can be replaced at run time, technique of wrapping
 template <typename T>
 class shared_pointer
 {
     friend void ::swap<T>(shared_pointer<T>& lhs, shared_pointer<T>& rhs);
-    //               ^^^ -- don't forget this.
 
 public:
 
     // default constructor
     shared_pointer() = default;
 
-    // constructor taking raw pointer.
-    // set the refCount as 1
+    // constructor taking raw pointer, set the refCount as 1
     explicit shared_pointer(T* up, std::function<void(T*)> d = DebugDelete()) :
         ptr(up), refCount(new std::size_t(1)), deleter(d) { }
 
@@ -102,17 +93,12 @@ private:
     // signature can replace the default one at run time.
     std::function<void(T*)> deleter{ DebugDelete() };
     //                            ^~~~~~~~~~~~~~^
-    //                         here: = doesn't work, another way is initializing it in constructor.
+    // '=' doesn't work here, initializing it in constructor is also ok.
 
-    // utilities
     void decrement_n_destroy();
 };
 
 
-
-/**
- *  @brief swap and big 5
- */
 template <typename T>
 inline void
 swap(shared_pointer<T>& lhs, shared_pointer<T>& rhs)
@@ -138,7 +124,7 @@ shared_pointer<T>::shared_pointer(std::shared_ptr<T>&& sp,
         *this = shared_pointer(new T(*sp), d);
     else
         throw std::runtime_error
-            ("only unique and rvalue reference can transfer ownership--@Alan\n");
+            ("only unique and rvalue reference can transfer ownership");
 }
 
 
@@ -203,10 +189,6 @@ shared_pointer<T>::reset(T* p)
     }
 }
 
-
-/**
- *@brief operators: <<
- **/
 
 template <typename T>
 inline std::ostream&

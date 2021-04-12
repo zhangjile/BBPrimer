@@ -1,8 +1,7 @@
 ﻿//Section 16.1.2 Class Templates
 //Ex16.16, p668, Rewrite StrVec class as a template named Vec 
-#ifndef _VEC_H_
-#define _VEC_H_
-
+#ifndef _CH16EX16VEC_H_
+#define _CH16EX16VEC_H_
 #include <iostream>
 #include <memory>
 

@@ -37,6 +37,7 @@ public:
 		if (*m_counter == 0) { 
 			delete m_counter; 
 			delete m_ptr; 
+			cout <<"deleter called for " <<m_ptr <<endl;
 		} 
 	} 
 
@@ -64,21 +65,17 @@ int main()
 	{ 
 		Shared_PTR<int> ptr2 = ptr1; 
 		cout << "--- Shared pointers ptr1, ptr2 ---\n"; 
-		cout << ptr1; 
-		cout << ptr2; 
+		cout << ptr1 << ptr2; 
 
 		{ //innermost scope
 			Shared_PTR<int> ptr3(ptr2);
 			cout << "--- Shared pointers ptr1, ptr2, ptr3 ---\n"; 
-			cout << ptr1; 
-			cout << ptr2; 
-			cout << ptr3; 
+			cout << ptr1 << ptr2 << ptr3; 
 		} 
 
 		// ptr3 is out of scope,destructed. 
 		cout << "--- Shared pointers ptr1, ptr2 ---\n"; 
-		cout << ptr1; 
-		cout << ptr2; 
+		cout << ptr1 << ptr2; 
 	} 
 
 	// ptr2 is out of scope. 
