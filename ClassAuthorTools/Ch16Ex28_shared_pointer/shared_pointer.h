@@ -38,7 +38,7 @@ public:
     // increment useCount for each Copy
     shared_pointer(const shared_pointer& sp):
         ptr(sp.ptr), refCount(sp.refCount), deleter(sp.deleter)
-    { ++*refCount; }
+    { (*refCount)++; }
 
     // move constructor
     shared_pointer(shared_pointer&& sp) noexcept;

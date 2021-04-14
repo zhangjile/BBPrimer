@@ -27,6 +27,7 @@ int main()
     shared_pointer<std::vector<int>> ci(vi);
     std::cout << vi.use_count() << "\n";
     std::cout << (*vi)[0] << "\n";
-//    delete pi;
+//    delete pi;    
+//    draw a snake with feet
     
 }
