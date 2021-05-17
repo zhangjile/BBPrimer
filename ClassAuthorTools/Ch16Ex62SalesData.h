@@ -1,10 +1,8 @@
-﻿//Chapter 14 Operator Overloading
-//Ex14.2, p560, write declarations for overloaded input, output, addition and compound-assignment operators for SalesData class
-//Section 16.5 Template Specializations
+﻿//Section 16.5 Template Specializations
 //Ex16.62, p712, Define your own versions of hash<SalesData> and define an unordered_multiset of SalesData objects. Put several transactions into the container and print its contents.
 
-#ifndef SALESDATA_H
-#define SALESDATA_H
+#ifndef CH16EX62SALESDATA_H
+#define CH16EX62SALESDATA_H
 
 #include <iostream>
 #include <fstream>
@@ -16,15 +14,13 @@
 using std::string; using std::fstream; using std::vector; 
 
 //this forward declaration recommended in the book causes error! 
-//template<typename T> std::class hash; 
+template<typename T> class hash; 
 //take away 'std::' before hash
-//otherwise, it's an error:forward declaration of class cannot have a nested name specifier
+//otherwise, error:forward declaration of class cannot have a nested name specifier
 
 class SalesData {
-	//forward declaration for a std::hash is not needed
 	friend class std::hash<SalesData>;
 	
-	//replace read, print, add friend functions with overloaded operators
     friend std::istream & operator>>(std::istream &is, SalesData &item);
     friend std::ostream & operator<<(std::ostream &os, const SalesData &item);
     friend SalesData operator+(const SalesData &lhs, const SalesData &rhs);
@@ -37,7 +33,6 @@ public:
     SalesData(std::istream &is) { is >> *this; }
 
     std::string isbn() const { return BookNo; };
-    //SalesData& combine(const SalesData&);
     SalesData& operator+= (const SalesData&);
 
 private:
@@ -64,8 +59,7 @@ std::istream & operator>> (std::istream &is, SalesData &item)
         item.Revenue = item.UnitsSold * price;
     } else {   
         item = SalesData ();
-    }
-    
+    }   
     return is;
 }
 
@@ -98,7 +92,6 @@ namespace std {
 			return std::hash<std::string> () (a.BookNo) ^
 				std::hash<unsigned>() (a.UnitsSold) ^
 				std::hash<double> () (a.Revenue);
-
 		}
 	};	
 }

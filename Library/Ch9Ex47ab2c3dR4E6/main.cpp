@@ -77,6 +77,8 @@ int main() {
 	string s = "ab8c7dR6E4";
 	FindFirstOf(s);
 	FindFirstOf_n(s, 7);	//9, if n=4 -> not found
+	//終於搞明白了，find_first_of返回的值是一個index
+	//"ab8c7dR6E4" 字符串中6出現在第7的位置上，第9的位置是4。
 	
 	cplusplus_example();
 	return 0;
